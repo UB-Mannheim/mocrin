@@ -5,7 +5,7 @@
 # Author:   **Jan Kamlah**
 # Date:     **10.11.2017**
 
-######### IMPORT JSON ############
+######### IMPORT ############
 import configparser
 from PIL import Image
 import pytesseract
@@ -14,7 +14,9 @@ import cv2 as cv2
 import os
 import glob as glob2
 import subprocess
+from multiprocessing import Process
 
+######### ARGS ############
 # construct the argument parse and parse the arguments
 def get_args():
     ap = argparse.ArgumentParser()
@@ -23,7 +25,7 @@ def get_args():
     args = vars(ap.parse_args())
     return args
 
-
+######### FUNCTIONS ############
 def create_dir(newdir:str)->int:
     """
     Creates a new directory
@@ -41,9 +43,8 @@ def start_tess(file,fp):
     # load the image as a PIL/Pillow image, apply OCR, and then delete
     # the temporary file
     text = pytesseract.image_to_string(Image.open(file), lang="deu")
-    # os.remove(file)
-    with open(fp + file.split('/')[-1] + '.txt', 'w') as out:
-        out.write(text)
+    with open(fp + file.split('/')[-1] + '.txt', 'w') as output:
+        output.write(text)
         # show the output images
         # cv2.imshow("Image", file)
         # cv2.imshow("Output", gray)
@@ -80,6 +81,15 @@ if __name__ == "__main__":
             # Get all filenames and companynames
             files = glob2.glob(path)
             for idx, file in enumerate(files):
-                start_tess(file,pathoutput+ "tess/")
-                start_ocropy(file,pathoutput+ "ocropy/")
+                p1 = Process(target=start_tess,args=[file,pathoutput+ "tess/"])
+                p1.start()
+                print("Starts with Tesseract!")
+                p2 = Process(target=start_ocropy,args=[file,pathoutput+ "ocropy/"])
+                p2.start()
+                print("Starts with Ocropus!")
+                p1.join()
+                p2.join()
+                print("Next image!")
+                #start_tess(file,pathoutput+ "tess/"))
+                #start_ocropy(file,pathoutput+ "ocropy/")
     print("FINISHED!")
