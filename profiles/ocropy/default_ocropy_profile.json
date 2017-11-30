@@ -1,0 +1,877 @@
+{
+    "parameters": {
+        "ocropus-gtedit": {
+            "write": {
+                "--extension": {
+                    "default": ".gt.txt",
+                    "alias": "-x"
+                },
+                "--overwrite": {
+                    "action": "store_true",
+                    "alias": "-O"
+                },
+                "--allowempty": {
+                    "action": "store_true",
+                    "alias": "-e"
+                },
+                "--deleteempty": {
+                    "action": "store_true",
+                    "alias": "-D"
+                },
+                "gtfile": {},
+                "bookdir": {}
+            },
+            "text": {
+                "--output": {
+                    "default": "correct.txt",
+                    "alias": "-o"
+                },
+                "--reffile": {
+                    "default": "reference.html",
+                    "alias": "-r"
+                },
+                "--extension": {
+                    "default": ".txt",
+                    "alias": "-x"
+                },
+                "--height": {
+                    "default": "32",
+                    "type": "int",
+                    "alias": "-H"
+                },
+                "files": {
+                    "nargs": "+"
+                }
+            },
+            "org": {
+                "--output": {
+                    "default": "correct.txt",
+                    "alias": "-o"
+                },
+                "--reffile": {
+                    "default": "reference.html",
+                    "alias": "-r"
+                },
+                "--extension": {
+                    "default": ".txt",
+                    "alias": "-x"
+                },
+                "--height": {
+                    "default": "32",
+                    "type": "int",
+                    "alias": "-H"
+                },
+                "files": {
+                    "nargs": "+"
+                }
+            },
+            "html": {
+                "--debug": {
+                    "action": "store_true",
+                    "alias": "-d"
+                },
+                "--output": {
+                    "default": "correction.html",
+                    "alias": "-o"
+                },
+                "--extension": {
+                    "default": ".txt",
+                    "alias": "-x"
+                },
+                "--fontsize": {
+                    "default": "20",
+                    "type": "int",
+                    "alias": "-f"
+                },
+                "--height": {
+                    "default": "24",
+                    "type": "int",
+                    "alias": "-H"
+                },
+                "--maxsize": {
+                    "default": "10000",
+                    "type": "int",
+                    "alias": "-M"
+                },
+                "files": {
+                    "nargs": "+"
+                }
+            },
+            "extract": {
+                "--prefix": {
+                    "default": "None",
+                    "alias": "-p"
+                },
+                "--overwrite": {
+                    "action": "store_true",
+                    "alias": "-O"
+                },
+                "--extension": {
+                    "default": ".gt.txt",
+                    "alias": "-x"
+                },
+                "--allowempty": {
+                    "action": "store_true",
+                    "alias": "-e"
+                },
+                "html": {}
+            }
+        },
+        "ocropus-gpagseg": {
+            "error checking": {
+                "--nocheck": {
+                    "action": "store_true",
+                    "help": "disable error checking on inputs",
+                    "alias": "-n"
+                },
+                "--minscale": {
+                    "type": "float",
+                    "default": "12.0",
+                    "help": "minimum scale permitted default: %(defaults)"
+                },
+                "--maxlines": {
+                    "type": "float",
+                    "default": "300",
+                    "help": "maximum # lines permitted default: %(defaults)"
+                }
+            },
+            "scale parameters": {
+                "--scale": {
+                    "type": "float",
+                    "default": "0.0",
+                    "help": "the basic scale of the document (roughly xheight 0=automatic, default: %(defaults)"
+                },
+                "--hscale": {
+                    "type": "float",
+                    "default": "1.0",
+                    "help": "non-standard scaling of horizontal parameters default: %(defaults)"
+                },
+                "--vscale": {
+                    "type": "float",
+                    "default": "1.0",
+                    "help": "non-standard scaling of vertical parameters default: %(defaults)"
+                }
+            },
+            "line parameters": {
+                "--threshold": {
+                    "type": "float",
+                    "default": "0.2",
+                    "help": "baseline threshold default: %(defaults)"
+                },
+                "--noise": {
+                    "type": "int",
+                    "default": "8",
+                    "help": "noise threshold for removing small components from lines default: %(defaults)"
+                },
+                "--usegauss": {
+                    "action": "store_true",
+                    "help": "use gaussian instead of uniform default: %(defaults)"
+                }
+            },
+            "column parameters": {
+                "--maxseps": {
+                    "type": "int",
+                    "default": "0",
+                    "help": "maximum black column separators default: %(defaults)"
+                },
+                "--sepwiden": {
+                    "type": "int",
+                    "default": "10",
+                    "help": "widen black separators (to account for warping default: %(defaults)"
+                },
+                "--blackseps": {
+                    "action": "store_true",
+                    "help": "argparse.SUPPRESS",
+                    "alias": "-b"
+                },
+                "--maxcolseps": {
+                    "type": "int",
+                    "default": "3",
+                    "help": "maximum # whitespace column separators default: %(defaults)"
+                },
+                "--csminheight": {
+                    "type": "float",
+                    "default": "10",
+                    "help": "minimum column height (units default: %(defaults)"
+                },
+                "--csminaspect": {
+                    "type": "float",
+                    "default": "1.1",
+                    "help": "argparse.SUPPRESS"
+                }
+            },
+            "output parameters": {
+                "--gray": {
+                    "action": "store_true",
+                    "help": "output grayscale lines as well default: %(defaults)"
+                },
+                "--pad": {
+                    "type": "int",
+                    "default": "3",
+                    "help": "padding for extracted lines default: %(defaults)",
+                    "alias": "-p"
+                },
+                "--expand": {
+                    "type": "int",
+                    "default": "3",
+                    "help": "expand mask for grayscale extraction default: %(defaults)",
+                    "alias": "-e"
+                }
+            },
+            "others": {
+                "--quiet": {
+                    "action": "store_true",
+                    "help": "be less verbose default: %(defaults)",
+                    "alias": "-q"
+                },
+                "--parallel": {
+                    "type": "int",
+                    "default": "0",
+                    "help": "number of CPUs to use",
+                    "alias": "-Q"
+                },
+                "--debug": {
+                    "action": "store_true",
+                    "alias": "-d"
+                },
+                "--help": {
+                    " action": "help",
+                    "help": "show this help message and exit",
+                    "alias": "-h"
+                },
+                "files": {
+                    "nargs": "+"
+                }
+            }
+        },
+        "ocropus-errs": {
+            "files": {
+                "default": "[]",
+                "nargs": "*",
+                "help": "input lines"
+            },
+            "--extension": {
+                "default": ".txt",
+                "help": "extension for recognizer output default: %(defaults)",
+                "alias": "-x"
+            },
+            "--gtextension": {
+                "default": ".gt.txt",
+                "help": "extension for ground truth default: %(defaults)",
+                "alias": "-g"
+            },
+            "--kind": {
+                "default": "exact",
+                "help": "kind of comparison (exact nospace, letdig, letters, digits, lnc, default: %(defaults)",
+                "alias": "-k"
+            },
+            "--erroronly": {
+                "action": "store_true",
+                "help": "only output an error rate",
+                "alias": "-e"
+            },
+            "--skipmissing": {
+                "action": "store_true",
+                "help": "dont use missing or empty output files in the calculation",
+                "alias": "-s"
+            },
+            "--parallel": {
+                "type": "int",
+                "default": "multiprocessing.cpu_count()",
+                "alias": "-Q"
+            }
+        },
+        "ocropus-econf": {
+            "files": {
+                "default": "[]",
+                "nargs": "*",
+                "help": "input lines"
+            },
+            "--extension": {
+                "default": ".txt",
+                "help": "extension for recognizer output default: %(defaults)",
+                "alias": "-x"
+            },
+            "--kind": {
+                "default": "exact",
+                "help": "kind of comparison (exact nospace, letdig, letters, digits, lnc, default: %(defaults)",
+                "alias": "-k"
+            },
+            "--skipmissing": {
+                "action": "store_true",
+                "help": "dont use missing or empty output files in the calculation",
+                "alias": "-s"
+            },
+            "--confusion": {
+                "default": "10",
+                "type": "int",
+                "help": "output this many top confusion default: %(defaults)",
+                "alias": "-c"
+            },
+            "--allconf": {
+                "default": "None",
+                "help": "output all confusions to this file",
+                "alias": "-a"
+            },
+            "--perfile": {
+                "default": "None",
+                "help": "output per-file errors to this file",
+                "alias": "-e"
+            },
+            "--context": {
+                "type": "int",
+                "default": "0",
+                "help": "context for confusion matrix default: %(defaults)",
+                "alias": "-C"
+            },
+            "--parallel": {
+                "type": "int",
+                "default": "multiprocessing.cpu_count()",
+                "alias": "-Q"
+            }
+        },
+        "ocropus-visualize": {
+            "book": {},
+            "--npages": {
+                "type": "int",
+                "default": "100000",
+                "help": "max number of pages default: %(defaults)",
+                "alias": "-N"
+            }
+        },
+        "ocropus-visualize-results": {
+            "book": {},
+            "--npages": {
+                "type": "int",
+                "default": "100000",
+                "help": "max number of pages default: %(defaults)",
+                "alias": "-N"
+            }
+        },
+        "ocropus-rtrain": {
+            "--lineest": {
+                "default": "center",
+                "help": "type of text line estimator default: %(defaults)",
+                "alias": "-e"
+            },
+            "--nolineest": {
+                "action": "store_true",
+                "help": "dont perform line estimation and load .dew.png file",
+                "alias": "-E"
+            },
+            "--height": {
+                "default": "48",
+                "type": "int",
+                "help": "set the default height for line estimation default: %(defaults)",
+                "alias": "-l"
+            },
+            "--dewarp": {
+                "action": "store_true",
+                "help": "only perform line estimation and output .dew.png file"
+            },
+            "--codec": {
+                "default": "[]",
+                "nargs": "*",
+                "help": "construct a codec from the input text",
+                "alias": "-c"
+            },
+            "--clstm": {
+                "action": "store_true",
+                "help": "use C++ LSTM",
+                "alias": "-C"
+            },
+            "--lrate": {
+                "type": "float",
+                "default": "1e-4",
+                "help": "LSTM learning rate default: %(defaults)",
+                "alias": "-r"
+            },
+            "--hiddensize": {
+                "type": "int",
+                "default": "100",
+                "help": "# LSTM state units default: %(defaults)",
+                "alias": "-S"
+            },
+            "--output": {
+                "default": "None",
+                "help": "LSTM model file",
+                "alias": "-o"
+            },
+            "--savefreq": {
+                "type": "int",
+                "default": "1000",
+                "help": "LSTM save frequency default: %(defaults)",
+                "alias": "-F"
+            },
+            "--strip": {
+                "action": "store_false",
+                "help": "strip the model before saving"
+            },
+            "--ntrain": {
+                "type": "int",
+                "default": "1000000",
+                "help": "# lines to train before stopping default: %(defaults)",
+                "alias": "-N"
+            },
+            "--tests": {
+                "default": "None",
+                "help": "test cases for error estimation",
+                "alias": "-t"
+            },
+            "--unidirectional": {
+                "action": "store_true",
+                "help": "use only unidirectional LSTM"
+            },
+            "--updates": {
+                "action": "store_true",
+                "help": "verbose LSTM updates"
+            },
+            "--load": {
+                "default": "None",
+                "help": "start training with a previously trained model"
+            },
+            "--start": {
+                "default": "-1",
+                "type": "int",
+                "help": "manually set the number of already learned lines which influences the naming and stoping condition, default: %(defaults) which will then be overriden by the value saved in the network"
+            },
+            "--exec": {
+                "default": "None",
+                "dest": "execute",
+                "help": "execute before anything else (usually used for imports",
+                "alias": "-X"
+            },
+            "--verbose": {
+                "action": "store_true",
+                "alias": "-v"
+            },
+            "--display": {
+                "type": "int",
+                "default": "0",
+                "help": "display output for every nth iteration where n=DISPLAY, default: %(defaults)",
+                "alias": "-d"
+            },
+            "--movie": {
+                "default": "None",
+                "alias": "-m"
+            },
+            "--moviesample": {
+                "default": "None",
+                "alias": "-M"
+            },
+            "--quiet": {
+                "action": "store_true",
+                "alias": "-q"
+            },
+            "--nocheck": {
+                "action": "store_true",
+                "alias": "-Q"
+            },
+            "--pad": {
+                "type": "int",
+                "default": "16",
+                "alias": "-p"
+            },
+            "files": {
+                "nargs": "*"
+            }
+        },
+        "ocropus-rpred": {
+            "--nocheck": {
+                "action": "store_true",
+                "help": "disable error checking on inputs",
+                "alias": "-n"
+            },
+            "--nolineest": {
+                "action": "store_true",
+                "help": "target line height (overrides recognizer",
+                "alias": "-e"
+            },
+            "--height": {
+                "default": "-1",
+                "type": "int",
+                "help": "target line height (overrides recognizer",
+                "alias": "-l"
+            },
+            "--model": {
+                "default": "en-default.pyrnn.gz",
+                "help": "line recognition model",
+                "alias": "-m"
+            },
+            "--pad": {
+                "default": "16",
+                "type": "int",
+                "help": "extra blank padding to the left and right of text line",
+                "alias": "-p"
+            },
+            "--nonormalize": {
+                "action": "store_true",
+                "help": "dont normalize the textual output from the recognizer",
+                "alias": "-N"
+            },
+            "--llocs": {
+                "action": "store_true",
+                "help": "output LSTM locations for characters"
+            },
+            "--alocs": {
+                "action": "store_true",
+                "help": "output aligned LSTM locations for characters"
+            },
+            "--probabilities": {
+                "action": "store_true",
+                "help": "output probabilities for each letter"
+            },
+            "--estrate": {
+                "action": "store_true",
+                "help": "estimate error rate only",
+                "alias": "-r"
+            },
+            "--estconf": {
+                "type": "int",
+                "default": "20",
+                "help": "estimate confusion matrix",
+                "alias": "-c"
+            },
+            "--compare": {
+                "default": "nospace",
+                "help": "string comparison used for error rate estimate",
+                "alias": "-C"
+            },
+            "--context": {
+                "default": "0",
+                "type": "int",
+                "help": "context for error reporting"
+            },
+            "--show": {
+                "default": "-1",
+                "type": "float",
+                "help": "if >0 shows recognition output in a window and waits this many seconds",
+                "alias": "-s"
+            },
+            "--save": {
+                "default": "None",
+                "help": "save debugging output image as PNG (for bug reporting",
+                "alias": "-S"
+            },
+            "--quiet": {
+                "action": "store_true",
+                "help": "turn off most output",
+                "alias": "-q"
+            },
+            "--parallel": {
+                "type": "int",
+                "default": "1",
+                "help": "number of parallel processes to use default: %(defaults)",
+                "alias": "-Q"
+            },
+            "files": {
+                "nargs": "+",
+                "help": "input files; glob and @ expansion performed"
+            }
+        },
+        "ocropus-nlbin": {
+            "--nocheck": {
+                "action": "store_true",
+                "help": "disable error checking on inputs",
+                "alias": "-n"
+            },
+            "--threshold": {
+                "type": "float",
+                "default": "0.5",
+                "help": "threshold determines lightness, default: %(defaults)",
+                "alias": "-t"
+            },
+            "--zoom": {
+                "type": "float",
+                "default": "0.5",
+                "help": "zoom for page background estimation smaller=faster, default: %(defaults)",
+                "alias": "-z"
+            },
+            "--escale": {
+                "type": "float",
+                "default": "1.0",
+                "help": "scale for estimating a mask over the text region default: %(defaults)",
+                "alias": "-e"
+            },
+            "--bignore": {
+                "type": "float",
+                "default": "0.1",
+                "help": "ignore this much of the border for threshold estimation default: %(defaults)",
+                "alias": "-b"
+            },
+            "--perc": {
+                "type": "float",
+                "default": "80",
+                "help": "percentage for filters default: %(defaults)",
+                "alias": "-p"
+            },
+            "--range": {
+                "type": "int",
+                "default": "20",
+                "help": "range for filters default: %(defaults)",
+                "alias": "-r"
+            },
+            "--maxskew": {
+                "type": "float",
+                "default": "2",
+                "help": "skew angle estimation parameters (degrees default: %(defaults)",
+                "alias": "-m"
+            },
+            "--gray": {
+                "action": "store_true",
+                "help": "force grayscale processing even if image seems binary",
+                "alias": "-g"
+            },
+            "--lo": {
+                "type": "float",
+                "default": "5",
+                "help": "percentile for black estimation default: %(defaults)"
+            },
+            "--hi": {
+                "type": "float",
+                "default": "90",
+                "help": "percentile for white estimation default: %(defaults)"
+            },
+            "--skewsteps": {
+                "type": "int",
+                "default": "8",
+                "help": "steps for skew angle estimation (per degree default: %(defaults)"
+            },
+            "--debug": {
+                "type": "float",
+                "default": "0",
+                "help": "display intermediate results default: %(defaults)"
+            },
+            "--show": {
+                "action": "store_true",
+                "help": "display final result"
+            },
+            "--rawcopy": {
+                "action": "store_true",
+                "help": "also copy the raw image"
+            },
+            "--output": {
+                "default": "None",
+                "help": "output directory",
+                "alias": "-o"
+            },
+            "files": {
+                "nargs": "+"
+            },
+            "--parallel": {
+                "type": "int",
+                "default": "0",
+                "alias": "-Q"
+            }
+        },
+        "ocropus-ltrain": {
+            "--codec": {
+                "default": "[]",
+                "nargs": "*",
+                "help": "construct a codec from the input text",
+                "alias": "-c"
+            },
+            "--lineheight": {
+                "type": "int",
+                "default": "48",
+                "help": "# LSTM state units default: %(defaults)"
+            },
+            "--pad": {
+                "type": "int",
+                "default": "16",
+                "alias": "-p"
+            },
+            "--lrate": {
+                "type": "float",
+                "default": "1e-4",
+                "help": "LSTM learning rate default: %(defaults)",
+                "alias": "-r"
+            },
+            "--hiddensize": {
+                "type": "int",
+                "default": "100",
+                "help": "# LSTM state units default: %(defaults)",
+                "alias": "-S"
+            },
+            "--output": {
+                "default": "temp",
+                "help": "LSTM model file",
+                "alias": "-o"
+            },
+            "--savefreq": {
+                "type": "int",
+                "default": "1000",
+                "help": "LSTM save frequency default: %(defaults)",
+                "alias": "-F"
+            },
+            "--load": {
+                "default": "None",
+                "help": "start training with a previously trained model"
+            },
+            "--start": {
+                "type": "int",
+                "default": "0",
+                "help": "# start training line default: %(defaults)"
+            },
+            "--ntrain": {
+                "type": "int",
+                "default": "1000000",
+                "help": "# lines to train before stopping default: %(defaults)"
+            },
+            "files": {
+                "nargs": "*"
+            }
+        },
+        "ocropus-lpred": {
+            "--codec": {
+                "default": "[]",
+                "nargs": "*",
+                "help": "construct a codec from the input text",
+                "alias": "-c"
+            },
+            "--eval": {
+                "action": "store_true",
+                "alias": "-e"
+            },
+            "--kind": {
+                "default": "exact",
+                "help": "kind of comparison (exact nospace, letdig, letters, digits, lnc, default: %(defaults)",
+                "alias": "-K"
+            },
+            "--lineheight": {
+                "type": "int",
+                "default": "48",
+                "help": "# LSTM state units default: %(defaults)"
+            },
+            "--pad": {
+                "type": "int",
+                "default": "16",
+                "alias": "-p"
+            },
+            "--hiddensize": {
+                "type": "int",
+                "default": "100",
+                "help": "# LSTM state units default: %(defaults)",
+                "alias": "-S"
+            },
+            "--load": {
+                "default": "None",
+                "help": "start training with a previously trained model",
+                "alias": "-m"
+            },
+            "files": {
+                "nargs": "*"
+            }
+        },
+        "ocropus-linegen": {
+            "--base": {
+                "default": "linegen",
+                "help": "output directory default: %(defaults)",
+                "alias": "-o"
+            },
+            "--distort": {
+                "type": "float",
+                "default": "1.0",
+                "alias": "-r"
+            },
+            "--dsigma": {
+                "type": "float",
+                "default": "20.0",
+                "alias": "-R"
+            },
+            "--fonts": {
+                "default": "None",
+                "alias": "-f"
+            },
+            "--fontlist": {
+                "default": "None",
+                "alias": "-F"
+            },
+            "--texts": {
+                "default": "None",
+                "alias": "-t"
+            },
+            "--textlist": {
+                "default": "None",
+                "alias": "-T"
+            },
+            "--maxlines": {
+                "default": "200",
+                "type": "int",
+                "help": "max # lines for each directory default: %(defaults)",
+                "alias": "-m"
+            },
+            "--degradations": {
+                "default": "lo",
+                "help": "lo med, or hi; or give a file, default: %(defaults)",
+                "alias": "-e"
+            },
+            "--jitter": {
+                "default": "0.5",
+                "alias": "-j"
+            },
+            "--sizes": {
+                "default": "40-70",
+                "alias": "-s"
+            },
+            "--display": {
+                "action": "store_true",
+                "alias": "-d"
+            },
+            "--numdir": {
+                "action": "store_true"
+            },
+            "--cleanup": {
+                "default": "[_~#]",
+                "alias": "-C"
+            },
+            "--debug_show": {
+                "default": "None",
+                "help": "select a class for stepping through",
+                "alias": "-D"
+            }
+        },
+        "ocropus-hocr": {
+            "--nobreaks": {
+                "action": "store_true",
+                "help": "dont output line breaks",
+                "alias": "-b"
+            },
+            "--nopars": {
+                "action": "store_true",
+                "help": "dont output paragraphs",
+                "alias": "-p"
+            },
+            "--fscale": {
+                "type": "float",
+                "default": "1.0",
+                "help": "scale factor for translating xheights into font size (use 0 to disable default: %(defaults)",
+                "alias": "-s"
+            },
+            "--output": {
+                "default": "book.html",
+                "help": "output file default: %(defaults)",
+                "alias": "-o"
+            },
+            "files": {
+                "nargs": "+"
+            }
+        },
+        "ocropus-dewrap": {
+            "--lineest": {
+                "default": "center",
+                "help": "type of text line estimator default: %(defaults)",
+                "alias": "-e"
+            },
+            "--height": {
+                "default": "48",
+                "type": "int",
+                "help": "set the default height for line estimation default: %(defaults)",
+                "alias": "-l"
+            },
+            "files": {
+                "nargs": "*"
+            }
+        }
+    }
+}

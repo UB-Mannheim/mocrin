@@ -3,7 +3,7 @@
 # Program:  **Ocronator**
 # Info:     **Python 3.6**
 # Author:   **Jan Kamlah**
-# Date:     **10.11.2017**
+# Date:     **30.11.2017**
 
 ######### IMPORT ############
 import configparser
@@ -16,13 +16,16 @@ import glob as glob2
 import subprocess
 from multiprocessing import Process
 
-######### ARGS ############
-# construct the argument parse and parse the arguments
+####################### CMD-PARSER-SETTINGS ########################
 def get_args():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--image", "required=True",help="path to input image to be OCR'd")
-    ap.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
-    args = vars(ap.parse_args())
+    parser = argparse.ArgumentParser()
+    #args.add_argument("-i", "--image", required=True,help="path to input image to be OCR'd")
+    #args.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
+    parser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
+    parser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
+    parser.add_argument("--tess-profile", value='default', choices=["default"], help="Don't perfom tessract.")
+    parser.add_argument("--ocropy-profile", value='default', choices=["default"], help="Don't perfom ocropy.")
+    args = parser.parse_args()
     return args
 
 ######### FUNCTIONS ############
@@ -71,9 +74,11 @@ if __name__ == "__main__":
     config = configparser.ConfigParser()
     config.sections()
     config.read('config.ini')
-    pathx = config['DEFAULT']['AllPath']
-    pathxoutput = config['DEFAULT']['AllPath_output']
-    #args = get_args()
+    args = get_args()
+    pathx = config['DEFAULT']['allpath']
+    pathxoutput = config['DEFAULT']['allpath_output']
+    tess_profile = config['DEFAULT']['Tessprofile']+""
+    ocropy_profile = config['DEFAULT']['Ocropyprofile']
     for filen in ['short','long']:
         for i in [1957,1961,1965,1969,1973,1976]:
             path = pathx+filen+"/"+str(i)+"/*"
@@ -81,14 +86,18 @@ if __name__ == "__main__":
             # Get all filenames and companynames
             files = glob2.glob(path)
             for idx, file in enumerate(files):
-                p1 = Process(target=start_tess,args=[file,pathoutput+ "tess/"])
-                p1.start()
-                print("Starts with Tesseract!")
-                p2 = Process(target=start_ocropy,args=[file,pathoutput+ "ocropy/"])
-                p2.start()
-                print("Starts with Ocropus!")
-                p1.join()
-                p2.join()
+                if not args.no_tess:
+                    print("Starts with Tesseract!")
+                    p1 = Process(target=start_tess,args=[file,pathoutput+ "tess/"])
+                    p1.start()
+                if not args.no_ocropy:
+                    print("Starts with Ocropus!")
+                    p2 = Process(target=start_ocropy,args=[file,pathoutput+ "ocropy/"])
+                    p2.start()
+                if not args.no_tess:
+                    p1.join()
+                if not args.no_ocropy:
+                    p2.join()
                 print("Next image!")
                 #start_tess(file,pathoutput+ "tess/"))
                 #start_ocropy(file,pathoutput+ "ocropy/")
