@@ -15,6 +15,7 @@ import os
 import glob as glob2
 import subprocess
 from multiprocessing import Process
+import json
 
 ####################### CMD-PARSER-SETTINGS ########################
 def get_args():
@@ -23,8 +24,8 @@ def get_args():
     #args.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
     parser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
     parser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
-    parser.add_argument("--tess-profile", value='default', choices=["default"], help="Don't perfom tessract.")
-    parser.add_argument("--ocropy-profile", value='default', choices=["default"], help="Don't perfom ocropy.")
+    parser.add_argument("--tess-profile", default='default', choices=["default"], help="Don't perfom tessract.")
+    parser.add_argument("--ocropy-profile", default='default', choices=["default"], help="Don't perfom ocropy.")
     args = parser.parse_args()
     return args
 
@@ -40,6 +41,17 @@ def create_dir(newdir:str)->int:
         except IOError:
             print("cannot create %s directoy" % newdir)
     return 0
+
+def get_profiles(tess_profile, ocropy_profile, args,config):
+    if not args.no_tess:
+        tess_profile_path = config['DEFAULT']['Tessprofile'] + args.tess_profile + "_tess_profile.json"
+        with open(tess_profile_path,"r") as file:
+            tess_profile = json.load(file)
+    if not args.no_ocropy:
+        ocropy_profile_path = config['DEFAULT']['Ocropyprofile']+args.ocropy_profile+"_ocropy_profile.json"
+        with open(ocropy_profile_path,"r") as file:
+            ocropy_profile = json.load(file)
+    return
 
 def start_tess(file,fp):
     create_dir(fp)
@@ -77,8 +89,8 @@ if __name__ == "__main__":
     args = get_args()
     pathx = config['DEFAULT']['allpath']
     pathxoutput = config['DEFAULT']['allpath_output']
-    tess_profile = config['DEFAULT']['Tessprofile']+""
-    ocropy_profile = config['DEFAULT']['Ocropyprofile']
+    tess_profile, ocropy_profile = "",""
+    get_profiles(tess_profile, ocropy_profile, args, config)
     for filen in ['short','long']:
         for i in [1957,1961,1965,1969,1973,1976]:
             path = pathx+filen+"/"+str(i)+"/*"
