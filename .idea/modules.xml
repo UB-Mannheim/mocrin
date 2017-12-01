@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Mocrin.iml" filepath="$PROJECT_DIR$/.idea/Mocrin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/akf-mocrin.iml" filepath="$PROJECT_DIR$/.idea/akf-mocrin.iml" />
     </modules>
   </component>
 </project>
