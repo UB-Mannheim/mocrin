@@ -67,9 +67,11 @@
             "help": "Print tesseract parameters to stdout."
         },
         "-c": {
-            "value": "0",
-            "default": "0",
-            "help": "Set value for config variables. Multiple -c arguments are allowed."
+            "value": "",
+            "default": "",
+            "help": "Set value for config variables. Multiple -c arguments are allowed.",
+            "choices": "range(0,600)",
+            "description": "Number of variables which should be change"
         }
     },
     "variables": {

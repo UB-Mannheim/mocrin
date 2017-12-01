@@ -3,7 +3,7 @@
 # Program:  **akf-mocrin**
 # Info:     **Python 3.6**
 # Author:   **Jan Kamlah**
-# Date:     **30.11.2017**
+# Date:     **01.12.2017**
 
 ########## IMPORT ##########
 import configparser
@@ -90,6 +90,7 @@ def start_tess(file,path_out, tess_profile):
         # cv2.imshow("Image", file)
         # cv2.imshow("Output", gray)
         # cv2.waitKey(0)
+    print("Finished tesseract for:"+file.split('/')[-1])
     return 0
 
 def start_ocropy(file,path_out, ocropy_profile):
@@ -106,6 +107,7 @@ def start_ocropy(file,path_out, ocropy_profile):
     subprocess.Popen(args=["ocropus-gpageseg",path_out+fname+"/????.bin.png"]).wait()
     subprocess.Popen(args=["ocropus-rpred","-Q 4",path_out+fname+"/????/??????.bin.png"]).wait()
     subprocess.Popen(args=["ocropus-hocr",path_out+fname+"/????.bin.png","-o"+path_out+"/"+file.split('/')[-1]+".html"]).wait()
+    print("Finished ocropy for:" + file.split('/')[-1])
     return 0
 
 ########### MAIN ##########
