@@ -30,10 +30,35 @@ def get_args():
     argparser.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
     argparser.add_argument("--no-ocropy", action='store_false', help="Don't perfom ocropy.")
-    argparser.add_argument("--tess-profile", default='default', choices=["default"], help="Don't perfom tessract.")
+    argparser.add_argument("--tess-profile", default='test', choices=["default"], help="Don't perfom tessract.")
     argparser.add_argument("--ocropy-profile", default='default', choices=["default"], help="Don't perfom ocropy.")
     args = argparser.parse_args()
     return args
+
+########## JSON_defaultremover ##########
+class DefaultRemover(json.JSONDecoder):
+    """
+    Removes all Null/None and all parameters if value == default
+    """
+    def __init__(self, *args, **kwargs):
+        json.JSONDecoder.__init__(self, object_hook=self.object_hook, *args, **kwargs)
+
+    def object_hook(self, obj):
+        delarr = []
+        for key, value in obj.items():
+            if value == None:
+                delarr.append(key)
+            if key == 'value':
+                if "default" in obj:
+                    if obj["default"] == obj[key]:
+                        del obj
+                        return
+        if len(delarr) == len(obj):
+            del obj
+            return
+        for delitem in delarr:
+            del obj[delitem]
+        return obj
 
 ########## FUNCTIONS ##########
 def create_dir(newdir:str)->int:
@@ -62,11 +87,15 @@ def get_profiles(args,config):
     if not args.no_tess:
         tess_profile_path = config['DEFAULT']['Tessprofile'] + args.tess_profile + "_tess_profile.json"
         with open(tess_profile_path,"r") as file:
-            tess_profile = json.load(file)
+            tess_profile = json.load(file, cls=DefaultRemover)
+        if tess_profile == None:
+            tess_profile = ""
     if not args.no_ocropy:
         ocropy_profile_path = config['DEFAULT']['Ocropyprofile']+args.ocropy_profile+"_ocropy_profile.json"
         with open(ocropy_profile_path,"r") as file:
-            ocropy_profile = json.load(file)
+            ocropy_profile = json.load(file,cls=DefaultRemover)
+        if ocropy_profile == None:
+            ocropy_profile = ""
     return (tess_profile,ocropy_profile)
 
 def start_tess(file,path_out, tess_profile):

@@ -1,0 +1,3024 @@
+{
+    "parameters": {
+        "--tessdata-dir": {
+            "value": "",
+            "default": "",
+            "help": "Specify the location of tessdata path."
+        },
+        "--user-words": {
+            "value": "",
+            "default": "",
+            "help": "Specify the location of user words file."
+        },
+        "--user-patterns": {
+            "value": "",
+            "default": "",
+            "help": "Specify the location of user patterns file."
+        },
+        "-l": {
+            "value": "deu",
+            "default": "deu",
+            "help": "Specify language(s) used for OCR."
+        },
+        "--psm": {
+            "value": "4",
+            "default": "3",
+            "help": "Specify page segmentation mode.",
+            "choices": "range(0, 13)",
+            "description": "Page segmentation modes:\n 0-Orientation and script detection (OSD) only.\n 1-Automatic page segmentation with OSD.\n 2-Automatic page segmentation, but no OSD, or OCR.\n 3-Fully automatic page segmentation, but no OSD. (Default)\n 4-Assume a single column of text of variable sizes.\n 5-Assume a single uniform block of vertically aligned text.\n 6-Assume a single uniform block of text.\n 7-Treat the image as a single text line.\n 8-Treat the image as a single word.\n 9-Treat the image as a single word in a circle.\n 10-Treat the image as a single character.\n 11-Sparse text. Find as much text as possible in no particular order.\n 12-Sparse text with OSD.\n 13-Raw line. Treat the image as a single text line,bypassing hacks that are Tesseract-specific."
+        },
+        "--oem": {
+            "value": "3",
+            "default": "3",
+            "help": "Specify OCR Engine mode.",
+            "choices": "range(0, 3)",
+            "description": "OCR Engine modes:\n 0-Original Tesseract only.\n 1-Neural nets LSTM only.\n 2-Tesseract + LSTM.\n 3-Default, based on what is available."
+        },
+        " --help": {
+            "alias": "-h",
+            "value": "False",
+            "default": "False",
+            "help": "Show this help message."
+        },
+        "--help-psm": {
+            "value": "False",
+            "default": "False",
+            "help": "Show page segmentation modes."
+        },
+        "--help-oem": {
+            "value": "False",
+            "default": "False",
+            "help": "Show OCR Engine modes."
+        },
+        " --version": {
+            "alias": "-v",
+            "value": "False",
+            "default": "False",
+            "help": "Show version information."
+        },
+        "--list-langs": {
+            "value": "False",
+            "default": "False",
+            "help": "List available languages for tesseract engine."
+        },
+        "--print-parameters": {
+            "value": "False",
+            "default": "False",
+            "help": "Print tesseract parameters to stdout."
+        },
+        "-c": {
+            "value": "",
+            "default": "",
+            "help": "Set value for config variables. Multiple -c arguments are allowed.",
+            "choices": "range(0,600)",
+            "description": "Number of variables which should be change"
+        }
+    },
+    "variables": {
+        "classify_num_cp_levels": {
+            "value": "3",
+            "default": "3",
+            "help": "Number of Class Pruner Levels"
+        },
+        "textord_dotmatrix_gap": {
+            "value": "3",
+            "default": "3",
+            "help": "Max pixel gap for broken pixed pitch"
+        },
+        "textord_debug_block": {
+            "value": "0",
+            "default": "0",
+            "help": "Block to do debug on"
+        },
+        "textord_pitch_range": {
+            "value": "2",
+            "default": "2",
+            "help": "Max range test on pitch"
+        },
+        "textord_words_veto_power": {
+            "value": "5",
+            "default": "5",
+            "help": "Rows required to outvote a veto"
+        },
+        "textord_tabfind_show_strokewidths": {
+            "value": "0",
+            "default": "0",
+            "help": "Show stroke widths"
+        },
+        "pitsync_linear_version": {
+            "value": "6",
+            "default": "6",
+            "help": "Use new fast algorithm"
+        },
+        "pitsync_fake_depth": {
+            "value": "1",
+            "default": "1",
+            "help": "Max advance fake generation"
+        },
+        "oldbl_holed_losscount": {
+            "value": "10",
+            "default": "10",
+            "help": "Max lost before fallback line used"
+        },
+        "textord_skewsmooth_offset": {
+            "value": "4",
+            "default": "4",
+            "help": "For smooth factor"
+        },
+        "textord_skewsmooth_offset2": {
+            "value": "1",
+            "default": "1",
+            "help": "For smooth factor"
+        },
+        "textord_test_x": {
+            "value": "-2147483647",
+            "default": "-2147483647",
+            "help": "coord of test pt"
+        },
+        "textord_test_y": {
+            "value": "-2147483647",
+            "default": "-2147483647",
+            "help": "coord of test pt"
+        },
+        "textord_min_blobs_in_row": {
+            "value": "4",
+            "default": "4",
+            "help": "Min blobs before gradient counted"
+        },
+        "textord_spline_minblobs": {
+            "value": "8",
+            "default": "8",
+            "help": "Min blobs in each spline segment"
+        },
+        "textord_spline_medianwin": {
+            "value": "6",
+            "default": "6",
+            "help": "Size of window for spline segmentation"
+        },
+        "textord_max_blob_overlaps": {
+            "value": "4",
+            "default": "4",
+            "help": "Max number of blobs a big blob can overlap"
+        },
+        "textord_min_xheight": {
+            "value": "10",
+            "default": "10",
+            "help": "Min credible pixel xheight"
+        },
+        "textord_lms_line_trials": {
+            "value": "12",
+            "default": "12",
+            "help": "Number of linew fits to do"
+        },
+        "textord_tabfind_show_images": {
+            "value": "0",
+            "default": "0",
+            "help": "Show image blobs"
+        },
+        "textord_fp_chop_error": {
+            "value": "2",
+            "default": "2",
+            "help": "Max allowed bending of chop cells"
+        },
+        "edges_max_children_per_outline": {
+            "value": "10",
+            "default": "10",
+            "help": "Max number of children inside a character outline"
+        },
+        "edges_max_children_layers": {
+            "value": "5",
+            "default": "5",
+            "help": "Max layers of nested children inside a character outline"
+        },
+        "edges_children_per_grandchild": {
+            "value": "10",
+            "default": "10",
+            "help": "Importance ratio for chucking outlines"
+        },
+        "edges_children_count_limit": {
+            "value": "45",
+            "default": "45",
+            "help": "Max holes allowed in blob"
+        },
+        "edges_min_nonhole": {
+            "value": "12",
+            "default": "12",
+            "help": "Min pixels for potential char in box"
+        },
+        "edges_patharea_ratio": {
+            "value": "40",
+            "default": "40",
+            "help": "Max lensq/area for acceptable child outline"
+        },
+        "devanagari_split_debuglevel": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug level for split shiro-rekha process."
+        },
+        "textord_debug_tabfind": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug tab finding"
+        },
+        "textord_debug_bugs": {
+            "value": "0",
+            "default": "0",
+            "help": "Turn on output related to bugs in tab finding"
+        },
+        "textord_testregion_left": {
+            "value": "-1",
+            "default": "-1",
+            "help": "Left edge of debug reporting rectangle"
+        },
+        "textord_testregion_top": {
+            "value": "-1",
+            "default": "-1",
+            "help": "Top edge of debug reporting rectangle"
+        },
+        "textord_testregion_right": {
+            "value": "2147483647",
+            "default": "2147483647",
+            "help": "Right edge of debug rectangle"
+        },
+        "textord_testregion_bottom": {
+            "value": "2147483647",
+            "default": "2147483647",
+            "help": "Bottom edge of debug rectangle"
+        },
+        "editor_image_xpos": {
+            "value": "590",
+            "default": "590",
+            "help": "Editor image X Pos"
+        },
+        "editor_image_ypos": {
+            "value": "10",
+            "default": "10",
+            "help": "Editor image Y Pos"
+        },
+        "editor_image_menuheight": {
+            "value": "50",
+            "default": "50",
+            "help": "Add to image height for menu bar"
+        },
+        "editor_image_word_bb_color": {
+            "value": "7",
+            "default": "7",
+            "help": "Word bounding box colour"
+        },
+        "editor_image_blob_bb_color": {
+            "value": "4",
+            "default": "4",
+            "help": "Blob bounding box colour"
+        },
+        "editor_image_text_color": {
+            "value": "2",
+            "default": "2",
+            "help": "Correct text colour"
+        },
+        "editor_dbwin_xpos": {
+            "value": "50",
+            "default": "50",
+            "help": "Editor debug window X Pos"
+        },
+        "editor_dbwin_ypos": {
+            "value": "500",
+            "default": "500",
+            "help": "Editor debug window Y Pos"
+        },
+        "editor_dbwin_height": {
+            "value": "24",
+            "default": "24",
+            "help": "Editor debug window height"
+        },
+        "editor_dbwin_width": {
+            "value": "80",
+            "default": "80",
+            "help": "Editor debug window width"
+        },
+        "editor_word_xpos": {
+            "value": "60",
+            "default": "60",
+            "help": "Word window X Pos"
+        },
+        "editor_word_ypos": {
+            "value": "510",
+            "default": "510",
+            "help": "Word window Y Pos"
+        },
+        "editor_word_height": {
+            "value": "240",
+            "default": "240",
+            "help": "Word window height"
+        },
+        "editor_word_width": {
+            "value": "655",
+            "default": "655",
+            "help": "Word window width"
+        },
+        "wordrec_display_splits": {
+            "value": "0",
+            "default": "0",
+            "help": "Display splits"
+        },
+        "poly_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug old poly"
+        },
+        "poly_wide_objects_better": {
+            "value": "1",
+            "default": "1",
+            "help": "More accurate approx on wide things"
+        },
+        "wordrec_display_all_blobs": {
+            "value": "0",
+            "default": "0",
+            "help": "Display Blobs"
+        },
+        "wordrec_display_all_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Display Words"
+        },
+        "wordrec_blob_pause": {
+            "value": "0",
+            "default": "0",
+            "help": "Blob pause"
+        },
+        "textord_fp_chopping": {
+            "value": "1",
+            "default": "1",
+            "help": "Do fixed pitch chopping"
+        },
+        "textord_force_make_prop_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Force proportional word segmentation on all rows"
+        },
+        "textord_chopper_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Chopper is being tested."
+        },
+        "textord_restore_underlines": {
+            "value": "1",
+            "default": "1",
+            "help": "Chop underlines & put back"
+        },
+        "textord_show_initial_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Display separate words"
+        },
+        "textord_show_new_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Display separate words"
+        },
+        "textord_show_fixed_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Display forced fixed pitch words"
+        },
+        "textord_blocksall_fixed": {
+            "value": "0",
+            "default": "0",
+            "help": "Moan about prop blocks"
+        },
+        "textord_blocksall_prop": {
+            "value": "0",
+            "default": "0",
+            "help": "Moan about fixed pitch blocks"
+        },
+        "textord_blocksall_testing": {
+            "value": "0",
+            "default": "0",
+            "help": "Dump stats when moaning"
+        },
+        "textord_test_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Do current test"
+        },
+        "textord_pitch_scalebigwords": {
+            "value": "0",
+            "default": "0",
+            "help": "Scale scores on big words"
+        },
+        "textord_all_prop": {
+            "value": "0",
+            "default": "0",
+            "help": "All doc is proportial text"
+        },
+        "textord_debug_pitch_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug on fixed pitch test"
+        },
+        "textord_disable_pitch_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Turn off dp fixed pitch algorithm"
+        },
+        "textord_fast_pitch_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Do even faster pitch algorithm"
+        },
+        "textord_debug_pitch_metric": {
+            "value": "0",
+            "default": "0",
+            "help": "Write full metric stuff"
+        },
+        "textord_show_row_cuts": {
+            "value": "0",
+            "default": "0",
+            "help": "Draw row-level cuts"
+        },
+        "textord_show_page_cuts": {
+            "value": "0",
+            "default": "0",
+            "help": "Draw page-level cuts"
+        },
+        "textord_pitch_cheat": {
+            "value": "0",
+            "default": "0",
+            "help": "Use correct answer for fixed/prop"
+        },
+        "textord_blockndoc_fixed": {
+            "value": "0",
+            "default": "0",
+            "help": "Attempt whole doc/block fixed pitch"
+        },
+        "textord_show_tables": {
+            "value": "0",
+            "default": "0",
+            "help": "Show table regions"
+        },
+        "textord_tablefind_show_mark": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug table marking steps in detail"
+        },
+        "textord_tablefind_show_stats": {
+            "value": "0",
+            "default": "0",
+            "help": "Show page stats used in table finding"
+        },
+        "textord_tablefind_recognize_tables": {
+            "value": "0",
+            "default": "0",
+            "help": "Enables the table recognizer for table layout and filtering."
+        },
+        "textord_tabfind_show_initialtabs": {
+            "value": "0",
+            "default": "0",
+            "help": "Show tab candidates"
+        },
+        "textord_tabfind_show_finaltabs": {
+            "value": "0",
+            "default": "0",
+            "help": "Show tab vectors"
+        },
+        "textord_tabfind_only_strokewidths": {
+            "value": "0",
+            "default": "0",
+            "help": "Only run stroke widths"
+        },
+        "textord_really_old_xheight": {
+            "value": "0",
+            "default": "0",
+            "help": "Use original wiseowl xheight"
+        },
+        "textord_oldbl_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug old baseline generation"
+        },
+        "textord_debug_baselines": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug baseline generation"
+        },
+        "textord_oldbl_paradef": {
+            "value": "1",
+            "default": "1",
+            "help": "Use para default mechanism"
+        },
+        "textord_oldbl_split_splines": {
+            "value": "1",
+            "default": "1",
+            "help": "Split stepped splines"
+        },
+        "textord_oldbl_merge_parts": {
+            "value": "1",
+            "default": "1",
+            "help": "Merge suspect partitions"
+        },
+        "oldbl_corrfix": {
+            "value": "1",
+            "default": "1",
+            "help": "Improve correlation of heights"
+        },
+        "oldbl_xhfix": {
+            "value": "0",
+            "default": "0",
+            "help": "Fix bug in modes threshold for xheights"
+        },
+        "textord_ocropus_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Make baselines for ocropus"
+        },
+        "textord_heavy_nr": {
+            "value": "0",
+            "default": "0",
+            "help": "Vigorously remove noise"
+        },
+        "textord_show_initial_rows": {
+            "value": "0",
+            "default": "0",
+            "help": "Display row accumulation"
+        },
+        "textord_show_parallel_rows": {
+            "value": "0",
+            "default": "0",
+            "help": "Display page correlated rows"
+        },
+        "textord_show_expanded_rows": {
+            "value": "0",
+            "default": "0",
+            "help": "Display rows after expanding"
+        },
+        "textord_show_final_rows": {
+            "value": "0",
+            "default": "0",
+            "help": "Display rows after final fitting"
+        },
+        "textord_show_final_blobs": {
+            "value": "0",
+            "default": "0",
+            "help": "Display blob bounds after pre-ass"
+        },
+        "textord_test_landscape": {
+            "value": "0",
+            "default": "0",
+            "help": "Tests refer to land/port"
+        },
+        "textord_parallel_baselines": {
+            "value": "1",
+            "default": "1",
+            "help": "Force parallel baselines"
+        },
+        "textord_straight_baselines": {
+            "value": "0",
+            "default": "0",
+            "help": "Force straight baselines"
+        },
+        "textord_old_baselines": {
+            "value": "1",
+            "default": "1",
+            "help": "Use old baseline algorithm"
+        },
+        "textord_old_xheight": {
+            "value": "0",
+            "default": "0",
+            "help": "Use old xheight algorithm"
+        },
+        "textord_fix_xheight_bug": {
+            "value": "1",
+            "default": "1",
+            "help": "Use spline baseline"
+        },
+        "textord_fix_makerow_bug": {
+            "value": "1",
+            "default": "1",
+            "help": "Prevent multiple baselines"
+        },
+        "textord_debug_xheights": {
+            "value": "0",
+            "default": "0",
+            "help": "Test xheight algorithms"
+        },
+        "textord_biased_skewcalc": {
+            "value": "1",
+            "default": "1",
+            "help": "Bias skew estimates with line length"
+        },
+        "textord_interpolating_skew": {
+            "value": "1",
+            "default": "1",
+            "help": "Interpolate across gaps"
+        },
+        "textord_new_initial_xheight": {
+            "value": "1",
+            "default": "1",
+            "help": "Use test xheight mechanism"
+        },
+        "textord_debug_blob": {
+            "value": "0",
+            "default": "0",
+            "help": "Print test blob information"
+        },
+        "gapmap_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Say which blocks have tables"
+        },
+        "gapmap_use_ends": {
+            "value": "0",
+            "default": "0",
+            "help": "Use large space at start and end of rows"
+        },
+        "gapmap_no_isolated_quanta": {
+            "value": "0",
+            "default": "0",
+            "help": "Ensure gaps not less than 2quanta wide"
+        },
+        "edges_use_new_outline_complexity": {
+            "value": "0",
+            "default": "0",
+            "help": "Use the new outline complexity module"
+        },
+        "edges_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "turn on debugging for this module"
+        },
+        "edges_children_fix": {
+            "value": "0",
+            "default": "0",
+            "help": "Remove boxy parents of char-like children"
+        },
+        "textord_show_fixed_cuts": {
+            "value": "0",
+            "default": "0",
+            "help": "Draw fixed pitch cell boundaries"
+        },
+        "devanagari_split_debugimage": {
+            "value": "0",
+            "default": "0",
+            "help": "Whether to create a debug image for split shiro-rekha process."
+        },
+        "textord_tabfind_show_color_fit": {
+            "value": "0",
+            "default": "0",
+            "help": "Show stroke widths"
+        },
+        "textord_tabfind_show_reject_blobs": {
+            "value": "0",
+            "default": "0",
+            "help": "Show blobs rejected as noise"
+        },
+        "textord_tabfind_show_columns": {
+            "value": "0",
+            "default": "0",
+            "help": "Show column bounds"
+        },
+        "textord_tabfind_show_blocks": {
+            "value": "0",
+            "default": "0",
+            "help": "Show final block bounds"
+        },
+        "textord_tabfind_find_tables": {
+            "value": "1",
+            "default": "1",
+            "help": "run table detection"
+        },
+        "textord_space_size_is_variable": {
+            "value": "0",
+            "default": "0",
+            "help": "If true, word delimiter spaces are assumed to have variable width, even though characters have fixed pitch."
+        },
+        "textord_debug_printable": {
+            "value": "0",
+            "default": "0",
+            "help": "Make debug windows printable"
+        },
+        "equationdetect_save_bi_image": {
+            "value": "0",
+            "default": "0",
+            "help": "Save input bi image"
+        },
+        "equationdetect_save_spt_image": {
+            "value": "0",
+            "default": "0",
+            "help": "Save special character image"
+        },
+        "equationdetect_save_seed_image": {
+            "value": "0",
+            "default": "0",
+            "help": "Save the seed image"
+        },
+        "equationdetect_save_merged_image": {
+            "value": "0",
+            "default": "0",
+            "help": "Save the merged image"
+        },
+        "stream_filelist": {
+            "value": "0",
+            "default": "0",
+            "help": "Stream a filelist from stdin"
+        },
+        "classify_training_file": {
+            "value": "MicroFeatures",
+            "default": "MicroFeatures",
+            "help": "Training file"
+        },
+        "classify_font_name": {
+            "value": "UnknownFont",
+            "default": "UnknownFont",
+            "help": "Default font name to be used in training"
+        },
+        "oldbl_xhfract": {
+            "value": "0.4",
+            "default": "0.4",
+            "help": "Fraction of est allowed in calc"
+        },
+        "oldbl_dot_error_size": {
+            "value": "1.26",
+            "default": "1.26",
+            "help": "Max aspect ratio of a dot"
+        },
+        "textord_oldbl_jumplimit": {
+            "value": "0.15",
+            "default": "0.15",
+            "help": "X fraction for new partition"
+        },
+        "textord_spline_shift_fraction": {
+            "value": "0.02",
+            "default": "0.02",
+            "help": "Fraction of line spacing for quad"
+        },
+        "textord_skew_ile": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Ile of gradients for page skew"
+        },
+        "textord_skew_lag": {
+            "value": "0.02",
+            "default": "0.02",
+            "help": "Lag for skew on row accumulation"
+        },
+        "textord_linespace_iqrlimit": {
+            "value": "0.2",
+            "default": "0.2",
+            "help": "Max iqr/median for linespace"
+        },
+        "textord_width_limit": {
+            "value": "8",
+            "default": "8",
+            "help": "Max width of blobs to make rows"
+        },
+        "textord_chop_width": {
+            "value": "1.5",
+            "default": "1.5",
+            "help": "Max width before chopping"
+        },
+        "textord_expansion_factor": {
+            "value": "1",
+            "default": "1",
+            "help": "Factor to expand rows by in expand_rows"
+        },
+        "textord_overlap_x": {
+            "value": "0.375",
+            "default": "0.375",
+            "help": "Fraction of linespace for good overlap"
+        },
+        "textord_minxh": {
+            "value": "0.25",
+            "default": "0.25",
+            "help": "fraction of linesize for min xheight"
+        },
+        "textord_min_linesize": {
+            "value": "1.25",
+            "default": "1.25",
+            "help": "* blob height for initial linesize"
+        },
+        "textord_excess_blobsize": {
+            "value": "1.3",
+            "default": "1.3",
+            "help": "New row made if blob makes row this big"
+        },
+        "textord_occupancy_threshold": {
+            "value": "0.4",
+            "default": "0.4",
+            "help": "Fraction of neighbourhood"
+        },
+        "textord_underline_width": {
+            "value": "2",
+            "default": "2",
+            "help": "Multiple of line_size for underline"
+        },
+        "textord_min_blob_height_fraction": {
+            "value": "0.75",
+            "default": "0.75",
+            "help": "Min blob height/top to include blob top into xheight stats"
+        },
+        "textord_xheight_mode_fraction": {
+            "value": "0.4",
+            "default": "0.4",
+            "help": "Min pile height to make xheight"
+        },
+        "textord_descheight_mode_fraction": {
+            "value": "0.08",
+            "default": "0.08",
+            "help": "Min pile height to make descheight"
+        },
+        "textord_ascx_ratio_min": {
+            "value": "1.25",
+            "default": "1.25",
+            "help": "Min cap/xheight"
+        },
+        "textord_ascx_ratio_max": {
+            "value": "1.8",
+            "default": "1.8",
+            "help": "Max cap/xheight"
+        },
+        "textord_descx_ratio_min": {
+            "value": "0.25",
+            "default": "0.25",
+            "help": "Min desc/xheight"
+        },
+        "textord_descx_ratio_max": {
+            "value": "0.6",
+            "default": "0.6",
+            "help": "Max desc/xheight"
+        },
+        "textord_xheight_error_margin": {
+            "value": "0.1",
+            "default": "0.1",
+            "help": "Accepted variation"
+        },
+        "gapmap_big_gaps": {
+            "value": "1.75",
+            "default": "1.75",
+            "help": "xht multiplier"
+        },
+        "textord_fp_chop_snap": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Max distance of chop pt from vertex"
+        },
+        "edges_childarea": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Min area fraction of child outline"
+        },
+        "edges_boxarea": {
+            "value": "0.875",
+            "default": "0.875",
+            "help": "Min area fraction of grandchild for box"
+        },
+        "textord_underline_threshold": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Fraction of width occupied"
+        },
+        "ambigs_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug level for unichar ambiguities"
+        },
+        "tessedit_single_match": {
+            "value": "0",
+            "default": "0",
+            "help": "Top choice only from CP"
+        },
+        "classify_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Classify debug level"
+        },
+        "matcher_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Matcher Debug Level"
+        },
+        "matcher_debug_flags": {
+            "value": "0",
+            "default": "0",
+            "help": "Matcher Debug Flags"
+        },
+        "classify_learning_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Learning Debug Level:"
+        },
+        "matcher_permanent_classes_min": {
+            "value": "1",
+            "default": "1",
+            "help": "Min # of permanent classes"
+        },
+        "matcher_min_examples_for_prototyping": {
+            "value": "3",
+            "default": "3",
+            "help": "Reliable Config Threshold"
+        },
+        "matcher_sufficient_examples_for_prototyping": {
+            "value": "5",
+            "default": "5",
+            "help": "Enable adaption even if the ambiguities have not been seen"
+        },
+        "classify_adapt_proto_threshold": {
+            "value": "230",
+            "default": "230",
+            "help": "Threshold for good protos during adaptive 0-255"
+        },
+        "classify_class_pruner_multiplier": {
+            "value": "15",
+            "default": "15",
+            "help": "Class Pruner Multiplier 0-255:"
+        },
+        "classify_cp_cutoff_strength": {
+            "value": "7",
+            "default": "7",
+            "help": "Class Pruner CutoffStrength:"
+        },
+        "il1_adaption_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't adapt to i/I at beginning of word"
+        },
+        "dawg_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Set to 1 for general debug info, to 2 for more details, to 3 to see all the debug messages"
+        },
+        "hyphen_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug level for hyphenated words."
+        },
+        "max_viterbi_list_size": {
+            "value": "10",
+            "default": "10",
+            "help": "Maximum size of viterbi list."
+        },
+        "stopper_smallword_size": {
+            "value": "2",
+            "default": "2",
+            "help": "Size of dict word to be treated as non-dict word"
+        },
+        "stopper_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Stopper debug level"
+        },
+        "tessedit_truncate_wordchoice_log": {
+            "value": "10",
+            "default": "10",
+            "help": "Max words to keep in list"
+        },
+        "fragments_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug character fragments"
+        },
+        "max_permuter_attempts": {
+            "value": "10000",
+            "default": "10000",
+            "help": "Maximum number of different character choices to consider during permutation. This limit is especially useful when user patterns are specified, since overly generic patterns can result in dawg search exploring an overly large number of options."
+        },
+        "repair_unchopped_blobs": {
+            "value": "1",
+            "default": "1",
+            "help": "Fix blobs that aren't chopped"
+        },
+        "chop_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Chop debug"
+        },
+        "chop_split_length": {
+            "value": "10000",
+            "default": "10000",
+            "help": "Split Length"
+        },
+        "chop_same_distance": {
+            "value": "2",
+            "default": "2",
+            "help": "Same distance"
+        },
+        "chop_min_outline_points": {
+            "value": "6",
+            "default": "6",
+            "help": "Min Number of Points on Outline"
+        },
+        "chop_seam_pile_size": {
+            "value": "150",
+            "default": "150",
+            "help": "Max number of seams in seam_pile"
+        },
+        "chop_inside_angle": {
+            "value": "-50",
+            "default": "-50",
+            "help": "Min Inside Angle Bend"
+        },
+        "chop_min_outline_area": {
+            "value": "2000",
+            "default": "2000",
+            "help": "Min Outline Area"
+        },
+        "chop_centered_maxwidth": {
+            "value": "90",
+            "default": "90",
+            "help": "Width of (smaller) chopped blobs above which we don't care that a chop is not near the center."
+        },
+        "chop_x_y_weight 3": {
+            "value": "X / Y",
+            "default": "X / Y",
+            "help": "length weight"
+        },
+        "segment_adjust_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Segmentation adjustment debug"
+        },
+        "wordrec_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug level for wordrec"
+        },
+        "wordrec_max_join_chunks": {
+            "value": "4",
+            "default": "4",
+            "help": "Max number of broken pieces to associate"
+        },
+        "segsearch_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "SegSearch debug level"
+        },
+        "segsearch_max_pain_points": {
+            "value": "2000",
+            "default": "2000",
+            "help": "Maximum number of pain points stored in the queue"
+        },
+        "segsearch_max_futile_classifications": {
+            "value": "20",
+            "default": "20",
+            "help": "Maximum number of pain point classifications per chunk thatdid not result in finding a better word choice."
+        },
+        "language_model_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Language model debug level"
+        },
+        "language_model_ngram_order": {
+            "value": "8",
+            "default": "8",
+            "help": "Maximum order of the character ngram model"
+        },
+        "language_model_viterbi_list_max_num_prunable": {
+            "value": "10",
+            "default": "10",
+            "help": "Maximum number of prunable (those for which PrunablePath() is true) entries in each viterbi list recorded in BLOB_CHOICEs"
+        },
+        "language_model_viterbi_list_max_size": {
+            "value": "500",
+            "default": "500",
+            "help": "Maximum size of viterbi lists recorded in BLOB_CHOICEs"
+        },
+        "language_model_min_compound_length": {
+            "value": "3",
+            "default": "3",
+            "help": "Minimum length of compound words"
+        },
+        "wordrec_display_segmentations": {
+            "value": "0",
+            "default": "0",
+            "help": "Display Segmentations"
+        },
+        "tessedit_pageseg_mode": {
+            "value": "6",
+            "default": "6",
+            "help": "Page seg mode: 0=osd only, 1=auto+osd, 2=auto, 3=col, 4=block, 5=line, 6=word, 7=char (Values from PageSegMode enum in publictypes.h)"
+        },
+        "tessedit_ocr_engine_mode": {
+            "value": "2",
+            "default": "2",
+            "help": "Which OCR engine(s) to run (Tesseract, LSTM, both). Defaults to loading and running the most accurate available."
+        },
+        "pageseg_devanagari_split_strategy": {
+            "value": "0",
+            "default": "0",
+            "help": "Whether to use the top-line splitting process for Devanagari documents while performing page-segmentation."
+        },
+        "ocr_devanagari_split_strategy": {
+            "value": "0",
+            "default": "0",
+            "help": "Whether to use the top-line splitting process for Devanagari documents while performing ocr."
+        },
+        "bidi_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug level for BiDi"
+        },
+        "applybox_debug": {
+            "value": "1",
+            "default": "1",
+            "help": "Debug level"
+        },
+        "applybox_page": {
+            "value": "0",
+            "default": "0",
+            "help": "Page number to apply boxes from"
+        },
+        "tessedit_bigram_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Amount of debug output for bigram correction."
+        },
+        "debug_noise_removal": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug reassignment of small outlines"
+        },
+        "noise_maxperblob": {
+            "value": "8",
+            "default": "8",
+            "help": "Max diacritics to apply to a blob"
+        },
+        "noise_maxperword": {
+            "value": "16",
+            "default": "16",
+            "help": "Max diacritics to apply to a word"
+        },
+        "debug_x_ht_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Reestimate debug"
+        },
+        "tessedit_tess_adaption_mode": {
+            "value": "39",
+            "default": "39",
+            "help": "Adaptation decision algorithm for tess"
+        },
+        "tessedit_test_adaption_mode": {
+            "value": "3",
+            "default": "3",
+            "help": "Adaptation decision algorithm for tess"
+        },
+        "multilang_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Print multilang debug info."
+        },
+        "paragraph_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Print paragraph debug info."
+        },
+        "tessedit_preserve_min_wd_len": {
+            "value": "2",
+            "default": "2",
+            "help": "Only preserve wds longer than this"
+        },
+        "crunch_rating_max": {
+            "value": "10",
+            "default": "10",
+            "help": "For adj length in rating per ch"
+        },
+        "crunch_pot_indicators": {
+            "value": "1",
+            "default": "1",
+            "help": "How many potential indicators needed"
+        },
+        "crunch_leave_lc_strings": {
+            "value": "4",
+            "default": "4",
+            "help": "Don't crunch words with long lower case strings"
+        },
+        "crunch_leave_uc_strings": {
+            "value": "4",
+            "default": "4",
+            "help": "Don't crunch words with long lower case strings"
+        },
+        "crunch_long_repetitions": {
+            "value": "3",
+            "default": "3",
+            "help": "Crunch words with long repetitions"
+        },
+        "crunch_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "As it says"
+        },
+        "fixsp_non_noise_limit": {
+            "value": "1",
+            "default": "1",
+            "help": "How many non-noise blbs either side?"
+        },
+        "fixsp_done_mode": {
+            "value": "1",
+            "default": "1",
+            "help": "What constitues done for spacing"
+        },
+        "debug_fix_space_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Contextual fixspace debug"
+        },
+        "x_ht_acceptance_tolerance": {
+            "value": "8",
+            "default": "8",
+            "help": "Max allowed deviation of blob top outside of font data"
+        },
+        "x_ht_min_change": {
+            "value": "8",
+            "default": "8",
+            "help": "Min change in xht before actually trying it"
+        },
+        "superscript_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug level for sub & superscript fixer"
+        },
+        "suspect_level": {
+            "value": "99",
+            "default": "99",
+            "help": "Suspect marker level"
+        },
+        "suspect_space_level": {
+            "value": "100",
+            "default": "100",
+            "help": "Min suspect level for rejecting spaces"
+        },
+        "suspect_short_words": {
+            "value": "2",
+            "default": "2",
+            "help": "Don't suspect dict wds longer than this"
+        },
+        "tessedit_reject_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Rejection algorithm"
+        },
+        "tessedit_image_border": {
+            "value": "2",
+            "default": "2",
+            "help": "Rej blbs near image edge limit"
+        },
+        "min_sane_x_ht_pixels": {
+            "value": "8",
+            "default": "8",
+            "help": "Reject any x-ht lt or eq than this"
+        },
+        "tessedit_page_number": {
+            "value": "-1",
+            "default": "-1",
+            "help": "-1 -> All pages , else specific page to process"
+        },
+        "tessdata_manager_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug level for TessdataManager functions."
+        },
+        "tessedit_parallelize": {
+            "value": "0",
+            "default": "0",
+            "help": "Run in parallel where possible"
+        },
+        "tessedit_ok_mode": {
+            "value": "5",
+            "default": "5",
+            "help": "Acceptance decision algorithm"
+        },
+        "segment_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug the whole segmentation process"
+        },
+        "language_model_fixed_length_choices_depth": {
+            "value": "3",
+            "default": "3",
+            "help": "Depth of blob choice lists to explore when fixed length dawgs are on"
+        },
+        "tosp_debug_level": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug data"
+        },
+        "tosp_enough_space_samples_for_median": {
+            "value": "3",
+            "default": "3",
+            "help": "or should we use mean"
+        },
+        "tosp_redo_kern_limit": {
+            "value": "10",
+            "default": "10",
+            "help": "No.samples reqd to reestimate for row"
+        },
+        "tosp_few_samples": {
+            "value": "40",
+            "default": "40",
+            "help": "No.gaps reqd with 1 large gap to treat as a table"
+        },
+        "tosp_short_row": {
+            "value": "20",
+            "default": "20",
+            "help": "No.gaps reqd with few cert spaces to use certs"
+        },
+        "tosp_sanity_method": {
+            "value": "1",
+            "default": "1",
+            "help": "How to avoid being silly"
+        },
+        "textord_max_noise_size": {
+            "value": "7",
+            "default": "7",
+            "help": "Pixel size of noise"
+        },
+        "textord_baseline_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Baseline debug level"
+        },
+        "textord_noise_sizefraction": {
+            "value": "10",
+            "default": "10",
+            "help": "Fraction of size for maxima"
+        },
+        "textord_noise_translimit": {
+            "value": "16",
+            "default": "16",
+            "help": "Transitions for normal blob"
+        },
+        "textord_noise_sncount": {
+            "value": "1",
+            "default": "1",
+            "help": "super norm blobs to save row"
+        },
+        "use_definite_ambigs_for_classifier": {
+            "value": "0",
+            "default": "0",
+            "help": "Use definite ambiguities when running character classifier"
+        },
+        "use_ambigs_for_adaption": {
+            "value": "0",
+            "default": "0",
+            "help": "Use ambigs for deciding whether to adapt to a character"
+        },
+        "allow_blob_division": {
+            "value": "1",
+            "default": "1",
+            "help": "Use divisible blobs chopping"
+        },
+        "prioritize_division": {
+            "value": "0",
+            "default": "0",
+            "help": "Prioritize blob division over chopping"
+        },
+        "classify_enable_learning": {
+            "value": "1",
+            "default": "1",
+            "help": "Enable adaptive classifier"
+        },
+        "tess_cn_matching": {
+            "value": "0",
+            "default": "0",
+            "help": "Character Normalized Matching"
+        },
+        "tess_bn_matching": {
+            "value": "0",
+            "default": "0",
+            "help": "Baseline Normalized Matching"
+        },
+        "classify_enable_adaptive_matcher": {
+            "value": "1",
+            "default": "1",
+            "help": "Enable adaptive classifier"
+        },
+        "classify_use_pre_adapted_templates": {
+            "value": "0",
+            "default": "0",
+            "help": "Use pre-adapted classifier templates"
+        },
+        "classify_save_adapted_templates": {
+            "value": "0",
+            "default": "0",
+            "help": "Save adapted templates to a file"
+        },
+        "classify_enable_adaptive_debugger": {
+            "value": "0",
+            "default": "0",
+            "help": "Enable match debugger"
+        },
+        "classify_nonlinear_norm": {
+            "value": "0",
+            "default": "0",
+            "help": "Non-linear stroke-density normalization"
+        },
+        "disable_character_fragments": {
+            "value": "1",
+            "default": "1",
+            "help": "Do not include character fragments in the results of the classifier"
+        },
+        "classify_debug_character_fragments": {
+            "value": "0",
+            "default": "0",
+            "help": "Bring up graphical debugging windows for fragments training"
+        },
+        "matcher_debug_separate_windows": {
+            "value": "0",
+            "default": "0",
+            "help": "Use two different windows for debugging the matching: One for the protos and one for the features."
+        },
+        "classify_bln_numeric_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Assume the input is numbers [0-9]."
+        },
+        "load_system_dawg": {
+            "value": "1",
+            "default": "1",
+            "help": "Load system word dawg."
+        },
+        "load_freq_dawg": {
+            "value": "1",
+            "default": "1",
+            "help": "Load frequent word dawg."
+        },
+        "load_unambig_dawg": {
+            "value": "1",
+            "default": "1",
+            "help": "Load unambiguous word dawg."
+        },
+        "load_punc_dawg": {
+            "value": "1",
+            "default": "1",
+            "help": "Load dawg with punctuation patterns."
+        },
+        "load_number_dawg": {
+            "value": "1",
+            "default": "1",
+            "help": "Load dawg with number patterns."
+        },
+        "load_bigram_dawg": {
+            "value": "1",
+            "default": "1",
+            "help": "Load dawg with special word bigrams."
+        },
+        "use_only_first_uft8_step": {
+            "value": "0",
+            "default": "0",
+            "help": "Use only the first UTF8 step of the given string when computing log probabilities."
+        },
+        "stopper_no_acceptable_choices": {
+            "value": "0",
+            "default": "0",
+            "help": "Make AcceptableChoice() always return false. Useful when there is a need to explore all segmentations"
+        },
+        "save_raw_choices": {
+            "value": "0",
+            "default": "0",
+            "help": "Deprecated- backward compatibility only"
+        },
+        "segment_nonalphabetic_script": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't use any alphabetic-specific tricks.Set to true in the traineddata config file for scripts that are cursive or inherently fixed-pitch"
+        },
+        "save_doc_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Save Document Words"
+        },
+        "merge_fragments_in_matrix": {
+            "value": "1",
+            "default": "1",
+            "help": "Merge the fragments in the ratings matrix and delete them after merging"
+        },
+        "wordrec_no_block": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't output block information"
+        },
+        "wordrec_enable_assoc": {
+            "value": "1",
+            "default": "1",
+            "help": "Associator Enable"
+        },
+        "force_word_assoc": {
+            "value": "0",
+            "default": "0",
+            "help": "force associator to run regardless of what enable_assoc is.This is used for CJK where component grouping is necessary."
+        },
+        "fragments_guide_chopper": {
+            "value": "0",
+            "default": "0",
+            "help": "Use information from fragments to guide chopping process"
+        },
+        "chop_enable": {
+            "value": "1",
+            "default": "1",
+            "help": "Chop enable"
+        },
+        "chop_vertical_creep": {
+            "value": "0",
+            "default": "0",
+            "help": "Vertical creep"
+        },
+        "chop_new_seam_pile": {
+            "value": "1",
+            "default": "1",
+            "help": "Use new seam_pile"
+        },
+        "wordrec_skip_no_truth_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Only run OCR for words that had truth recorded in BlamerBundle"
+        },
+        "wordrec_debug_blamer": {
+            "value": "0",
+            "default": "0",
+            "help": "Print blamer debug messages"
+        },
+        "wordrec_run_blamer": {
+            "value": "0",
+            "default": "0",
+            "help": "Try to set the blame for errors"
+        },
+        "save_alt_choices": {
+            "value": "1",
+            "default": "1",
+            "help": "Save alternative paths found during chopping and segmentation search"
+        },
+        "language_model_ngram_on": {
+            "value": "0",
+            "default": "0",
+            "help": "Turn on/off the use of character ngram model"
+        },
+        "language_model_ngram_use_only_first_uft8_step": {
+            "value": "0",
+            "default": "0",
+            "help": "Use only the first UTF8 step of the given string when computing log probabilities."
+        },
+        "language_model_ngram_space_delimited_language": {
+            "value": "1",
+            "default": "1",
+            "help": "Words are delimited by space"
+        },
+        "language_model_use_sigmoidal_certainty": {
+            "value": "0",
+            "default": "0",
+            "help": "Use sigmoidal score for certainty"
+        },
+        "tessedit_resegment_from_boxes": {
+            "value": "0",
+            "default": "0",
+            "help": "Take segmentation and labeling from box file"
+        },
+        "tessedit_resegment_from_line_boxes": {
+            "value": "0",
+            "default": "0",
+            "help": "Conversion of word/line box file to char box file"
+        },
+        "tessedit_train_from_boxes": {
+            "value": "0",
+            "default": "0",
+            "help": "Generate training data from boxed chars"
+        },
+        "tessedit_make_boxes_from_boxes": {
+            "value": "0",
+            "default": "0",
+            "help": "Generate more boxes from boxed chars"
+        },
+        "tessedit_train_line_recognizer": {
+            "value": "0",
+            "default": "0",
+            "help": "Break input into lines and remap boxes if present"
+        },
+        "tessedit_dump_pageseg_images": {
+            "value": "0",
+            "default": "0",
+            "help": "Dump intermediate images made during page segmentation"
+        },
+        "tessedit_ambigs_training": {
+            "value": "0",
+            "default": "0",
+            "help": "Perform training for ambiguities"
+        },
+        "tessedit_adaption_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Generate and print debug information for adaption"
+        },
+        "applybox_learn_chars_and_char_frags_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Learn both character fragments (as is done in the special low exposure mode) as well as unfragmented characters."
+        },
+        "applybox_learn_ngrams_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Each bounding box is assumed to contain ngrams. Only learn the ngrams whose outlines overlap horizontally."
+        },
+        "tessedit_display_outwords": {
+            "value": "0",
+            "default": "0",
+            "help": "Draw output words"
+        },
+        "tessedit_dump_choices": {
+            "value": "0",
+            "default": "0",
+            "help": "Dump char choices"
+        },
+        "tessedit_timing_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Print timing stats"
+        },
+        "tessedit_fix_fuzzy_spaces": {
+            "value": "1",
+            "default": "1",
+            "help": "Try to improve fuzzy spaces"
+        },
+        "tessedit_unrej_any_wd": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't bother with word plausibility"
+        },
+        "tessedit_fix_hyphens": {
+            "value": "1",
+            "default": "1",
+            "help": "Crunch double hyphens?"
+        },
+        "tessedit_redo_xheight": {
+            "value": "1",
+            "default": "1",
+            "help": "Check/Correct x-height"
+        },
+        "tessedit_enable_doc_dict": {
+            "value": "1",
+            "default": "1",
+            "help": "Add words to the document dictionary"
+        },
+        "tessedit_debug_fonts": {
+            "value": "0",
+            "default": "0",
+            "help": "Output font info per char"
+        },
+        "tessedit_debug_block_rejection": {
+            "value": "0",
+            "default": "0",
+            "help": "Block and Row stats"
+        },
+        "tessedit_enable_bigram_correction": {
+            "value": "1",
+            "default": "1",
+            "help": "Enable correction based on the word bigram dictionary."
+        },
+        "enable_noise_removal": {
+            "value": "1",
+            "default": "1",
+            "help": "Remove and conditionally reassign small outlines when they confuse layout analysis, determining diacritics vs noise"
+        },
+        "debug_acceptable_wds": {
+            "value": "0",
+            "default": "0",
+            "help": "Dump word pass/fail chk"
+        },
+        "tessedit_minimal_rej_pass1": {
+            "value": "0",
+            "default": "0",
+            "help": "Do minimal rejection on pass 1 output"
+        },
+        "tessedit_test_adaption": {
+            "value": "0",
+            "default": "0",
+            "help": "Test adaption criteria"
+        },
+        "tessedit_matcher_log": {
+            "value": "0",
+            "default": "0",
+            "help": "Log matcher activity"
+        },
+        "test_pt": {
+            "value": "0",
+            "default": "0",
+            "help": "Test for point"
+        },
+        "paragraph_text_based": {
+            "value": "1",
+            "default": "1",
+            "help": "Run paragraph detection on the post-text-recognition (more accurate)"
+        },
+        "lstm_use_matrix": {
+            "value": "1",
+            "default": "1",
+            "help": "Use ratings matrix/beam search with lstm"
+        },
+        "docqual_excuse_outline_errs": {
+            "value": "0",
+            "default": "0",
+            "help": "Allow outline errs in unrejection?"
+        },
+        "tessedit_good_quality_unrej": {
+            "value": "1",
+            "default": "1",
+            "help": "Reduce rejection on good docs"
+        },
+        "tessedit_use_reject_spaces": {
+            "value": "1",
+            "default": "1",
+            "help": "Reject spaces?"
+        },
+        "tessedit_preserve_blk_rej_perfect_wds": {
+            "value": "1",
+            "default": "1",
+            "help": "Only rej partially rejected words in block rejection"
+        },
+        "tessedit_preserve_row_rej_perfect_wds": {
+            "value": "1",
+            "default": "1",
+            "help": "Only rej partially rejected words in row rejection"
+        },
+        "tessedit_dont_blkrej_good_wds": {
+            "value": "0",
+            "default": "0",
+            "help": "Use word segmentation quality metric"
+        },
+        "tessedit_dont_rowrej_good_wds": {
+            "value": "0",
+            "default": "0",
+            "help": "Use word segmentation quality metric"
+        },
+        "tessedit_row_rej_good_docs": {
+            "value": "1",
+            "default": "1",
+            "help": "Apply row rejection to good docs"
+        },
+        "tessedit_reject_bad_qual_wds": {
+            "value": "1",
+            "default": "1",
+            "help": "Reject all bad quality wds"
+        },
+        "tessedit_debug_doc_rejection": {
+            "value": "0",
+            "default": "0",
+            "help": "Page stats"
+        },
+        "tessedit_debug_quality_metrics": {
+            "value": "0",
+            "default": "0",
+            "help": "Output data to debug file"
+        },
+        "bland_unrej": {
+            "value": "0",
+            "default": "0",
+            "help": "unrej potential with no checks"
+        },
+        "unlv_tilde_crunching": {
+            "value": "1",
+            "default": "1",
+            "help": "Mark v.bad words for tilde crunch"
+        },
+        "hocr_font_info": {
+            "value": "0",
+            "default": "0",
+            "help": "Add font info to hocr output"
+        },
+        "crunch_early_merge_tess_fails": {
+            "value": "1",
+            "default": "1",
+            "help": "Before word crunch?"
+        },
+        "crunch_early_convert_bad_unlv_chs": {
+            "value": "0",
+            "default": "0",
+            "help": "Take out ~^ early?"
+        },
+        "crunch_terrible_garbage": {
+            "value": "1",
+            "default": "1",
+            "help": "As it says"
+        },
+        "crunch_pot_garbage": {
+            "value": "1",
+            "default": "1",
+            "help": "POTENTIAL crunch garbage"
+        },
+        "crunch_leave_ok_strings": {
+            "value": "1",
+            "default": "1",
+            "help": "Don't touch sensible strings"
+        },
+        "crunch_accept_ok": {
+            "value": "1",
+            "default": "1",
+            "help": "Use acceptability in okstring"
+        },
+        "crunch_leave_accept_strings": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't pot crunch sensible strings"
+        },
+        "crunch_include_numerals": {
+            "value": "0",
+            "default": "0",
+            "help": "Fiddle alpha figures"
+        },
+        "tessedit_prefer_joined_punct": {
+            "value": "0",
+            "default": "0",
+            "help": "Reward punctation joins"
+        },
+        "tessedit_write_rep_codes": {
+            "value": "0",
+            "default": "0",
+            "help": "Write repetition char code"
+        },
+        "tessedit_write_unlv": {
+            "value": "0",
+            "default": "0",
+            "help": "Write .unlv output file"
+        },
+        "tessedit_create_txt": {
+            "value": "0",
+            "default": "0",
+            "help": "Write .txt output file"
+        },
+        "tessedit_create_hocr": {
+            "value": "0",
+            "default": "0",
+            "help": "Write .html hOCR output file"
+        },
+        "tessedit_create_tsv": {
+            "value": "0",
+            "default": "0",
+            "help": "Write .tsv output file"
+        },
+        "tessedit_create_pdf": {
+            "value": "0",
+            "default": "0",
+            "help": "Write .pdf output file"
+        },
+        "textonly_pdf": {
+            "value": "0",
+            "default": "0",
+            "help": "Create PDF with only one invisible text layer"
+        },
+        "suspect_constrain_1Il": {
+            "value": "0",
+            "default": "0",
+            "help": "UNLV keep 1Il chars rejected"
+        },
+        "tessedit_minimal_rejection": {
+            "value": "0",
+            "default": "0",
+            "help": "Only reject tess failures"
+        },
+        "tessedit_zero_rejection": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't reject ANYTHING"
+        },
+        "tessedit_word_for_word": {
+            "value": "0",
+            "default": "0",
+            "help": "Make output have exactly one word per WERD"
+        },
+        "tessedit_zero_kelvin_rejection": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't reject ANYTHING AT ALL"
+        },
+        "tessedit_consistent_reps": {
+            "value": "1",
+            "default": "1",
+            "help": "Force all rep chars the same"
+        },
+        "tessedit_rejection_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Adaption debug"
+        },
+        "tessedit_flip_0O": {
+            "value": "1",
+            "default": "1",
+            "help": "Contextual 0O O0 flips"
+        },
+        "rej_trust_doc_dawg": {
+            "value": "0",
+            "default": "0",
+            "help": "Use DOC dawg in 11l conf. detector"
+        },
+        "rej_1Il_use_dict_word": {
+            "value": "0",
+            "default": "0",
+            "help": "Use dictword test"
+        },
+        "rej_1Il_trust_permuter_type": {
+            "value": "1",
+            "default": "1",
+            "help": "Don't double check"
+        },
+        "rej_use_tess_accepted": {
+            "value": "1",
+            "default": "1",
+            "help": "Individual rejection control"
+        },
+        "rej_use_tess_blanks": {
+            "value": "1",
+            "default": "1",
+            "help": "Individual rejection control"
+        },
+        "rej_use_good_perm": {
+            "value": "1",
+            "default": "1",
+            "help": "Individual rejection control"
+        },
+        "rej_use_sensible_wd": {
+            "value": "0",
+            "default": "0",
+            "help": "Extend permuter check"
+        },
+        "rej_alphas_in_number_perm": {
+            "value": "0",
+            "default": "0",
+            "help": "Extend permuter check"
+        },
+        "tessedit_create_boxfile": {
+            "value": "0",
+            "default": "0",
+            "help": "Output text with boxes"
+        },
+        "tessedit_write_images": {
+            "value": "0",
+            "default": "0",
+            "help": "Capture the image from the IPE"
+        },
+        "interactive_display_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Run interactively?"
+        },
+        "tessedit_override_permuter": {
+            "value": "1",
+            "default": "1",
+            "help": "According to dict_word"
+        },
+        "tessedit_use_primary_params_model": {
+            "value": "0",
+            "default": "0",
+            "help": "In multilingual mode use params model of the primary language"
+        },
+        "textord_tabfind_show_vlines": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug line finding"
+        },
+        "textord_use_cjk_fp_model": {
+            "value": "0",
+            "default": "0",
+            "help": "Use CJK fixed pitch model"
+        },
+        "poly_allow_detailed_fx": {
+            "value": "0",
+            "default": "0",
+            "help": "Allow feature extractors to see the original outline"
+        },
+        "tessedit_init_config_only": {
+            "value": "0",
+            "default": "0",
+            "help": "Only initialize with the config file. Useful if the instance is not going to be used for OCR but say only for layout analysis."
+        },
+        "textord_equation_detect": {
+            "value": "0",
+            "default": "0",
+            "help": "Turn on equation detector"
+        },
+        "textord_tabfind_vertical_text": {
+            "value": "1",
+            "default": "1",
+            "help": "Enable vertical detection"
+        },
+        "textord_tabfind_force_vertical_text": {
+            "value": "0",
+            "default": "0",
+            "help": "Force using vertical text page mode"
+        },
+        "preserve_interword_spaces": {
+            "value": "0",
+            "default": "0",
+            "help": "Preserve multiple interword spaces"
+        },
+        "include_page_breaks": {
+            "value": "0",
+            "default": "0",
+            "help": "Include page separator string in output text after each image/page."
+        },
+        "load_fixed_length_dawgs": {
+            "value": "1",
+            "default": "1",
+            "help": "Load fixed length dawgs (e.g. for non-space delimited languages)"
+        },
+        "permute_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug char permutation process"
+        },
+        "permute_script_word": {
+            "value": "0",
+            "default": "0",
+            "help": "Turn on word script consistency permuter"
+        },
+        "segment_segcost_rating": {
+            "value": "0",
+            "default": "0",
+            "help": "incorporate segmentation cost in word rating?"
+        },
+        "permute_fixed_length_dawg": {
+            "value": "0",
+            "default": "0",
+            "help": "Turn on fixed-length phrasebook search permuter"
+        },
+        "permute_chartype_word": {
+            "value": "0",
+            "default": "0",
+            "help": "Turn on character type (property) consistency permuter"
+        },
+        "ngram_permuter_activated": {
+            "value": "0",
+            "default": "0",
+            "help": "Activate character-level n-gram-based permuter"
+        },
+        "permute_only_top": {
+            "value": "0",
+            "default": "0",
+            "help": "Run only the top choice permuter"
+        },
+        "use_new_state_cost": {
+            "value": "0",
+            "default": "0",
+            "help": "use new state cost heuristics for segmentation state evaluation"
+        },
+        "enable_new_segsearch": {
+            "value": "1",
+            "default": "1",
+            "help": "Enable new segmentation search path."
+        },
+        "textord_single_height_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Script has no xheight, so use a single mode"
+        },
+        "tosp_old_to_method": {
+            "value": "0",
+            "default": "0",
+            "help": "Space stats use prechopping?"
+        },
+        "tosp_old_to_constrain_sp_kn": {
+            "value": "0",
+            "default": "0",
+            "help": "Constrain relative values of inter and intra-word gaps for old_to_method."
+        },
+        "tosp_only_use_prop_rows": {
+            "value": "1",
+            "default": "1",
+            "help": "Block stats to use fixed pitch rows?"
+        },
+        "tosp_force_wordbreak_on_punct": {
+            "value": "0",
+            "default": "0",
+            "help": "Force word breaks on punct to break long lines in non-space delimited langs"
+        },
+        "tosp_use_pre_chopping": {
+            "value": "0",
+            "default": "0",
+            "help": "Space stats use prechopping?"
+        },
+        "tosp_old_to_bug_fix": {
+            "value": "0",
+            "default": "0",
+            "help": "Fix suspected bug in old code"
+        },
+        "tosp_block_use_cert_spaces": {
+            "value": "1",
+            "default": "1",
+            "help": "Only stat OBVIOUS spaces"
+        },
+        "tosp_row_use_cert_spaces": {
+            "value": "1",
+            "default": "1",
+            "help": "Only stat OBVIOUS spaces"
+        },
+        "tosp_narrow_blobs_not_cert": {
+            "value": "1",
+            "default": "1",
+            "help": "Only stat OBVIOUS spaces"
+        },
+        "tosp_row_use_cert_spaces1": {
+            "value": "1",
+            "default": "1",
+            "help": "Only stat OBVIOUS spaces"
+        },
+        "tosp_recovery_isolated_row_stats": {
+            "value": "1",
+            "default": "1",
+            "help": "Use row alone when inadequate cert spaces"
+        },
+        "tosp_only_small_gaps_for_kern": {
+            "value": "0",
+            "default": "0",
+            "help": "Better guess"
+        },
+        "tosp_all_flips_fuzzy": {
+            "value": "0",
+            "default": "0",
+            "help": "Pass ANY flip to context?"
+        },
+        "tosp_fuzzy_limit_all": {
+            "value": "1",
+            "default": "1",
+            "help": "Don't restrict kn->sp fuzzy limit to tables"
+        },
+        "tosp_stats_use_xht_gaps": {
+            "value": "1",
+            "default": "1",
+            "help": "Use within xht gap for wd breaks"
+        },
+        "tosp_use_xht_gaps": {
+            "value": "1",
+            "default": "1",
+            "help": "Use within xht gap for wd breaks"
+        },
+        "tosp_only_use_xht_gaps": {
+            "value": "0",
+            "default": "0",
+            "help": "Only use within xht gap for wd breaks"
+        },
+        "tosp_rule_9_test_punct": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't chng kn to space next to punct"
+        },
+        "tosp_flip_fuzz_kn_to_sp": {
+            "value": "1",
+            "default": "1",
+            "help": "Default flip"
+        },
+        "tosp_flip_fuzz_sp_to_kn": {
+            "value": "1",
+            "default": "1",
+            "help": "Default flip"
+        },
+        "tosp_improve_thresh": {
+            "value": "0",
+            "default": "0",
+            "help": "Enable improvement heuristic"
+        },
+        "textord_no_rejects": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't remove noise blobs"
+        },
+        "textord_show_blobs": {
+            "value": "0",
+            "default": "0",
+            "help": "Display unsorted blobs"
+        },
+        "textord_show_boxes": {
+            "value": "0",
+            "default": "0",
+            "help": "Display unsorted blobs"
+        },
+        "textord_noise_rejwords": {
+            "value": "1",
+            "default": "1",
+            "help": "Reject noise-like words"
+        },
+        "textord_noise_rejrows": {
+            "value": "1",
+            "default": "1",
+            "help": "Reject noise-like rows"
+        },
+        "textord_noise_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug row garbage detector"
+        },
+        "m_data_sub_dir": {
+            "value": "tessdata/",
+            "default": "tessdata/",
+            "help": "Directory for data files"
+        },
+        "tessedit_module_name": {
+            "value": "libtesseract",
+            "default": "libtesseract",
+            "help": "Module colocated with tessdata dir"
+        },
+        "applybox_exposure_pattern": {
+            "value": ".exp",
+            "default": ".exp",
+            "help": "Exposure value follows this pattern in the image filename. The name of the image files are expected to be in the form [lang].[fontname].exp[num].tif"
+        },
+        "chs_leading_punct": {
+            "value": "('`\"",
+            "default": "('`\"",
+            "help": "Leading punctuation"
+        },
+        "chs_trailing_punct2": {
+            "value": ")'`\"",
+            "default": ")'`\"",
+            "help": "2nd Trailing punctuation"
+        },
+        "outlines_odd": {
+            "value": "%|",
+            "default": "%|",
+            "help": "Non standard number of outlines"
+        },
+        "outlines_2": {
+            "value": "ij!?%\":;",
+            "default": "ij!?%\":;",
+            "help": "Non standard number of outlines"
+        },
+        "numeric_punctuation": {
+            "value": ".,",
+            "default": ".,",
+            "help": "Punct. chs expected WITHIN numbers"
+        },
+        "unrecognised_char": {
+            "value": "|",
+            "default": "|",
+            "help": "Output char for unidentified blobs"
+        },
+        "conflict_set_I_l_1": {
+            "value": "Il1[]",
+            "default": "Il1[]",
+            "help": "Il1 conflict set"
+        },
+        "file_type": {
+            "value": ".tif",
+            "default": ".tif",
+            "help": "Filename extension"
+        },
+        "page_separator": {
+            "value": "\u00e2\u2122\u20ac",
+            "default": "\u00e2\u2122\u20ac",
+            "help": "Page separator (default is form feed control character)"
+        },
+        "classify_char_norm_range": {
+            "value": "0.2",
+            "default": "0.2",
+            "help": "Character Normalization Range ..."
+        },
+        "classify_min_norm_scale_x": {
+            "value": "0",
+            "default": "0",
+            "help": "Min char x-norm scale ..."
+        },
+        "classify_max_norm_scale_x": {
+            "value": "0.325",
+            "default": "0.325",
+            "help": "Max char x-norm scale ..."
+        },
+        "classify_min_norm_scale_y": {
+            "value": "0",
+            "default": "0",
+            "help": "Min char y-norm scale ..."
+        },
+        "classify_max_norm_scale_y": {
+            "value": "0.325",
+            "default": "0.325",
+            "help": "Max char y-norm scale ..."
+        },
+        "classify_max_rating_ratio": {
+            "value": "1.5",
+            "default": "1.5",
+            "help": "Veto ratio between classifier ratings"
+        },
+        "classify_max_certainty_margin": {
+            "value": "5.5",
+            "default": "5.5",
+            "help": "Veto difference between classifier certainties"
+        },
+        "matcher_good_threshold": {
+            "value": "0.125",
+            "default": "0.125",
+            "help": "Good Match (0-1)"
+        },
+        "matcher_reliable_adaptive_result": {
+            "value": "0",
+            "default": "0",
+            "help": "Great Match (0-1)"
+        },
+        "matcher_perfect_threshold": {
+            "value": "0.02",
+            "default": "0.02",
+            "help": "Perfect Match (0-1)"
+        },
+        "matcher_bad_match_pad": {
+            "value": "0.15",
+            "default": "0.15",
+            "help": "Bad Match Pad (0-1)"
+        },
+        "matcher_rating_margin": {
+            "value": "0.1",
+            "default": "0.1",
+            "help": "New template margin (0-1)"
+        },
+        "matcher_avg_noise_size": {
+            "value": "12",
+            "default": "12",
+            "help": "Avg. noise blob length"
+        },
+        "matcher_clustering_max_angle_delta": {
+            "value": "0.015",
+            "default": "0.015",
+            "help": "Maximum angle delta for prototype clustering"
+        },
+        "classify_misfit_junk_penalty": {
+            "value": "0",
+            "default": "0",
+            "help": "Penalty to apply when a non-alnum is vertically out of its expected textline position"
+        },
+        "rating_scale": {
+            "value": "1.5",
+            "default": "1.5",
+            "help": "Rating scaling factor"
+        },
+        "certainty_scale": {
+            "value": "20",
+            "default": "20",
+            "help": "Certainty scaling factor"
+        },
+        "tessedit_class_miss_scale": {
+            "value": "0.00390625",
+            "default": "0.00390625",
+            "help": "Scale factor for features not used"
+        },
+        "classify_adapted_pruning_threshold": {
+            "value": "-1",
+            "default": "-1",
+            "help": "Threshold at which classify_adapted_pruning_factor starts"
+        },
+        "classify_character_fragments_garbage_certainty_threshold": {
+            "value": "-3",
+            "default": "-3",
+            "help": "Exclude fragments that do not look like whole characters from training and adaption"
+        },
+        "speckle_large_max_size": {
+            "value": "0.3",
+            "default": "0.3",
+            "help": "Max large speckle size"
+        },
+        "speckle_rating_penalty": {
+            "value": "10",
+            "default": "10",
+            "help": "Penalty to add to worst rating for noise"
+        },
+        "xheight_penalty_subscripts": {
+            "value": "0.125",
+            "default": "0.125",
+            "help": "Score penalty (0.1 = 10%) added if there are subscripts or superscripts in a word, but it is otherwise OK."
+        },
+        "xheight_penalty_inconsistent": {
+            "value": "0.25",
+            "default": "0.25",
+            "help": "Score penalty (0.1 = 10%) added if an xheight is inconsistent."
+        },
+        "segment_penalty_dict_frequent_word": {
+            "value": "1",
+            "default": "1",
+            "help": "Score multiplier for word matches which have good case andare frequent in the given language (lower is better)."
+        },
+        "segment_penalty_dict_case_ok": {
+            "value": "1.1",
+            "default": "1.1",
+            "help": "Score multiplier for word matches that have good case (lower is better)."
+        },
+        "segment_penalty_dict_case_bad": {
+            "value": "1.3125",
+            "default": "1.3125",
+            "help": "Default score multiplier for word matches, which may have case issues (lower is better)."
+        },
+        "segment_penalty_ngram_best_choice": {
+            "value": "1.24",
+            "default": "1.24",
+            "help": "Multipler to for the best choice from the ngram model."
+        },
+        "segment_penalty_dict_nonword": {
+            "value": "1.25",
+            "default": "1.25",
+            "help": "Score multiplier for glyph fragment segmentations which do not match a dictionary word (lower is better)."
+        },
+        "segment_penalty_garbage": {
+            "value": "1.5",
+            "default": "1.5",
+            "help": "Score multiplier for poorly cased strings that are not in the dictionary and generally look like garbage (lower is better)."
+        },
+        "stopper_nondict_certainty_base": {
+            "value": "-2.5",
+            "default": "-2.5",
+            "help": "Certainty threshold for non-dict words"
+        },
+        "stopper_phase2_certainty_rejection_offset": {
+            "value": "1",
+            "default": "1",
+            "help": "Reject certainty offset"
+        },
+        "stopper_certainty_per_char": {
+            "value": "-0.5",
+            "default": "-0.5",
+            "help": "Certainty to add for each dict char above small word size."
+        },
+        "stopper_allowable_character_badness": {
+            "value": "3",
+            "default": "3",
+            "help": "Max certaintly variation allowed in a word (in sigma)"
+        },
+        "doc_dict_pending_threshold": {
+            "value": "0",
+            "default": "0",
+            "help": "Worst certainty for using pending dictionary"
+        },
+        "doc_dict_certainty_threshold": {
+            "value": "-2.25",
+            "default": "-2.25",
+            "help": "Worst certainty for words that can be inserted into thedocument dictionary"
+        },
+        "wordrec_worst_state": {
+            "value": "1",
+            "default": "1",
+            "help": "Worst segmentation state"
+        },
+        "tessedit_certainty_threshold": {
+            "value": "-2.25",
+            "default": "-2.25",
+            "help": "Good blob limit"
+        },
+        "chop_split_dist_knob": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Split length adjustment"
+        },
+        "chop_overlap_knob": {
+            "value": "0.9",
+            "default": "0.9",
+            "help": "Split overlap adjustment"
+        },
+        "chop_center_knob": {
+            "value": "0.15",
+            "default": "0.15",
+            "help": "Split center adjustment"
+        },
+        "chop_sharpness_knob": {
+            "value": "0.06",
+            "default": "0.06",
+            "help": "Split sharpness adjustment"
+        },
+        "chop_width_change_knob": {
+            "value": "5",
+            "default": "5",
+            "help": "Width change adjustment"
+        },
+        "chop_ok_split": {
+            "value": "100",
+            "default": "100",
+            "help": "OK split limit"
+        },
+        "chop_good_split": {
+            "value": "50",
+            "default": "50",
+            "help": "Good split limit"
+        },
+        "segsearch_max_char_wh_ratio": {
+            "value": "2",
+            "default": "2",
+            "help": "Maximum character width-to-height ratio"
+        },
+        "language_model_ngram_nonmatch_score": {
+            "value": "-40",
+            "default": "-40",
+            "help": "Average classifier score of a non-matching unichar."
+        },
+        "language_model_ngram_scale_factor": {
+            "value": "0.03",
+            "default": "0.03",
+            "help": "Strength of the character ngram model relative to the character classifier"
+        },
+        "language_model_ngram_rating_factor": {
+            "value": "16",
+            "default": "16",
+            "help": "Factor to bring log-probs into the same range as ratings when multiplied by outline length"
+        },
+        "language_model_penalty_non_freq_dict_word": {
+            "value": "0.1",
+            "default": "0.1",
+            "help": "Penalty for words not in the frequent word dictionary"
+        },
+        "language_model_penalty_non_dict_word": {
+            "value": "0.15",
+            "default": "0.15",
+            "help": "Penalty for non-dictionary words"
+        },
+        "language_model_penalty_punc": {
+            "value": "0.2",
+            "default": "0.2",
+            "help": "Penalty for inconsistent punctuation"
+        },
+        "language_model_penalty_case": {
+            "value": "0.1",
+            "default": "0.1",
+            "help": "Penalty for inconsistent case"
+        },
+        "language_model_penalty_script": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Penalty for inconsistent script"
+        },
+        "language_model_penalty_font": {
+            "value": "0",
+            "default": "0",
+            "help": "Penalty for inconsistent font"
+        },
+        "language_model_penalty_spacing": {
+            "value": "0.05",
+            "default": "0.05",
+            "help": "Penalty for inconsistent spacing"
+        },
+        "language_model_penalty_increment": {
+            "value": "0.01",
+            "default": "0.01",
+            "help": "Penalty increment"
+        },
+        "noise_cert_basechar": {
+            "value": "-8",
+            "default": "-8",
+            "help": "Hingepoint for base char certainty"
+        },
+        "noise_cert_disjoint": {
+            "value": "-1",
+            "default": "-1",
+            "help": "Hingepoint for disjoint certainty"
+        },
+        "noise_cert_punc": {
+            "value": "-3",
+            "default": "-3",
+            "help": "Threshold for new punc char certainty"
+        },
+        "noise_cert_factor": {
+            "value": "0.375",
+            "default": "0.375",
+            "help": "Scaling on certainty diff from Hingepoint"
+        },
+        "quality_rej_pc": {
+            "value": "0.08",
+            "default": "0.08",
+            "help": "good_quality_doc lte rejection limit"
+        },
+        "quality_blob_pc": {
+            "value": "0",
+            "default": "0",
+            "help": "good_quality_doc gte good blobs limit"
+        },
+        "quality_outline_pc": {
+            "value": "1",
+            "default": "1",
+            "help": "good_quality_doc lte outline error limit"
+        },
+        "quality_char_pc": {
+            "value": "0.95",
+            "default": "0.95",
+            "help": "good_quality_doc gte good char limit"
+        },
+        "test_pt_x": {
+            "value": "100000",
+            "default": "100000",
+            "help": "xcoord"
+        },
+        "test_pt_y": {
+            "value": "100000",
+            "default": "100000",
+            "help": "ycoord"
+        },
+        "tessedit_reject_doc_percent": {
+            "value": "65",
+            "default": "65",
+            "help": "%rej allowed before rej whole doc"
+        },
+        "tessedit_reject_block_percent": {
+            "value": "45",
+            "default": "45",
+            "help": "%rej allowed before rej whole block"
+        },
+        "tessedit_reject_row_percent": {
+            "value": "40",
+            "default": "40",
+            "help": "%rej allowed before rej whole row"
+        },
+        "tessedit_whole_wd_rej_row_percent": {
+            "value": "70",
+            "default": "70",
+            "help": "Number of row rejects in whole word rejectswhich prevents whole row rejection"
+        },
+        "tessedit_good_doc_still_rowrej_wd": {
+            "value": "1.1",
+            "default": "1.1",
+            "help": "rej good doc wd if more than this fraction rejected"
+        },
+        "quality_rowrej_pc": {
+            "value": "1.1",
+            "default": "1.1",
+            "help": "good_quality_doc gte good char limit"
+        },
+        "crunch_terrible_rating": {
+            "value": "80",
+            "default": "80",
+            "help": "crunch rating lt this"
+        },
+        "crunch_poor_garbage_cert": {
+            "value": "-9",
+            "default": "-9",
+            "help": "crunch garbage cert lt this"
+        },
+        "crunch_poor_garbage_rate": {
+            "value": "60",
+            "default": "60",
+            "help": "crunch garbage rating lt this"
+        },
+        "crunch_pot_poor_rate": {
+            "value": "40",
+            "default": "40",
+            "help": "POTENTIAL crunch rating lt this"
+        },
+        "crunch_pot_poor_cert": {
+            "value": "-8",
+            "default": "-8",
+            "help": "POTENTIAL crunch cert lt this"
+        },
+        "crunch_del_rating": {
+            "value": "60",
+            "default": "60",
+            "help": "POTENTIAL crunch rating lt this"
+        },
+        "crunch_del_cert": {
+            "value": "-10",
+            "default": "-10",
+            "help": "POTENTIAL crunch cert lt this"
+        },
+        "crunch_del_min_ht": {
+            "value": "0.7",
+            "default": "0.7",
+            "help": "Del if word ht lt xht x this"
+        },
+        "crunch_del_max_ht": {
+            "value": "3",
+            "default": "3",
+            "help": "Del if word ht gt xht x this"
+        },
+        "crunch_del_min_width": {
+            "value": "3",
+            "default": "3",
+            "help": "Del if word width lt xht x this"
+        },
+        "crunch_del_high_word": {
+            "value": "1.5",
+            "default": "1.5",
+            "help": "Del if word gt xht x this above bl"
+        },
+        "crunch_del_low_word": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Del if word gt xht x this below bl"
+        },
+        "crunch_small_outlines_size": {
+            "value": "0.6",
+            "default": "0.6",
+            "help": "Small if lt xht x this"
+        },
+        "fixsp_small_outlines_size": {
+            "value": "0.28",
+            "default": "0.28",
+            "help": "Small if lt xht x this"
+        },
+        "superscript_worse_certainty": {
+            "value": "2",
+            "default": "2",
+            "help": "How many times worse certainty does a superscript position glyph need to be for us to try classifying it as a char with a different baseline?"
+        },
+        "subscript_max_y_top": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Maximum top of a character measured as a multiple of x-height above the baseline for us to reconsider whether it's a subscript."
+        },
+        "superscript_min_y_bottom": {
+            "value": "0.3",
+            "default": "0.3",
+            "help": "Minimum bottom of a character measured as a multiple of x-height above the baseline for us to reconsider whether it's a superscript."
+        },
+        "suspect_rating_per_ch": {
+            "value": "999.9",
+            "default": "999.9",
+            "help": "Don't touch bad rating limit"
+        },
+        "suspect_accept_rating": {
+            "value": "-999.9",
+            "default": "-999.9",
+            "help": "Accept good rating limit"
+        },
+        "tessedit_lower_flip_hyphen": {
+            "value": "1.5",
+            "default": "1.5",
+            "help": "Aspect ratio dot/hyphen test"
+        },
+        "tessedit_upper_flip_hyphen": {
+            "value": "1.8",
+            "default": "1.8",
+            "help": "Aspect ratio dot/hyphen test"
+        },
+        "rej_whole_of_mostly_reject_word_fract": {
+            "value": "0.85",
+            "default": "0.85",
+            "help": "if >this fract"
+        },
+        "min_orientation_margin": {
+            "value": "7",
+            "default": "7",
+            "help": "Min acceptable orientation margin"
+        },
+        "textord_tabfind_vertical_text_ratio": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Fraction of textlines deemed vertical to use vertical page mode"
+        },
+        "textord_tabfind_aligned_gap_fraction": {
+            "value": "0.75",
+            "default": "0.75",
+            "help": "Fraction of height used as a minimum gap for aligned blobs."
+        },
+        "bestrate_pruning_factor": {
+            "value": "2",
+            "default": "2",
+            "help": "Multiplying factor of current best rate to prune other hypotheses"
+        },
+        "segment_reward_script": {
+            "value": "0.95",
+            "default": "0.95",
+            "help": "Score multipler for script consistency within a word. Being a 'reward' factor, it should be <= 1. Smaller value implies bigger reward."
+        },
+        "segment_reward_chartype": {
+            "value": "0.97",
+            "default": "0.97",
+            "help": "Score multipler for char type consistency within a word."
+        },
+        "segment_reward_ngram_best_choice": {
+            "value": "0.99",
+            "default": "0.99",
+            "help": "Score multipler for ngram permuter's best choice (only used in the Han script path)."
+        },
+        "heuristic_segcost_rating_base": {
+            "value": "1.25",
+            "default": "1.25",
+            "help": "base factor for adding segmentation cost into word rating.It's a multiplying factor, the larger the value above 1, the bigger the effect of segmentation"
+        },
+        "heuristic_weight_rating": {
+            "value": "1",
+            "default": "1",
+            "help": "weight associated with char rating in combined cost ofstate"
+        },
+        "heuristic_weight_width": {
+            "value": "1000",
+            "default": "1000",
+            "help": "weight associated with width evidence in combined cost of state"
+        },
+        "heuristic_weight_seamcut": {
+            "value": "0",
+            "default": "0",
+            "help": "weight associated with seam cut in combined cost of state"
+        },
+        "heuristic_max_char_wh_ratio": {
+            "value": "2",
+            "default": "2",
+            "help": "max char width-to-height ratio allowed in segmentation"
+        },
+        "tosp_old_sp_kn_th_factor": {
+            "value": "2",
+            "default": "2",
+            "help": "Factor for defining space threshold in terms of space and kern sizes"
+        },
+        "tosp_threshold_bias1": {
+            "value": "0",
+            "default": "0",
+            "help": "how far between kern and space?"
+        },
+        "tosp_threshold_bias2": {
+            "value": "0",
+            "default": "0",
+            "help": "how far between kern and space?"
+        },
+        "tosp_narrow_fraction": {
+            "value": "0.3",
+            "default": "0.3",
+            "help": "Fract of xheight for narrow"
+        },
+        "tosp_narrow_aspect_ratio": {
+            "value": "0.48",
+            "default": "0.48",
+            "help": "narrow if w/h less than this"
+        },
+        "tosp_wide_fraction": {
+            "value": "0.52",
+            "default": "0.52",
+            "help": "Fract of xheight for wide"
+        },
+        "tosp_wide_aspect_ratio": {
+            "value": "0",
+            "default": "0",
+            "help": "wide if w/h less than this"
+        },
+        "tosp_fuzzy_space_factor": {
+            "value": "0.6",
+            "default": "0.6",
+            "help": "Fract of xheight for fuzz sp"
+        },
+        "tosp_fuzzy_space_factor1": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Fract of xheight for fuzz sp"
+        },
+        "tosp_fuzzy_space_factor2": {
+            "value": "0.72",
+            "default": "0.72",
+            "help": "Fract of xheight for fuzz sp"
+        },
+        "tosp_gap_factor": {
+            "value": "0.83",
+            "default": "0.83",
+            "help": "gap ratio to flip sp->kern"
+        },
+        "tosp_kern_gap_factor1": {
+            "value": "2",
+            "default": "2",
+            "help": "gap ratio to flip kern->sp"
+        },
+        "tosp_kern_gap_factor2": {
+            "value": "1.3",
+            "default": "1.3",
+            "help": "gap ratio to flip kern->sp"
+        },
+        "tosp_kern_gap_factor3": {
+            "value": "2.5",
+            "default": "2.5",
+            "help": "gap ratio to flip kern->sp"
+        },
+        "tosp_ignore_big_gaps": {
+            "value": "-1",
+            "default": "-1",
+            "help": "xht multiplier"
+        },
+        "tosp_ignore_very_big_gaps": {
+            "value": "3.5",
+            "default": "3.5",
+            "help": "xht multiplier"
+        },
+        "tosp_rep_space": {
+            "value": "1.6",
+            "default": "1.6",
+            "help": "rep gap multiplier for space"
+        },
+        "tosp_enough_small_gaps": {
+            "value": "0.65",
+            "default": "0.65",
+            "help": "Fract of kerns reqd for isolated row stats"
+        },
+        "tosp_table_kn_sp_ratio": {
+            "value": "2.25",
+            "default": "2.25",
+            "help": "Min difference of kn & sp in table"
+        },
+        "tosp_table_xht_sp_ratio": {
+            "value": "0.33",
+            "default": "0.33",
+            "help": "Expect spaces bigger than this"
+        },
+        "tosp_table_fuzzy_kn_sp_ratio": {
+            "value": "3",
+            "default": "3",
+            "help": "Fuzzy if less than this"
+        },
+        "tosp_fuzzy_kn_fraction": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "New fuzzy kn alg"
+        },
+        "tosp_fuzzy_sp_fraction": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "New fuzzy sp alg"
+        },
+        "tosp_min_sane_kn_sp": {
+            "value": "1.5",
+            "default": "1.5",
+            "help": "Don't trust spaces less than this time kn"
+        },
+        "tosp_init_guess_kn_mult": {
+            "value": "2.2",
+            "default": "2.2",
+            "help": "Thresh guess - mult kn by this"
+        },
+        "tosp_init_guess_xht_mult": {
+            "value": "0.28",
+            "default": "0.28",
+            "help": "Thresh guess - mult xht by this"
+        },
+        "tosp_max_sane_kn_thresh": {
+            "value": "5",
+            "default": "5",
+            "help": "Multiplier on kn to limit thresh"
+        },
+        "tosp_flip_caution": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't autoflip kn to sp when large separation"
+        },
+        "tosp_large_kerning": {
+            "value": "0.19",
+            "default": "0.19",
+            "help": "Limit use of xht gap with large kns"
+        },
+        "tosp_near_lh_edge": {
+            "value": "0",
+            "default": "0",
+            "help": "Don't reduce box if the top left is non blank"
+        },
+        "tosp_silly_kn_sp_gap": {
+            "value": "0.2",
+            "default": "0.2",
+            "help": "Don't let sp minus kn get too small"
+        },
+        "tosp_pass_wide_fuzz_sp_to_context": {
+            "value": "0.75",
+            "default": "0.75",
+            "help": "How wide fuzzies need context"
+        },
+        "textord_blob_size_bigile": {
+            "value": "95",
+            "default": "95",
+            "help": "Percentile for large blobs"
+        },
+        "textord_noise_area_ratio": {
+            "value": "0.7",
+            "default": "0.7",
+            "help": "Fraction of bounding box for noise"
+        },
+        "textord_blob_size_smallile": {
+            "value": "20",
+            "default": "20",
+            "help": "Percentile for small blobs"
+        },
+        "textord_initialx_ile": {
+            "value": "0.75",
+            "default": "0.75",
+            "help": "Ile of sizes for xheight guess"
+        },
+        "textord_initialasc_ile": {
+            "value": "0.9",
+            "default": "0.9",
+            "help": "Ile of sizes for xheight guess"
+        },
+        "textord_noise_sizelimit": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Fraction of x for big t count"
+        },
+        "textord_noise_normratio": {
+            "value": "2",
+            "default": "2",
+            "help": "Dot to norm ratio for deletion"
+        },
+        "textord_noise_syfract": {
+            "value": "0.2",
+            "default": "0.2",
+            "help": "xh fract height error for norm blobs"
+        },
+        "textord_noise_sxfract": {
+            "value": "0.4",
+            "default": "0.4",
+            "help": "xh fract width error for norm blobs"
+        },
+        "textord_noise_hfract": {
+            "value": "0.015625",
+            "default": "0.015625",
+            "help": "Height fraction to discard outlines as speckle noise"
+        },
+        "textord_noise_rowratio": {
+            "value": "6",
+            "default": "6",
+            "help": "Dot to norm ratio for deletion"
+        },
+        "textord_blshift_maxshift": {
+            "value": "0",
+            "default": "0",
+            "help": "Max baseline shift"
+        },
+        "textord_blshift_xfraction": {
+            "value": "9.99",
+            "default": "9.99",
+            "help": "Min size of baseline shift"
+        }
+    }
+}
