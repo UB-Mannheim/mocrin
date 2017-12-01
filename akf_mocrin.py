@@ -1,6 +1,6 @@
 ###################### INFORMATION #############################
-#           Dont ask! It is the Ocronator..!
-# Program:  **Ocronator**
+#           akf-mocrin is a "Multiple OCR Interface"
+# Program:  **akf-mocrin**
 # Info:     **Python 3.6**
 # Author:   **Jan Kamlah**
 # Date:     **30.11.2017**
