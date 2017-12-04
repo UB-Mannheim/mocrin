@@ -7,7 +7,11 @@
 
 ########## IMPORT ##########
 import configparser
+import skimage as ski
+import scipy.misc as misc
 import skimage.filters as imgfilter
+from skimage.io import imread, imsave
+import skimage.color as color
 import numpy as np
 import argparse
 import os
@@ -16,6 +20,10 @@ import subprocess
 from multiprocessing import Process
 import json
 import shlex
+import copy
+import warnings
+import os.path as path
+
 #obsolete
 #from PIL import Image
 #import pytesseract
@@ -33,7 +41,6 @@ def get_args():
     argparser.add_argument("-f", "--imageformat", default="jpg",help="format of the images")
     argparser.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
     argparser.add_argument("-b", "--binary", action='store_false', help="Produce a binary")
-    argparser.add_argument("--check", action='store_false', help="Checks if the file is a valid image for ocr")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
     argparser.add_argument("--no-ocropy", action='store_false', help="Don't perfom ocropy.")
     argparser.add_argument("--tess-profile", default='test', choices=["default"], help="Don't perfom tessract.")
@@ -72,15 +79,39 @@ class DefaultRemover(json.JSONDecoder):
         return obj
 
 ########## FUNCTIONS ##########
-def valid_check(image):
-    return 0
+def valid_check(file):
+    try:
+        image = imread("%s" % file)
+    except IOError:
+        print("cannot open %s" % file)
+        #logging.warning("cannot open %s" % input)
+        return 1
+    return image
 
-def get_binary(args, image):
-    thresh = imgfilter.threshold_sauvola(image, args.threshwindow, args.threshweight)
-    binary = image > thresh
-    binary = 1 - binary  # inverse binary
+def get_binary(args, image, file,binpath):
+    if not os.path.exists(binpath + file.split('/')[-1]):
+        create_dir(binpath)
+        uintimage = get_uintimg(image)
+        thresh = imgfilter.threshold_sauvola(uintimage, args.threshwindow, args.threshweight)
+        binary = uintimage > thresh
+        #binary = 1 - binary  # inverse binary
+        with warnings.catch_warnings():
+            # Transform rotate convert the img to float and save convert it back
+            warnings.simplefilter("ignore")
+            misc.imsave(binpath+file.split('/')[-1],binary)
+    return binpath+file.split('/')[-1]
 
-    return binary
+def get_uintimg(image):
+    if len(image.shape) > 2:
+        uintimage = color.rgb2gray(copy.deepcopy(image))
+    else:
+        uintimage = copy.deepcopy(image)
+    if uintimage.dtype == "float64":
+        with warnings.catch_warnings():
+            # Transform rotate convert the img to float and save convert it back
+            warnings.simplefilter("ignore")
+            uintimage = ski.img_as_uint(uintimage, force_copy=True)
+    return uintimage
 
 def create_dir(newdir:str)->int:
     """
@@ -119,7 +150,7 @@ def get_profiles(args,config):
             ocropy_profile = ""
     return (tess_profile,ocropy_profile)
 
-def start_tess(image,path_out, tess_profile):
+def start_tess(file,path_out, tess_profile):
     """
     Start tesseract over "pytesseract" a cli-module
     :param file: fileinputpath
@@ -138,12 +169,12 @@ def start_tess(image,path_out, tess_profile):
             parameters += var + "=" + tess_profile['variables'][var]['value'] + " "
     parameters.strip()
     parameters = shlex.split(parameters)
-    file_out = path_out + image.split('/')[-1]
-    subprocess.Popen(args=['tesseract',image,file_out]+parameters).wait()
-    print("Finished tesseract for:"+image.split('/')[-1])
+    file_out = path_out + file.split('/')[-1]
+    subprocess.Popen(args=['tesseract',file,file_out]+parameters).wait()
+    print("Finished tesseract for:"+file.split('/')[-1])
     return 0
 
-def start_ocropy(image,path_out, ocropy_profile):
+def start_ocropy(file,path_out, ocropy_profile):
     """
     Start tesseract over a cli
     :param file: fileinputpath
@@ -151,13 +182,13 @@ def start_ocropy(image,path_out, ocropy_profile):
     :param profile: contains user-specific parameters/option for ocropy
     :return:
     """
-    imgname = image.split('/')[-1].split('.')[0]
+    fname = file.split('/')[-1].split('.')[0]
     create_dir(path_out)
-    subprocess.Popen(args=["ocropus-nlbin",image,"-o"+path_out+imgname+"/"]).wait()
-    subprocess.Popen(args=["ocropus-gpageseg",path_out+imgname+"/????.bin.png"]).wait()
-    subprocess.Popen(args=["ocropus-rpred","-Q 4",path_out+imgname+"/????/??????.bin.png"]).wait()
-    subprocess.Popen(args=["ocropus-hocr",path_out+imgname+"/????.bin.png","-o"+path_out+"/"+image.split('/')[-1]+".html"]).wait()
-    print("Finished ocropy for:" + image.split('/')[-1])
+    subprocess.Popen(args=["ocropus-nlbin",file,"-o"+path_out+fname+"/"]).wait()
+    subprocess.Popen(args=["ocropus-gpageseg",path_out+fname+"/????.bin.png"]).wait()
+    subprocess.Popen(args=["ocropus-rpred","-Q 4",path_out+fname+"/????/??????.bin.png"]).wait()
+    subprocess.Popen(args=["ocropus-hocr",path_out+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".html"]).wait()
+    print("Finished ocropy for:" + file.split('/')[-1])
     return 0
 
 ########### MAIN ##########
@@ -172,30 +203,29 @@ def start_mocrin():
     PATHOUTPUT = config['DEFAULT']['PATHOUTPUT']
     tess_profile, ocropy_profile = get_profiles(args, config)
     # Get all filenames and companynames
-    images = glob2.glob(PATHINPUT + "**/*." + args.imageformat, recursive=True)
-    for image in images:
-        path_in = image.replace(PATHINPUT, "").split("/")
+    files = glob2.glob(PATHINPUT + "**/*." + args.imageformat, recursive=True)
+    for file in files:
+        path_in = file.replace(PATHINPUT, "").split("/")
         path_out = PATHOUTPUT
         for pathparts in path_in[:-1]:
             path_out += pathparts + "/"
 
-        # Check if the image is a valid image for the ocr
-        if not args.check:
-            valid_check(image)
+        # Check if the file is a valid image for the ocr
+        image = valid_check(file)
 
         # Produce a binary image, could improve the results of the ocr?
-        if not args.binary:
-            get_binary(args, image)
+        if args.binary:
+            file = get_binary(args, image, file,path_out+'bin/')
 
         # Start the ocr-processes ("p") asynchronously
         procs = []
         if not args.no_tess:
-            p1 = Process(target=start_tess, args=[image, path_out + "tess/", tess_profile])
+            p1 = Process(target=start_tess, args=[file, path_out + "tess/", tess_profile])
             print("Call tesseract!")
             p1.start()
             procs.append(p1)
         if not args.no_ocropy:
-            p2 = Process(target=start_ocropy, args=[image, path_out + "ocropy/", ocropy_profile])
+            p2 = Process(target=start_ocropy, args=[file, path_out + "ocropy/", ocropy_profile])
             print("Call ocropy!")
             p2.start()
             procs.append(p2)

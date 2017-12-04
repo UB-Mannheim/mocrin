@@ -4,7 +4,6 @@
     <list default="true" id="ea120959-5bbe-49c2-ac79-474097b23b4a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/akf_mocrin.py" afterPath="$PROJECT_DIR$/akf_mocrin.py" />
-      <change beforePath="$PROJECT_DIR$/profiles/tess/test_tess_profile.json" afterPath="$PROJECT_DIR$/profiles/tess/test_tess_profile.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,21 +14,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="akf_mocrin.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="akf_mocrin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/akf_mocrin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="757">
-              <caret line="185" column="26" lean-forward="true" selection-start-line="185" selection-start-column="26" selection-end-line="185" selection-end-column="26" />
+            <state relative-caret-position="184">
+              <caret line="84" column="34" lean-forward="false" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
               <folding>
                 <element signature="e#256#275#0" expanded="true" />
-                <element signature="e#2088#2843#0" expanded="false" />
-                <element signature="e#2905#2913#0" expanded="false" />
-                <element signature="e#2948#3118#0" expanded="false" />
-                <element signature="e#3157#3465#0" expanded="false" />
-                <element signature="e#3502#4447#0" expanded="false" />
-                <element signature="e#4499#5549#0" expanded="false" />
-                <element signature="e#5605#6340#0" expanded="false" />
-                <element signature="e#8053#8183#0" expanded="false" />
+                <element signature="e#630#1926#0" expanded="false" />
+                <element signature="e#2014#2769#0" expanded="false" />
+                <element signature="e#3334#3642#0" expanded="false" />
+                <element signature="e#3679#4624#0" expanded="false" />
+                <element signature="e#4675#5627#0" expanded="false" />
+                <element signature="e#5682#6404#0" expanded="false" />
+                <element signature="e#8095#8225#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -45,7 +43,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_tess_profile.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_tess_profile.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/profiles/tess/test_tess_profile.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="256">
@@ -90,9 +88,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="665" />
-    <option name="y" value="142" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="843" />
+    <option name="y" value="143" />
     <option name="width" value="563" />
     <option name="height" value="455" />
   </component>
@@ -367,25 +365,34 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="665" y="142" width="563" height="455" extended-state="0" />
+    <frame x="67" y="25" width="1853" height="950" extended-state="7" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26481482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07814208" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2991453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12698413" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.9814815" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20879121" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37240538" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -395,6 +402,23 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/akf_mocrin.py</url>
+          <line>196</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/akf_mocrin.py</url>
+          <line>86</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/akf_mocrin.py</url>
+          <line>85</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -402,7 +426,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="85" />
+      <option name="time" value="90" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -413,14 +437,13 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#256#275#0" expanded="true" />
-            <element signature="e#2088#2843#0" expanded="false" />
-            <element signature="e#2905#2913#0" expanded="false" />
-            <element signature="e#2948#3118#0" expanded="false" />
-            <element signature="e#3157#3465#0" expanded="false" />
-            <element signature="e#3502#4447#0" expanded="false" />
-            <element signature="e#4499#5549#0" expanded="false" />
-            <element signature="e#5605#6340#0" expanded="false" />
-            <element signature="e#8053#8183#0" expanded="false" />
+            <element signature="e#630#1926#0" expanded="false" />
+            <element signature="e#2014#2769#0" expanded="false" />
+            <element signature="e#3334#3642#0" expanded="false" />
+            <element signature="e#3679#4624#0" expanded="false" />
+            <element signature="e#4675#5627#0" expanded="false" />
+            <element signature="e#5682#6404#0" expanded="false" />
+            <element signature="e#8095#8225#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,29 +630,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/akf_mocrin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="84" column="34" lean-forward="false" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+          <folding>
+            <element signature="e#256#275#0" expanded="true" />
+            <element signature="e#630#1926#0" expanded="false" />
+            <element signature="e#2014#2769#0" expanded="false" />
+            <element signature="e#3334#3642#0" expanded="false" />
+            <element signature="e#3679#4624#0" expanded="false" />
+            <element signature="e#4675#5627#0" expanded="false" />
+            <element signature="e#5682#6404#0" expanded="false" />
+            <element signature="e#8095#8225#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/profiles/tess/test_tess_profile.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="1838" column="23" lean-forward="false" selection-start-line="1838" selection-start-column="23" selection-end-line="1838" selection-end-column="23" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/akf_mocrin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="757">
-          <caret line="185" column="26" lean-forward="true" selection-start-line="185" selection-start-column="26" selection-end-line="185" selection-end-column="26" />
-          <folding>
-            <element signature="e#256#275#0" expanded="true" />
-            <element signature="e#2088#2843#0" expanded="false" />
-            <element signature="e#2905#2913#0" expanded="false" />
-            <element signature="e#2948#3118#0" expanded="false" />
-            <element signature="e#3157#3465#0" expanded="false" />
-            <element signature="e#3502#4447#0" expanded="false" />
-            <element signature="e#4499#5549#0" expanded="false" />
-            <element signature="e#5605#6340#0" expanded="false" />
-            <element signature="e#8053#8183#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
