@@ -8,14 +8,17 @@
 ########## IMPORT ##########
 import configparser
 from PIL import Image
-import pytesseract
+import scit
 import argparse
-#import cv2 as cv2
 import os
 import glob as glob2
 import subprocess
 from multiprocessing import Process
 import json
+import shlex
+#obsolete
+#import pytesseract
+#import cv2 as cv2
 
 ########## CMD-PARSER-SETTINGS ##########
 def get_args():
@@ -53,6 +56,8 @@ class DefaultRemover(json.JSONDecoder):
                     if obj["default"] == obj[key]:
                         del obj
                         return
+                    else:
+                        stop =1
         if len(delarr) == len(obj):
             del obj
             return
@@ -111,14 +116,17 @@ def start_tess(file,path_out, tess_profile):
     for param in tess_profile['parameters']:
         if tess_profile['parameters'][param]['value'] != "" and tess_profile['parameters'][param]['value'] != "False":
             parameters += param+" "+tess_profile['parameters'][param]['value']+" "
+    if "variables" in tess_profile:
+        parameters += "-c "
+        for var in tess_profile['variables']:
+            parameters += var + "=" + tess_profile['variables'][var]['value'] + " "
     parameters.strip()
-    text = pytesseract.image_to_string(Image.open(file), config=parameters)
-    with open(path_out + file.split('/')[-1] + '.txt', 'w') as output:
-        output.write(text)
-        # show the output images
-        # cv2.imshow("Image", file)
-        # cv2.imshow("Output", gray)
-        # cv2.waitKey(0)
+    parameters = shlex.split(parameters)
+    ftype = '.txt'
+    if 'tessedit_create_hocr' in parameters:
+        ftype = '.hocr'
+    file_out = path_out + file.split('/')[-1] +ftype
+    subprocess.Popen(args=['tesseract',file,file_out]+parameters).wait()
     print("Finished tesseract for:"+file.split('/')[-1])
     return 0
 

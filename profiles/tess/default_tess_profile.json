@@ -1841,7 +1841,7 @@
             "help": "Write .txt output file"
         },
         "tessedit_create_hocr": {
-            "value": "0",
+            "value": "1",
             "default": "0",
             "help": "Write .html hOCR output file"
         },
