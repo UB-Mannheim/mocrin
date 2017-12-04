@@ -1836,7 +1836,7 @@
             "help": "Write .unlv output file"
         },
         "tessedit_create_txt": {
-            "value": "0",
+            "value": "1",
             "default": "0",
             "help": "Write .txt output file"
         },
