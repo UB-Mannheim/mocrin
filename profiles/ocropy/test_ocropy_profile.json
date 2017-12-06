@@ -150,7 +150,7 @@
                 "--nocheck": {
                     "action": "store_true",
                     "default": "0",
-                    "value": "0",
+                    "value": "1",
                     "help": "disable error checking on inputs",
                     "alias": "-n"
                 },
@@ -163,7 +163,7 @@
                 "--maxlines": {
                     "type": "float",
                     "default": "300",
-                    "value": "300",
+                    "value": "3000",
                     "help": "maximum # lines permitted default: %(defaults)"
                 }
             },
@@ -710,7 +710,7 @@
             "--nocheck": {
                 "action": "store_true",
                 "default": "0",
-                "value": "0",
+                "value": "1",
                 "help": "disable error checking on inputs",
                 "alias": "-n"
             },
