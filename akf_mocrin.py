@@ -23,6 +23,7 @@ import shlex
 import copy
 import warnings
 import datetime
+
 import sys
 import os.path as path
 
@@ -212,6 +213,7 @@ def start_tess(file,path_out, tess_profile,args):
     :param profile: contains user-specific parameters/option for tesseract
     :return:
     """
+
     create_dir(path_out)
     if args.idx == 0:
         store_settings(path_out,tess_profile,args, "Tesseract")

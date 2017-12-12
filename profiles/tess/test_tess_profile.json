@@ -75,6 +75,11 @@
         }
     },
     "variables": {
+        "save_blob_choices": {
+            "value": "True",
+            "default": "False",
+            "help": "Save the blob choices"
+        },
         "classify_num_cp_levels": {
             "value": "3",
             "default": "3",
