@@ -266,6 +266,13 @@
                     "value": "3",
                     "help": "expand mask for grayscale extraction default: %(defaults)",
                     "alias": "-e"
+                },
+                "--json": {
+                    "type": "store_true",
+                    "default": "0",
+                    "value": "1",
+                    "help": "store information about parameters in a *.ocropy.json-file (this option can be used to create an extended hocr output)",
+                    "alias": "-j"
                 }
             },
             "others": {
@@ -647,6 +654,12 @@
                 "default": "0",
                 "value": "0",
                 "help": "output probabilities for each letter"
+            },
+            "--nojson": {
+                "action": "store_true",
+                "default": "0",
+                "value": "0",
+                "help": "deactivates the output to the *.ocropy.json file of LSTM character-positions including start, end and maxima values and probabilities (on available if -j/--json was set in gpageseg)"
             },
             "--estrate": {
                 "action": "store_true",
@@ -1038,6 +1051,20 @@
                 "value": "0",
                 "help": "dont output paragraphs",
                 "alias": "-p"
+            },
+            "--normal": {
+                "action": "store_true",
+                "default": "0",
+                "value": "0",
+                "help": "surpress the output of extended hocr version (only available if '-j/--json' was set to gpageseg)",
+                "alias": "-n"
+            },
+            "--charconfs": {
+                "action": "store_true",
+                "default": "0",
+                "value": "1",
+                "help": "output confidences of every char, only in combination with extened hocr-file.",
+                "alias": "-c"
             },
             "--fscale": {
                 "type": "float",

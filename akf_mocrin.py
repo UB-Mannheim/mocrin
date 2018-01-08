@@ -42,7 +42,7 @@ def get_args():
     """
     argparser = argparse.ArgumentParser()
 
-    argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputname. Default prints datetime.")
+    argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputdirectory. Default prints datetime.")
 
     argparser.add_argument("-i", "--image",help="path to input image to be OCR'd")
     argparser.add_argument("-f", "--imageformat", default="jpg",help="format of the images")
@@ -245,9 +245,9 @@ def start_ocropy(file,path_out, ocropy_profile,args):
         store_settings(path_out,ocropy_profile,args, "Ocropy")
     parameters = get_ocropy_param(ocropy_profile)
     subprocess.Popen(args=["ocropus-nlbin",file,"-o"+path_out+args.infotxt+fname+"/"]+parameters["ocropus-nlbin"]).wait()
-    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]+["--json"]).wait()
+    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]).wait()
     subprocess.Popen(args=["ocropus-rpred",path_out+args.infotxt+fname+"/????/??????.bin.png"]+parameters["ocropus-rpred"]).wait()
-    subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]+["-c"]).wait()
+    subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]).wait()
     print("Finished ocropy for:" + file.split('/')[-1])
     return 0
 
@@ -295,12 +295,12 @@ def start_mocrin():
     args.infofolder = ""
     args.infotxt = ""
     if args.info != "":
+        args.infotxt = ""
         if args.info == "datetime":
             args.infofolder = datetime.datetime.now().strftime("%Y-%m-%d_%Hh%Mmin")+"/"
-            args.infotxt = ""
         else:
             args.infofolder = args.info+"/"
-            args.infotxt = args.info+"_"
+            #args.infotxt = args.info+"_"
 
     PATHINPUT = config['DEFAULT']['PATHINPUT']
     PATHOUTPUT = config['DEFAULT']['PATHOUTPUT']
