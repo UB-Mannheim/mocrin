@@ -42,14 +42,14 @@ def get_args():
     """
     argparser = argparse.ArgumentParser()
 
-    argparser.add_argument("--info", type=str, default="Settings", help="Text that will be tagged to the outputname")
+    argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputname. Default prints datetime.")
 
     argparser.add_argument("-i", "--image",help="path to input image to be OCR'd")
     argparser.add_argument("-f", "--imageformat", default="jpg",help="format of the images")
     argparser.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
     argparser.add_argument("-b", "--binary", action='store_true', help="Produce a binary")
-    argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
-    argparser.add_argument("--no-ocropy", action='store_false', help="Don't perfom ocropy.")
+    argparser.add_argument("--no-tess", action='store_false', help="Don't perfom tessract.")
+    argparser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
     argparser.add_argument("--tess-profile", default='test', choices=["default"], help="Don't perfom tessract.")
     argparser.add_argument("--ocropy-profile", default='test', choices=["default"], help="Don't perfom ocropy.")
     argparser.add_argument('--filter', type=str, default="sauvola",choices=["sauvola","niblack","otsu","yen","triangle","isodata","minimum","li","mean"],help='Chose your favorite threshold filter: %(choices)s')
@@ -213,7 +213,6 @@ def start_tess(file,path_out, tess_profile,args):
     :param profile: contains user-specific parameters/option for tesseract
     :return:
     """
-
     create_dir(path_out)
     if args.idx == 0:
         store_settings(path_out,tess_profile,args, "Tesseract")
@@ -246,9 +245,9 @@ def start_ocropy(file,path_out, ocropy_profile,args):
         store_settings(path_out,ocropy_profile,args, "Ocropy")
     parameters = get_ocropy_param(ocropy_profile)
     subprocess.Popen(args=["ocropus-nlbin",file,"-o"+path_out+args.infotxt+fname+"/"]+parameters["ocropus-nlbin"]).wait()
-    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]).wait()
-    subprocess.Popen(args=["ocropus-rpred","-Q 4",path_out+args.infotxt+fname+"/????/??????.bin.png"]+parameters["ocropus-rpred"]).wait()
-    subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]).wait()
+    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]+["--json"]).wait()
+    subprocess.Popen(args=["ocropus-rpred",path_out+args.infotxt+fname+"/????/??????.bin.png"]+parameters["ocropus-rpred"]).wait()
+    subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]+["-c"]).wait()
     print("Finished ocropy for:" + file.split('/')[-1])
     return 0
 
@@ -296,8 +295,13 @@ def start_mocrin():
     args.infofolder = ""
     args.infotxt = ""
     if args.info != "":
-        args.infofolder = args.info+"/"
-        args.infotxt = args.info+"_"
+        if args.info == "datetime":
+            args.infofolder = datetime.datetime.now().strftime("%Y-%m-%d_%Hh%Mmin")+"/"
+            args.infotxt = ""
+        else:
+            args.infofolder = args.info+"/"
+            args.infotxt = args.info+"_"
+
     PATHINPUT = config['DEFAULT']['PATHINPUT']
     PATHOUTPUT = config['DEFAULT']['PATHOUTPUT']
     tess_profile, ocropy_profile = get_profiles(args, config)
