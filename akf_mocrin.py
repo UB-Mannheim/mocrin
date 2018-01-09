@@ -42,13 +42,13 @@ def get_args():
     """
     argparser = argparse.ArgumentParser()
 
-    argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputdirectory. Default prints datetime.")
+    argparser.add_argument("--info", type=str, default="sauvola", help="Text that will be tagged to the outputdirectory. Default prints datetime.")
 
     argparser.add_argument("-i", "--image",help="path to input image to be OCR'd")
     argparser.add_argument("-f", "--imageformat", default="jpg",help="format of the images")
     argparser.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
     argparser.add_argument("-b", "--binary", action='store_true', help="Produce a binary")
-    argparser.add_argument("--no-tess", action='store_false', help="Don't perfom tessract.")
+    argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
     argparser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
     argparser.add_argument("--tess-profile", default='test', choices=["default"], help="Don't perfom tessract.")
     argparser.add_argument("--ocropy-profile", default='test', choices=["default"], help="Don't perfom ocropy.")
@@ -228,7 +228,7 @@ def start_tess(file,path_out, tess_profile,args):
     parameters = shlex.split(parameters)
     file_out = path_out + file.split('/')[-1]
     subprocess.Popen(args=['tesseract',file,file_out]+parameters).wait()
-    print("Finished tesseract for:"+file.split('/')[-1])
+    print("Finished tesseract for: "+file.split('/')[-1])
     return 0
 
 def start_ocropy(file,path_out, ocropy_profile,args):
@@ -248,7 +248,7 @@ def start_ocropy(file,path_out, ocropy_profile,args):
     subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]).wait()
     subprocess.Popen(args=["ocropus-rpred",path_out+args.infotxt+fname+"/????/??????.bin.png"]+parameters["ocropus-rpred"]).wait()
     subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]).wait()
-    print("Finished ocropy for:" + file.split('/')[-1])
+    print("Finished ocropy for: " + file.split('/')[-1])
     return 0
 
 def get_ocropy_param(ocropy_profile):
@@ -300,13 +300,14 @@ def start_mocrin():
             args.infofolder = datetime.datetime.now().strftime("%Y-%m-%d_%Hh%Mmin")+"/"
         else:
             args.infofolder = args.info+"/"
-            #args.infotxt = args.info+"_"
+            args.infotxt = args.info+"_"
 
     PATHINPUT = config['DEFAULT']['PATHINPUT']
     PATHOUTPUT = config['DEFAULT']['PATHOUTPUT']
     tess_profile, ocropy_profile = get_profiles(args, config)
-    # Get all filenames and companynames
-    files = glob2.glob(PATHINPUT + "**/*." + args.imageformat, recursive=True)
+    # Get all filenames and companynames (iglob-iterator)
+    files = glob2.iglob(PATHINPUT + "**/*." + args.imageformat, recursive=True)
+
     for idx,file in enumerate(files):
         args.idx = idx
         path_in = file.replace(PATHINPUT, "").split("/")
