@@ -76,7 +76,7 @@
     },
     "variables": {
         "save_blob_choices": {
-            "value": "True",
+            "value": "False",
             "default": "False",
             "help": "Save the blob choices"
         },

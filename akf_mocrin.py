@@ -23,6 +23,7 @@ import shlex
 import copy
 import warnings
 import datetime
+from tessapi.tesserocr_api import tess_charconf_hocr
 
 import sys
 import os.path as path
@@ -49,7 +50,7 @@ def get_args():
     argparser.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
     argparser.add_argument("-b", "--binary", action='store_true', help="Produce a binary")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
-    argparser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
+    argparser.add_argument("--no-ocropy", action='store_false', help="Don't perfom ocropy.")
     argparser.add_argument("--tess-profile", default='test', choices=["default"], help="Don't perfom tessract.")
     argparser.add_argument("--ocropy-profile", default='test', choices=["default"], help="Don't perfom ocropy.")
     argparser.add_argument('--filter', type=str, default="sauvola",choices=["sauvola","niblack","otsu","yen","triangle","isodata","minimum","li","mean"],help='Chose your favorite threshold filter: %(choices)s')
@@ -217,17 +218,21 @@ def start_tess(file,path_out, tess_profile,args):
     if args.idx == 0:
         store_settings(path_out,tess_profile,args, "Tesseract")
     path_out+= args.infotxt
-    parameters = ""
-    for param in tess_profile['parameters']:
-        if tess_profile['parameters'][param]['value'] != "" and tess_profile['parameters'][param]['value'] != "False":
-            parameters += param+" "+tess_profile['parameters'][param]['value']+" "
-    if "variables" in tess_profile:
-        for var in tess_profile['variables']:
-            parameters += "-c "+var + "=" + tess_profile['variables'][var]['value'] + " "
-    parameters.strip()
-    parameters = shlex.split(parameters)
+    # with tesserocr obsolete
+        #parameters = ""
+        #for param in tess_profile['parameters']:
+        #    if tess_profile['parameters'][param]['value'] != "" and tess_profile['parameters'][param]['value'] != "False":
+        #        parameters += param+""+tess_profile['parameters'][param]['value']+" "
+        #if "variables" in tess_profile:
+        #    for var in tess_profile['variables']:
+        #        parameters += "-c "+var + "=" + tess_profile['variables'][var]['value'] + " "
+        #        parameters += "-c " + var + "=" + tess_profile['variables'][var]['value'] + " "
+        #parameters += "-c tessedit_debug_quality_metrics=1 -c tessedit_write_params_to_file=/home/PARAMS.txt"
+        #parameters.strip()
+        #parameters = shlex.split(parameters)
+        #subprocess.Popen(args=['tesseract',file,file_out]+parameters).wait()
     file_out = path_out + file.split('/')[-1]
-    subprocess.Popen(args=['tesseract',file,file_out]+parameters).wait()
+    tess_charconf_hocr(file,file_out,tess_profile)
     print("Finished tesseract for: "+file.split('/')[-1])
     return 0
 
