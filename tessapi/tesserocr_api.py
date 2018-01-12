@@ -1,44 +1,40 @@
+###################### INFORMATION #############################
+#           Module for talking to the tesseract api through tesserocr
+# Program:  **tesserocr_api**
+# Info:     **Python 3.6**
+# Author:   **Jan Kamlah**
+# Date:     **12.01.2018**
+
+########## IMPORT ##########
 from tesserocr import PyTessBaseAPI, RIL, iterate_level
 import string as string
 from skimage.io import imread, imsave
 import os
 import re
 
-def get_param(tess_profile):
-    # This func extends the hocr-file of tesseract with charconfs
-    # Set Parameters
-    parameters = {}
-    if 'parameters' in tess_profile:
-        for param in tess_profile['parameters']:
-            if param != "":
-                if "tessdata-dir" in param:
-                    parameters["path"] = tess_profile['parameters'][param]['value']
-                elif "l" in param:
-                    parameters["lang"] = tess_profile['parameters'][param]['value']
-                elif "oem" in param:
-                    parameters["oem"] = int(tess_profile['parameters'][param]['value'])
-                elif "psm" in param:
-                    parameters["psm"] = int(tess_profile['parameters'][param]['value'])
-    return parameters
+########## COMMON FUNCTION ##########
+def create_dir(newdir:str)->int:
+    """
+    Creates a new directory
+    :param_newdir: Directory which should be created
+    :return: None
+    """
+    if not os.path.isdir(newdir):
+        try:
+            os.makedirs(newdir)
+            print(newdir)
+        except IOError:
+            print("cannot create %s directoy" % newdir)
+    return 0
 
-def set_vars(api, file, tess_profile):
-        # Set necessary information
-        api.SetImageFile(file)
-        # Set Variable
-        api.SetVariable("save_blob_choices", "T")
-        if 'variables' in tess_profile:
-            for var in tess_profile['variables']:
-                # TODO: test it!
-                # if tess_profile['variables'][var]['value'] == "False":
-                #    api.SetVariable(var, "F")
-                # elif tess_profile['variables'][var]['value'] == "True":
-                #    api.SetVariable(var, "T")
-                # else:
-                api.SetVariable(var, str(tess_profile['variables'][var]['value']))
-        api.Recognize()
-        return 0
-
+########## EXTENDED HOCR FUNCTION ##########
 def extended_hocr(file, fileout, tess_profile=None):
+    """
+    :param file:
+    :param fileout:
+    :param tess_profile:
+    :return:
+    """
     parameters = get_param(tess_profile)
     with PyTessBaseAPI(**parameters) as api:
         set_vars(api, file, tess_profile)
@@ -71,21 +67,58 @@ def extended_hocr(file, fileout, tess_profile=None):
         hocrfile.write(hocr)
     return 0
 
-def create_dir(newdir:str)->int:
+def get_param(tess_profile):
     """
-    Creates a new directory
-    :param_newdir: Directory which should be created
-    :return: None
+    :param tess_profile:
+    :return:
     """
-    if not os.path.isdir(newdir):
-        try:
-            os.makedirs(newdir)
-            print(newdir)
-        except IOError:
-            print("cannot create %s directoy" % newdir)
+    # This func extends the hocr-file of tesseract with charconfs
+    # Set Parameters
+    parameters = {}
+    if 'parameters' in tess_profile:
+        for param in tess_profile['parameters']:
+            if param != "":
+                if "tessdata-dir" in param:
+                    parameters["path"] = tess_profile['parameters'][param]['value']
+                elif "l" in param:
+                    parameters["lang"] = tess_profile['parameters'][param]['value']
+                elif "oem" in param:
+                    parameters["oem"] = int(tess_profile['parameters'][param]['value'])
+                elif "psm" in param:
+                    parameters["psm"] = int(tess_profile['parameters'][param]['value'])
+    return parameters
+
+def set_vars(api, file, tess_profile):
+    """
+    :param api:
+    :param file:
+    :param tess_profile:
+    :return:
+    """
+    # Set necessary information
+    api.SetImageFile(file)
+    # Set Variable
+    api.SetVariable("save_blob_choices", "T")
+    if 'variables' in tess_profile:
+        for var in tess_profile['variables']:
+            # TODO: test it!
+            # if tess_profile['variables'][var]['value'] == "False":
+            #    api.SetVariable(var, "F")
+            # elif tess_profile['variables'][var]['value'] == "True":
+            #    api.SetVariable(var, "T")
+            # else:
+            api.SetVariable(var, str(tess_profile['variables'][var]['value']))
+    api.Recognize()
     return 0
 
+########## CUTTER FUNCTION ##########
 def cutter(file, fileout, tess_profile):
+    """
+    :param file: inputfile
+    :param fileout: output filename
+    :param tess_profile: profile containing user-specific informations and options
+    :return:
+    """
     try:
         cutter = tess_profile["cutter"]
         # Init the api
@@ -122,7 +155,11 @@ def cutter(file, fileout, tess_profile):
     return 0
 
 def init_expr_finder(cutter):
-    # Initialize the expr lib with 'op' - 'filteroperator' and 'filter' - 'user given filter characters'
+    """
+    Initialize the callback func with expr-dict, 'op' - 'filteroperator' and 'filter' - 'user given filter characters'
+    :param cutter: dict containg information for cutting. Here are used 'filterop(erator)' and 'gr(ou)pop(erator)'.
+    :return:
+    """
     expr = {}
     expr["op"] = {"and": all, "or": any}
     expr["filter"] = get_filter(cutter)
@@ -142,6 +179,11 @@ def init_expr_finder(cutter):
     return find_expr
 
 def get_filter(cutter):
+    """
+    sets up the filtergroups which are divided by '||' and
+    :param cutter:
+    :return:
+    """
     filterarrgrps = cutter["filter"].split("||")
     filter = []
     for filterarrgrp in filterarrgrps:
@@ -154,107 +196,13 @@ def get_filter(cutter):
                 exgrp.update(set(getattr(string, starex[1:])))
     return filter
 
-def charcutter(file, fileout, ri, cutter, level):
-    if chararr == [""]:chararr=[]
-    img = imread(file)
-    group = []
-    if cutter["group"]["value"] != "":
-        grouparr = cutter["group"]["value"].split("|")
-        for groupval in grouparr:
-            group+= getattr(string, groupval)
-    count = 0
-    for r in iterate_level(ri, level):
-        symbol = r.GetUTF8Text(level)  # r == ri
-        conf = r.Confidence(level)
-        if symbol in chararr or symbol in group:
-            if int(cutter["min_conf"]["value"]) < conf < int(cutter["max_conf"]["value"]):
-                symbol = re.sub('[^0-9a-zA-Z]+', '_', symbol)
-                count += 1
-                bbox = r.BoundingBoxInternal(level)
-                pad = get_pad(bbox,int(cutter["pad"]["value"]),float(cutter["padprc"]["value"]))
-                cutarea = img[bbox[1]-pad[0]:bbox[3]+pad[0], bbox[0]-pad[1]:bbox[2]+pad[1], :]
-                cutdir = "/".join(fileout.split("/")[:-1])+"/cut/"+symbol+"/"
-                create_dir(cutdir)
-                imsave(cutdir+'{:06d}'.format(count)+"_"+symbol+"_"+'{:.3f}'.format(conf).replace(".","-")+"_"+fileout.split("/")[-1] +"."+file.split(".")[-1],cutarea)
-                #imgbin = r.GetBinaryImage(RIL.WORD)
-                #imsave(cutdir +"bin_"+'{:06d}'.format(count) + "_" +symbol + "_" + '{:.3f}'.format(conf).replace(".", "-") + "_" +  fileout.split("/")[-1] + "." + file.split(".")[-1], imgbin)
-    return 0
-
-def wordcutter(file, fileout, ri, cutter, level):
-    chararr = cutter["char"]["value"].replace(" ", "").split("|")
-    if chararr == [""]:chararr=[]
-    wordarr = cutter["word"]["value"].split("|")
-    if wordarr == [""]: wordarr = []
-    img = imread(file)
-    group = []
-    if cutter["group"]["value"] != "":
-        grouparr = cutter["group"]["value"].split("|")
-        for groupval in grouparr:
-            group += list(getattr(string, groupval))
-    count = 0
-    setmax=False
-    if cutter["wordmaxlen"]["value"] == "-1":setmax = True
-    for r in iterate_level(ri, level):
-        symbol = r.GetUTF8Text(level)  # r == ri
-        conf = r.Confidence(level)
-        if setmax:cutter["wordmaxlen"]["value"] = len(symbol)
-        if int(cutter["min_conf"]["value"]) < conf < int(cutter["max_conf"]["value"]):
-            if int(cutter["wordminlen"]["value"]) < len(symbol) <= int(cutter["wordmaxlen"]["value"]):
-                fchar, fword, fgroup = find_x(cutter, symbol, chararr, wordarr, group)
-                if fchar or fword or fgroup:
-                    symbol = symbol.replace(string.punctuation, "_")
-                    symbol = re.sub('[^0-9a-zA-Z]+', '', symbol)
-                    if symbol == "":symbol = "_"
-                    count += 1
-                    bbox = r.BoundingBoxInternal(level)
-                    pad = get_pad(bbox, int(cutter["pad"]["value"]), float(cutter["padprc"]["value"]))
-                    cutarea = img[bbox[1] - pad[0]:bbox[3] + pad[0], bbox[0] - pad[1]:bbox[2] + pad[1], :]
-                    cutdir = "/".join(fileout.split("/")[:-1]) + "/cut/" + symbol + "/"
-                    create_dir(cutdir)
-                    imsave(cutdir + '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".",
-                                                                                                                "-") + "_" +
-                           fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
-    return 0
-
-def linecutter(file, fileout, ri, cutter, level):
-    chararr = cutter["char"]["value"].replace(" ", "").split("|")
-    if chararr == [""]: chararr = []
-    wordarr = cutter["word"]["value"].split("|")
-    if wordarr == [""]: wordarr = []
-    img = imread(file)
-    group = []
-    if cutter["group"]["value"] != "":
-        grouparr = cutter["group"]["value"].split("|")
-        for groupval in grouparr:
-            group += list(getattr(string, groupval))
-    count = 0
-    setmax = False
-    if cutter["wordmaxlen"]["value"] == "-1": setmax = True
-    for r in iterate_level(ri, level):
-        symbol = r.GetUTF8Text(level)  # r == ri
-        conf = r.Confidence(level)
-        print(symbol)
-        if setmax: cutter["wordmaxlen"]["value"] = len(symbol)
-        if int(cutter["min_conf"]["value"]) < conf < int(cutter["max_conf"]["value"]):
-            if int(cutter["wordminlen"]["value"]) < len(symbol) <= int(cutter["wordmaxlen"]["value"]):
-                # Find the char, word or/and groups
-                fchar, fword, fgroup = find_x(cutter,symbol,chararr,wordarr,group)
-                if fchar or fword or fgroup:
-                    symbol = symbol.replace(" ","_").replace(string.punctuation, "_")
-                    symbol = re.sub('[^0-9a-zA-Z_]+', '', symbol)
-                    if symbol == "": symbol = "_"
-                    count += 1
-                    bbox = r.BoundingBoxInternal(level)
-                    pad = get_pad(bbox, int(cutter["pad"]["value"]), float(cutter["padprc"]["value"]))
-                    cutarea = img[bbox[1] - pad[0]:bbox[3] + pad[0], bbox[0] - pad[1]:bbox[2] + pad[1], :]
-                    cutdir = "/".join(fileout.split("/")[:-1]) + "/cut/" + symbol + "/"
-                    create_dir(cutdir)
-                    imsave(cutdir + '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".",
-                                                                                                                "-") + "_" +
-                           fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
-    return 0
-
 def get_pad(bbox,padval=0, padprc=0.0):
+    """
+    :param bbox: boundingbox information
+    :param padval: padding value (pixel)
+    :param padprc: padding value (percantage)
+    :return:
+    """
     pad = [0,0]
     try:
         if padval != 0:
@@ -266,12 +214,21 @@ def get_pad(bbox,padval=0, padprc=0.0):
         print("Padding values are incorrect.")
     return tuple(pad)
 
+########## MAIN FUNCTION ##########
 def tess_pprocess(file, fileout,cut, tess_profile=None):
+    """
+    :param file: inputfile
+    :param fileout: outputfile name
+    :param cut: flag for cutting options
+    :param tess_profile: containing user-specfic information and options
+    :return: None
+    """
     if cut and tess_profile != None:
         cutter(file, fileout, tess_profile)
     else:
         extended_hocr(file, fileout, tess_profile)
     return 0
 
+########## ENTRYPOINT ##########
 if __name__=="__main__":
     extended_hocr('/home/jkamlah/Coding/tesseract/testing/eurotext.tif','/home/jkamlah/Coding/tesseract/testing/eurotext.hocr')

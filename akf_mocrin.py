@@ -94,6 +94,14 @@ class DefaultRemover(json.JSONDecoder):
 
 ########## FUNCTIONS ##########
 def store_settings(path_out,profile,args,ocrname):
+    """
+
+    :param path_out:
+    :param profile:
+    :param args:
+    :param ocrname:
+    :return:
+    """
     with open(path_out+ocrname+"_"+args.infotxt+"settings.txt","w") as settings:
         justnow = datetime.datetime.now()
         settings.write("-" * 200 + "\n")
@@ -107,6 +115,11 @@ def store_settings(path_out,profile,args,ocrname):
     return 0
 
 def valid_check(file):
+    """
+
+    :param file:
+    :return:
+    """
     try:
         image = imread("%s" % file)
     except IOError:
@@ -116,6 +129,12 @@ def valid_check(file):
     return image
 
 def cut_check(args,tess_profile):
+    """
+
+    :param args:
+    :param tess_profile:
+    :return:
+    """
     try:
         if tess_profile["cutter"] and tess_profile["parameters"]["--cut"]["value"] == "True":
             args.cut = True
@@ -128,6 +147,14 @@ def cut_check(args,tess_profile):
     return 0
 
 def get_binary(args, image, file,binpath):
+    """
+
+    :param args:
+    :param image:
+    :param file:
+    :param binpath:
+    :return:
+    """
     if not os.path.exists(binpath + file.split('/')[-1]):
         create_dir(binpath)
         uintimage = get_uintimg(image)
@@ -171,6 +198,11 @@ def get_binary(args, image, file,binpath):
     return binpath+file.split('/')[-1]
 
 def get_uintimg(image):
+    """
+
+    :param image:
+    :return:
+    """
     if len(image.shape) > 2:
         uintimage = color.rgb2gray(copy.deepcopy(image))
     else:
@@ -271,6 +303,11 @@ def start_ocropy(file,path_out, ocropy_profile,args):
     return 0
 
 def get_ocropy_param(ocropy_profile):
+    """
+
+    :param ocropy_profile:
+    :return:
+    """
     parameters = {}
     for funcall in ["ocropus-nlbin","ocropus-gpageseg","ocropus-rpred","ocropus-hocr"]:
         if funcall in ocropy_profile['parameters']:
@@ -305,8 +342,10 @@ def get_ocropy_param(ocropy_profile):
 
 ########### MAIN ##########
 def start_mocrin():
-    # The filespath are stored in the config.ini file.
-    # And can be changed there.
+    """
+    The filespath are stored in the config.ini file.
+    And can be changed there.
+    """
     config = configparser.ConfigParser()
     config.sections()
     config.read('config.ini')
