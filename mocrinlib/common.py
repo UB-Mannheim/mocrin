@@ -1,6 +1,5 @@
 import os
 
-
 ########## COMMON FUNCTIONS ##########
 def create_dir(newdir:str)->int:
     """

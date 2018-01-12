@@ -39,7 +39,7 @@ def get_uintimg(image):
 
 def get_binary(args, image, file,binpath):
     """
-    Binarization with differen algorithms
+    Binarize image with different algorithms
     :param args:
     :param image:
     :param file:

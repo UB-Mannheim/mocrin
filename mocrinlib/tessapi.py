@@ -10,11 +10,13 @@ from tesserocr import PyTessBaseAPI, RIL, iterate_level
 import string as string
 from skimage.io import imread, imsave
 import re
-from mocrinlib.common import safe_imread, create_dir
+from mocrinlib.common import create_dir
+from mocrinlib.imgproc import safe_imread
 
 ########## EXTENDED HOCR FUNCTION ##########
-def extended_hocr(file, fileout, tess_profile=None):
+def extend_hocr(file, fileout, tess_profile=None):
     """
+    Prodcues an extended hocr-file with char_confidences
     :param file:
     :param fileout:
     :param tess_profile:
@@ -54,10 +56,10 @@ def extended_hocr(file, fileout, tess_profile=None):
 
 def get_param(tess_profile):
     """
+    Read the parameters for the api func call
     :param tess_profile:
     :return:
     """
-    # This func extends the hocr-file of tesseract with charconfs
     # Set Parameters
     parameters = {}
     if 'parameters' in tess_profile:
@@ -75,6 +77,7 @@ def get_param(tess_profile):
 
 def set_vars(api, file, tess_profile):
     """
+    Reads the user-specific variables from the tess_profile
     :param api:
     :param file:
     :param tess_profile:
@@ -99,6 +102,7 @@ def set_vars(api, file, tess_profile):
 ########## CUTTER FUNCTION ##########
 def cutter(file, fileout, tess_profile):
     """
+    Cuts areas (char, word, line) which contains user-specific expression
     :param file: inputfile
     :param fileout: output filename
     :param tess_profile: profile containing user-specific informations and options
@@ -165,7 +169,7 @@ def init_expr_finder(cutter):
 
 def get_filter(cutter):
     """
-    sets up the filtergroups which are divided by '||' and
+    Sets up the filtergroups which are divided by '||' and
     :param cutter:
     :return:
     """
@@ -183,6 +187,7 @@ def get_filter(cutter):
 
 def get_pad(bbox,padval=0, padprc=0.0):
     """
+    Calculates the padding values for cutting
     :param bbox: boundingbox information
     :param padval: padding value (pixel)
     :param padprc: padding value (percantage)
@@ -202,6 +207,7 @@ def get_pad(bbox,padval=0, padprc=0.0):
 ########## MAIN FUNCTION ##########
 def tess_pprocess(file, fileout,cut, tess_profile=None):
     """
+    Starts either the cutting or the extended_hocr process
     :param file: inputfile
     :param fileout: outputfile name
     :param cut: flag for cutting options
@@ -211,9 +217,9 @@ def tess_pprocess(file, fileout,cut, tess_profile=None):
     if cut and tess_profile != None:
         cutter(file, fileout, tess_profile)
     else:
-        extended_hocr(file, fileout, tess_profile)
+        extend_hocr(file, fileout, tess_profile)
     return 0
 
 ########## ENTRYPOINT ##########
 if __name__=="__main__":
-    extended_hocr('/home/jkamlah/Coding/tesseract/testing/eurotext.tif','/home/jkamlah/Coding/tesseract/testing/eurotext.hocr')
+    extend_hocr('/home/jkamlah/Coding/tesseract/testing/eurotext.tif','/home/jkamlah/Coding/tesseract/testing/eurotext.hocr')

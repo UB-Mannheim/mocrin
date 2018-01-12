@@ -15,9 +15,9 @@ from multiprocessing import Process
 import json
 import shlex
 import datetime
-from mocrinlib.tesserocr_api import tess_pprocess
+from mocrinlib.tessapi import tess_pprocess
 from mocrinlib.common import create_dir
-from mocrinlib.imgprocess import safe_imread, get_binary
+from mocrinlib.imgproc import safe_imread, get_binary
 
 ########## CMD-PARSER-SETTINGS ##########
 def get_args():
@@ -31,7 +31,7 @@ def get_args():
     argparser.add_argument("--info", type=str, default="sauvola", help="Text that will be tagged to the outputdirectory. Default prints datetime.")
 
     argparser.add_argument("-i", "--image",help="path to input image to be OCR'd")
-    argparser.add_argument("-c", "--cut", action='store_true', help="Cut certain areas of the image.")
+    argparser.add_argument("-c", "--cut", action='store_true', help="Cut certain areas of the image (see tess_profile['Cutter'].")
     argparser.add_argument("-f", "--imageformat", default="jpg",help="format of the images")
     argparser.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
     argparser.add_argument("-b", "--binary", action='store_true', help="Produce a binary")
@@ -122,7 +122,7 @@ def get_profiles(args,config):
 
 def store_settings(path_out,profile,args,ocrname):
     """
-
+    Saves the used settings in the folder of the output file
     :param path_out:
     :param profile:
     :param args:
@@ -185,9 +185,10 @@ def start_ocropy(file,path_out, ocropy_profile,args):
     create_dir(path_out)
     if args.idx == 0:
         store_settings(path_out,ocropy_profile,args, "Ocropy")
+    # gets all user-specific parameters from the ocropy-profile
     parameters = get_ocropy_param(ocropy_profile)
     subprocess.Popen(args=["ocropus-nlbin",file,"-o"+path_out+args.infotxt+fname+"/"]+parameters["ocropus-nlbin"]).wait()
-    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]+["--debug"]).wait()
+    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]).wait()
     subprocess.Popen(args=["ocropus-rpred",path_out+args.infotxt+fname+"/????/??????.bin.png"]+parameters["ocropus-rpred"]).wait()
     subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]).wait()
     print("Finished ocropy for: " + file.split('/')[-1])
@@ -195,17 +196,21 @@ def start_ocropy(file,path_out, ocropy_profile,args):
 
 def get_ocropy_param(ocropy_profile):
     """
-
+    Get all user-specific parameters from the ocropy-profile,
+    but only for "ocropus-nlbin","ocropus-gpageseg","ocropus-rpred","ocropus-hocr".
     :param ocropy_profile:
-    :return:
+    :return: dict with parameters and values which are different to the default values
     """
     parameters = {}
+    # only search for specific func parameters
     for funcall in ["ocropus-nlbin","ocropus-gpageseg","ocropus-rpred","ocropus-hocr"]:
         if funcall in ocropy_profile['parameters']:
             parameters[funcall] = ""
             for param in ocropy_profile['parameters'][funcall]:
+                # ignore 'files' param
                 if param == "files":
                     continue
+                # Go one level deeper if necessary
                 if "-" not in param:
                     for next_param in ocropy_profile['parameters'][funcall][param]:
                         if next_param == "files":
