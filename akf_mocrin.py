@@ -23,8 +23,8 @@ import shlex
 import copy
 import warnings
 import datetime
-from tessapi.tesserocr_api import tess_pprocess
-from mocrolib.common import safe_imread, create_dir
+from mocrinlib.tesserocr_api import tess_pprocess
+from mocrinlib.common import safe_imread, create_dir
 
 import sys
 import os.path as path

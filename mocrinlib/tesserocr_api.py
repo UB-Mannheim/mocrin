@@ -10,7 +10,7 @@ from tesserocr import PyTessBaseAPI, RIL, iterate_level
 import string as string
 from skimage.io import imread, imsave
 import re
-from mocrolib.common import safe_imread, create_dir
+from mocrinlib.common import safe_imread, create_dir
 
 ########## EXTENDED HOCR FUNCTION ##########
 def extended_hocr(file, fileout, tess_profile=None):
