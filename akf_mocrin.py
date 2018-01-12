@@ -28,7 +28,7 @@ def get_args():
     """
     argparser = argparse.ArgumentParser()
 
-    argparser.add_argument("--info", type=str, default="sauvola", help="Text that will be tagged to the outputdirectory. Default prints datetime.")
+    argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputdirectory. Default prints datetime.")
 
     argparser.add_argument("-i", "--image",help="path to input image to be OCR'd")
     argparser.add_argument("-c", "--cut", action='store_true', help="Cut certain areas of the image (see tess_profile['Cutter'].")
@@ -78,7 +78,7 @@ class DefaultRemover(json.JSONDecoder):
         return obj
 
 ########## COMMON FUNCTIONS ##########
-def cut_check(args,tess_profile):
+def cut_check(args,tess_profile:dict)->int:
     """
     Checks requirements for cutting
     :param args: see 'get_args'
@@ -96,7 +96,7 @@ def cut_check(args,tess_profile):
         args.cut = False
     return 0
 
-def get_profiles(args,config):
+def get_profiles(args,config:dict):
     """
     This function loads the json-profiles for tesseract and ocropy,
     which contains user-specific parameters and options.
@@ -120,7 +120,7 @@ def get_profiles(args,config):
             ocropy_profile = ""
     return (tess_profile,ocropy_profile)
 
-def store_settings(path_out,profile,args,ocrname):
+def store_settings(path_out:str,profile:dict,args,ocrname:str)->int:
     """
     Saves the used settings in the folder of the output file
     :param path_out:
@@ -142,7 +142,7 @@ def store_settings(path_out,profile,args,ocrname):
     return 0
 
 ########## TESSERACT FUNCTIONS ##########
-def start_tess(file,path_out, tess_profile,args):
+def start_tess(file:dict,path_out:dict, tess_profile:dict,args)->int:
     """
     Start tesseract over "pytesseract" a cli-module
     :param file: fileinputpath
@@ -173,7 +173,7 @@ def start_tess(file,path_out, tess_profile,args):
     return 0
 
 ########## OCROPY FUNCTIONS ##########
-def start_ocropy(file,path_out, ocropy_profile,args):
+def start_ocropy(file:dict,path_out:dict, ocropy_profile:dict,args)->int:
     """
     Start tesseract over a cli
     :param file: fileinputpath
@@ -194,7 +194,7 @@ def start_ocropy(file,path_out, ocropy_profile,args):
     print("Finished ocropy for: " + file.split('/')[-1])
     return 0
 
-def get_ocropy_param(ocropy_profile):
+def get_ocropy_param(ocropy_profile:dict)->dict:
     """
     Get all user-specific parameters from the ocropy-profile,
     but only for "ocropus-nlbin","ocropus-gpageseg","ocropus-rpred","ocropus-hocr".
@@ -237,7 +237,7 @@ def get_ocropy_param(ocropy_profile):
     return parameters
 
 ########### MAIN ##########
-def start_mocrin():
+def start_mocrin()->int:
     """
     The filespath are stored in the config.ini file.
     And can be changed there.
@@ -251,7 +251,7 @@ def start_mocrin():
     if args.info != "":
         args.infotxt = ""
         if args.info == "datetime":
-            args.infofolder = datetime.datetime.now().strftime("%Y-%m-%d_%Hh%Mmin")+"/"
+            args.infofolder = datetime.datetime.now().strftime("%Y-%m-%d_T%HH%MM")+"/"
         else:
             args.infofolder = args.info+"/"
             args.infotxt = args.info+"_"

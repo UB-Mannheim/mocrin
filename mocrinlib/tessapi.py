@@ -1,9 +1,5 @@
 ###################### INFORMATION #############################
 #           Module for talking to the tesseract api through tesserocr
-# Program:  **tesserocr_api**
-# Info:     **Python 3.6**
-# Author:   **Jan Kamlah**
-# Date:     **12.01.2018**
 
 ########## IMPORT ##########
 from tesserocr import PyTessBaseAPI, RIL, iterate_level
@@ -14,7 +10,7 @@ from mocrinlib.common import create_dir
 from mocrinlib.imgproc import safe_imread
 
 ########## EXTENDED HOCR FUNCTION ##########
-def extend_hocr(file, fileout, tess_profile=None):
+def extend_hocr(file:str, fileout:str, tess_profile:dict=None):
     """
     Prodcues an extended hocr-file with char_confidences
     :param file:
@@ -54,7 +50,7 @@ def extend_hocr(file, fileout, tess_profile=None):
         hocrfile.write(hocr)
     return 0
 
-def get_param(tess_profile):
+def get_param(tess_profile:dict):
     """
     Read the parameters for the api func call
     :param tess_profile:
@@ -75,7 +71,7 @@ def get_param(tess_profile):
                     parameters["psm"] = int(tess_profile['parameters'][param]['value'])
     return parameters
 
-def set_vars(api, file, tess_profile):
+def set_vars(api, file:str, tess_profile:dict):
     """
     Reads the user-specific variables from the tess_profile
     :param api:
@@ -100,7 +96,7 @@ def set_vars(api, file, tess_profile):
     return 0
 
 ########## CUTTER FUNCTION ##########
-def cutter(file, fileout, tess_profile):
+def cutter(file:str, fileout:str, tess_profile:dict):
     """
     Cuts areas (char, word, line) which contains user-specific expression
     :param file: inputfile
@@ -143,7 +139,7 @@ def cutter(file, fileout, tess_profile):
         print("Some nasty things while cutting happens.")
     return 0
 
-def init_expr_finder(cutter):
+def init_expr_finder(cutter:dict):
     """
     Initialize the callback func with expr-dict, 'op' - 'filteroperator' and 'filter' - 'user given filter characters'
     :param cutter: dict containg information for cutting. Here are used 'filterop(erator)' and 'gr(ou)pop(erator)'.
@@ -153,7 +149,7 @@ def init_expr_finder(cutter):
     expr["op"] = {"and": all, "or": any}
     expr["filter"] = get_filter(cutter)
 
-    def find_expr(cutter,symbol):
+    def find_expr(cutter:dict,symbol:str)->bool:
         # searches the symbol for the filterexpr with given filteroperator
         try:
             filterres =[]
@@ -167,7 +163,7 @@ def init_expr_finder(cutter):
 
     return find_expr
 
-def get_filter(cutter):
+def get_filter(cutter:dict)->list:
     """
     Sets up the filtergroups which are divided by '||' and
     :param cutter:
@@ -185,7 +181,7 @@ def get_filter(cutter):
                 exgrp.update(set(getattr(string, starex[1:])))
     return filter
 
-def get_pad(bbox,padval=0, padprc=0.0):
+def get_pad(bbox,padval:int=0, padprc:float=0.0)->tuple:
     """
     Calculates the padding values for cutting
     :param bbox: boundingbox information
@@ -205,7 +201,7 @@ def get_pad(bbox,padval=0, padprc=0.0):
     return tuple(pad)
 
 ########## MAIN FUNCTION ##########
-def tess_pprocess(file, fileout,cut, tess_profile=None):
+def tess_pprocess(file:str,fileout:str,cut:bool, tess_profile:dict=None)->int:
     """
     Starts either the cutting or the extended_hocr process
     :param file: inputfile

@@ -1,3 +1,7 @@
+###################### INFORMATION #############################
+#           Module for talking to the tesseract api through tesserocr
+
+########## IMPORT ##########
 import warnings
 import os
 from mocrinlib.common import create_dir
@@ -6,7 +10,9 @@ import skimage.filters as imgfilter
 from skimage.io import imread
 import scipy.misc as misc
 
-def safe_imread(file):
+
+########## FUNCTIONS ##########
+def safe_imread(file:str):
     """
     Reads the image and prints an error if something went wrong
     :param file:
@@ -20,7 +26,7 @@ def safe_imread(file):
         return 1
     return image
 
-def get_uintimg(image):
+def get_uintimg(image:str):
     """
     Generates a uintimg from the given image
     :param image:
@@ -37,7 +43,7 @@ def get_uintimg(image):
             uintimg = img_as_uint(uintimg, force_copy=True)
     return uintimg
 
-def get_binary(args, image, file,binpath):
+def get_binary(args, image, file:str,binpath:str)->str:
     """
     Binarize image with different algorithms
     :param args:

@@ -1,3 +1,7 @@
+###################### INFORMATION #############################
+#           Module for talking to the tesseract api through tesserocr
+
+########## IMPORT ##########
 import os
 
 ########## COMMON FUNCTIONS ##########
