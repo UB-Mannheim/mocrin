@@ -95,16 +95,18 @@ def cutter(file, fileout, tess_profile):
             ri = api.GetIterator()
             # The char method is not quite correct,
             # it seems that charbboxes get calculated after recognition, which leads sometimes to false cutouts.
-            leveldict = {"char":RIL.SYMBOL,"word":RIL.WORD,"line":RIL.TEXTLINE}
-            level = leveldict[cutter["level"]]
+            level = {"char":RIL.SYMBOL,"word":RIL.WORD,"line":RIL.TEXTLINE}.get(cutter["level"], "char")
             expr_finder = init_expr_finder(cutter)
             img = imread(file)
             count = 0
             for r in iterate_level(ri, level):
                 symbol = r.GetUTF8Text(level)  # r == ri
                 conf = r.Confidence(level)
-                expr_result = expr_finder(cutter,symbol)
-                if expr_result["char"] or expr_result["word"] or expr_result["grp"]:
+                if cutter["regex"] == "":
+                    expr_result = expr_finder(cutter,symbol)
+                else:
+                    expr_result = re.search(cutter["regex"],symbol)
+                if expr_result:
                     if cutter["min_conf"] < conf < cutter["max_conf"]:
                         symbol = re.sub('[^0-9a-zA-Z]+', '_', symbol)
                         count += 1
@@ -113,40 +115,28 @@ def cutter(file, fileout, tess_profile):
                         cutarea = img[bbox[1] - pad[0]:bbox[3] + pad[0], bbox[0] - pad[1]:bbox[2] + pad[1], :]
                         cutdir = "/".join(fileout.split("/")[:-1]) + "/cut/" + symbol + "/"
                         create_dir(cutdir)
-                        imsave(cutdir + '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".",
-                                                                                                                    "-") + "_" +
-                               fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
+                        fprefix = '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".", "-")
+                        imsave(cutdir +  "_" + fprefix + fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
     except:
         print("Some nasty things while cutting happens.")
     return 0
 
 def init_expr_finder(cutter):
+    # Initialize the expr lib with 'op' - 'filteroperator' and 'filter' - 'user given filter characters'
     expr = {}
-    expr["res"] = {"char": False, "word": False, "grp": False}
     expr["op"] = {"and": all, "or": any}
     expr["filter"] = get_filter(cutter)
 
     def find_expr(cutter,symbol):
+        # searches the symbol for the filterexpr with given filteroperator
         try:
             filterres =[]
             for filter in expr["filter"]:
-                filterres.append(expr["op"][cutter["filterop"]]([True if s in symbol else False for s in filter]))
-            result = expr["op"][cutter["grpop"]](filterres)
-            #if cutter["filterop"] == "or":
-            #    expr_res["char"] = any([True if s in expr["char"] else False for s in symbol])
-            #    if cutter["level"] != "char":
-            #        expr_res["word"] = any([True if s in symbol else False for s in expr["word"]])
-            #        expr_res["grp"] = all([True if s in expr["grp"] else False for s in symbol])
-            #else:
-            #    expr_res["char"] = all([True if s in symbol else False for s in expr["char"]])
-            #    if cutter["level"] != "char":
-            #        expr_res["word"] = all([True if s in symbol else False for s in expr["word"]])
-            #        if expr["char"]:
-            #            expr_res["word"] = expr_res["word"]*expr_res["char"]
-            #            expr_res["char"] = expr_res["word"]
-            #        expr_res["grp"] = any([True if s in expr["grp"] else False for s in symbol])
+                filterres.append(expr["op"].get(cutter["filterop"],"and")([True if s in symbol else False for s in filter]))
+            result = expr["op"].get(cutter["grpop"],"and")(filterres)
         except:
-            print("Something nasty happens while finding x, so it got skipped!")
+            print("Something nasty happens while finding expressions!")
+            result = False
         return result
 
     return find_expr
