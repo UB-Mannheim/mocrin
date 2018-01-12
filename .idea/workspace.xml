@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea120959-5bbe-49c2-ac79-474097b23b4a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/akf_mocrin.py" afterPath="$PROJECT_DIR$/akf_mocrin.py" />
-      <change beforePath="$PROJECT_DIR$/profiles/tess/default_tess_profile.json" afterPath="$PROJECT_DIR$/profiles/tess/default_tess_profile.json" />
-      <change beforePath="$PROJECT_DIR$/profiles/tess/test_tess_profile.json" afterPath="$PROJECT_DIR$/profiles/tess/test_tess_profile.json" />
       <change beforePath="$PROJECT_DIR$/tessapi/tesserocr_api.py" afterPath="$PROJECT_DIR$/tessapi/tesserocr_api.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,38 +14,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="akf_mocrin.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="akf_mocrin.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/akf_mocrin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="222" column="49" lean-forward="false" selection-start-line="222" selection-start-column="49" selection-end-line="222" selection-end-column="49" />
+            <state relative-caret-position="541">
+              <caret line="410" column="0" lean-forward="true" selection-start-line="410" selection-start-column="0" selection-end-line="410" selection-end-column="0" />
               <folding>
                 <element signature="e#256#275#0" expanded="true" />
                 <element signature="e#854#2954#0" expanded="false" />
                 <element signature="e#3042#3797#0" expanded="false" />
-                <element signature="e#3886#4463#0" expanded="false" />
-                <element signature="e#4492#4676#0" expanded="false" />
-                <element signature="e#4716#5000#0" expanded="false" />
-                <element signature="e#5049#7018#0" expanded="false" />
-                <element signature="e#7048#7471#0" expanded="false" />
-                <element signature="e#7510#7818#0" expanded="false" />
-                <element signature="e#7855#8841#0" expanded="false" />
-                <element signature="e#8897#10287#0" expanded="false" />
-                <element signature="e#10347#11401#0" expanded="false" />
-                <element signature="e#11445#13296#0" expanded="false" />
-                <element signature="e#13350#15363#0" expanded="false" />
-                <element signature="e#15424#15554#0" expanded="false" />
+                <element signature="e#3875#4183#0" expanded="false" />
+                <element signature="e#4223#4579#0" expanded="false" />
+                <element signature="e#4628#6699#0" expanded="false" />
+                <element signature="e#6729#7200#0" expanded="false" />
+                <element signature="e#7237#8223#0" expanded="false" />
+                <element signature="e#8280#8965#0" expanded="false" />
+                <element signature="e#8994#9225#0" expanded="false" />
+                <element signature="e#9323#10713#0" expanded="false" />
+                <element signature="e#10812#11866#0" expanded="false" />
+                <element signature="e#11910#13818#0" expanded="false" />
+                <element signature="e#13872#15875#0" expanded="false" />
+                <element signature="e#15936#16066#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default_tess_profile.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/profiles/tess/default_tess_profile.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="15" lean-forward="true" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -56,26 +43,28 @@
       <file leaf-file-name="tesserocr_api.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tessapi/tesserocr_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="130" column="49" lean-forward="false" selection-start-line="130" selection-start-column="49" selection-end-line="130" selection-end-column="49" />
+            <state relative-caret-position="210">
+              <caret line="139" column="12" lean-forward="true" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="12" />
               <folding>
-                <element signature="e#0#55#0" expanded="true" />
-                <element signature="e#172#907#0" expanded="false" />
-                <element signature="e#956#1599#0" expanded="false" />
-                <element signature="e#1658#2970#0" expanded="false" />
-                <element signature="e#4207#5636#0" expanded="false" />
-                <element signature="e#5692#7788#0" expanded="false" />
-                <element signature="e#7844#9988#0" expanded="false" />
+                <element signature="e#276#331#0" expanded="true" />
+                <element signature="e#554#1957#0" expanded="false" />
+                <element signature="e#1992#2781#0" expanded="false" />
+                <element signature="e#2826#3500#0" expanded="false" />
+                <element signature="e#3585#5633#0" expanded="false" />
+                <element signature="e#5669#6568#0" expanded="false" />
+                <element signature="e#6598#7172#0" expanded="false" />
+                <element signature="e#7218#7681#0" expanded="false" />
+                <element signature="e#7780#8141#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_tess_profile.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_tess_profile.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/profiles/tess/test_tess_profile.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+            <state relative-caret-position="460">
+              <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -84,7 +73,7 @@
       <file leaf-file-name="tesserocr.pyx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../tesserocr/tesserocr.pyx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15243">
+            <state relative-caret-position="16554">
               <caret line="1754" column="30" lean-forward="true" selection-start-line="1754" selection-start-column="30" selection-end-line="1754" selection-end-column="30" />
               <folding />
             </state>
@@ -118,6 +107,7 @@
       <find>RIL</find>
       <find>_pix_to_image</find>
       <find>GetComp</find>
+      <find>imread</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -147,9 +137,9 @@
         <option value="$PROJECT_DIR$/tessapi/__init__.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/../tesserocr/tesserocr.pyx" />
+        <option value="$PROJECT_DIR$/profiles/tess/test_tess_profile.json" />
         <option value="$PROJECT_DIR$/akf_mocrin.py" />
         <option value="$PROJECT_DIR$/tessapi/tesserocr_api.py" />
-        <option value="$PROJECT_DIR$/profiles/tess/test_tess_profile.json" />
       </list>
     </option>
   </component>
@@ -182,17 +172,6 @@
               <item name="akf-mocrin" type="b2602c69:ProjectViewProjectNode" />
               <item name="akf-mocrin" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="akf-mocrin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akf-mocrin" type="462c0819:PsiDirectoryNode" />
-              <item name="profiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="akf-mocrin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akf-mocrin" type="462c0819:PsiDirectoryNode" />
-              <item name="profiles" type="462c0819:PsiDirectoryNode" />
-              <item name="tess" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -206,11 +185,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../tesserocr/tesserocr.pyx" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tessapi" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tessapi" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -508,16 +487,16 @@
     <frame x="67" y="25" width="1853" height="950" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16174863" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09289618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41269842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1929182" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10744811" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36019537" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34554335" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -556,12 +535,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/akf_mocrin.py</url>
-          <line>359</line>
+          <line>400</line>
           <option name="timeStamp" value="238" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/akf_mocrin.py</url>
-          <line>249</line>
+          <line>282</line>
           <option name="timeStamp" value="258" />
         </line-breakpoint>
       </breakpoints>
@@ -575,7 +554,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="333" />
+      <option name="time" value="373" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -595,18 +574,18 @@
             <element signature="e#256#275#0" expanded="true" />
             <element signature="e#854#2954#0" expanded="false" />
             <element signature="e#3042#3797#0" expanded="false" />
-            <element signature="e#3886#4463#0" expanded="false" />
-            <element signature="e#4492#4676#0" expanded="false" />
-            <element signature="e#4716#5000#0" expanded="false" />
-            <element signature="e#5049#7018#0" expanded="false" />
-            <element signature="e#7048#7471#0" expanded="false" />
-            <element signature="e#7510#7818#0" expanded="false" />
-            <element signature="e#7855#8841#0" expanded="false" />
-            <element signature="e#8897#10287#0" expanded="false" />
-            <element signature="e#10347#11401#0" expanded="false" />
-            <element signature="e#11445#13296#0" expanded="false" />
-            <element signature="e#13350#15363#0" expanded="false" />
-            <element signature="e#15424#15554#0" expanded="false" />
+            <element signature="e#3875#4183#0" expanded="false" />
+            <element signature="e#4223#4579#0" expanded="false" />
+            <element signature="e#4628#6699#0" expanded="false" />
+            <element signature="e#6729#7200#0" expanded="false" />
+            <element signature="e#7237#8223#0" expanded="false" />
+            <element signature="e#8280#8965#0" expanded="false" />
+            <element signature="e#8994#9225#0" expanded="false" />
+            <element signature="e#9323#10713#0" expanded="false" />
+            <element signature="e#10812#11866#0" expanded="false" />
+            <element signature="e#11910#13818#0" expanded="false" />
+            <element signature="e#13872#15875#0" expanded="false" />
+            <element signature="e#15936#16066#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -636,6 +615,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2024">
           <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -840,32 +820,9 @@
     </entry>
     <entry file="file:///usr/lib/python3.6/multiprocessing/process.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="271" column="0" lean-forward="false" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tesserocr/tesserocr.pyx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15243">
-          <caret line="1754" column="30" lean-forward="true" selection-start-line="1754" selection-start-column="30" selection-end-line="1754" selection-end-column="30" />
+        <state relative-caret-position="220">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tessapi/tesserocr_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="130" column="49" lean-forward="false" selection-start-line="130" selection-start-column="49" selection-end-line="130" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-            <element signature="e#172#907#0" expanded="false" />
-            <element signature="e#956#1599#0" expanded="false" />
-            <element signature="e#1658#2970#0" expanded="false" />
-            <element signature="e#4207#5636#0" expanded="false" />
-            <element signature="e#5692#7788#0" expanded="false" />
-            <element signature="e#7844#9988#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -877,35 +834,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/akf_mocrin.py">
+    <entry file="file://$PROJECT_DIR$/../tesserocr/tesserocr.pyx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="222" column="49" lean-forward="false" selection-start-line="222" selection-start-column="49" selection-end-line="222" selection-end-column="49" />
-          <folding>
-            <element signature="e#256#275#0" expanded="true" />
-            <element signature="e#854#2954#0" expanded="false" />
-            <element signature="e#3042#3797#0" expanded="false" />
-            <element signature="e#3886#4463#0" expanded="false" />
-            <element signature="e#4492#4676#0" expanded="false" />
-            <element signature="e#4716#5000#0" expanded="false" />
-            <element signature="e#5049#7018#0" expanded="false" />
-            <element signature="e#7048#7471#0" expanded="false" />
-            <element signature="e#7510#7818#0" expanded="false" />
-            <element signature="e#7855#8841#0" expanded="false" />
-            <element signature="e#8897#10287#0" expanded="false" />
-            <element signature="e#10347#11401#0" expanded="false" />
-            <element signature="e#11445#13296#0" expanded="false" />
-            <element signature="e#13350#15363#0" expanded="false" />
-            <element signature="e#15424#15554#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="16554">
+          <caret line="1754" column="30" lean-forward="true" selection-start-line="1754" selection-start-column="30" selection-end-line="1754" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/profiles/tess/test_tess_profile.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+        <state relative-caret-position="460">
+          <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tessapi/tesserocr_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="139" column="12" lean-forward="true" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="12" />
+          <folding>
+            <element signature="e#276#331#0" expanded="true" />
+            <element signature="e#554#1957#0" expanded="false" />
+            <element signature="e#1992#2781#0" expanded="false" />
+            <element signature="e#2826#3500#0" expanded="false" />
+            <element signature="e#3585#5633#0" expanded="false" />
+            <element signature="e#5669#6568#0" expanded="false" />
+            <element signature="e#6598#7172#0" expanded="false" />
+            <element signature="e#7218#7681#0" expanded="false" />
+            <element signature="e#7780#8141#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/akf_mocrin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="410" column="0" lean-forward="true" selection-start-line="410" selection-start-column="0" selection-end-line="410" selection-end-column="0" />
+          <folding>
+            <element signature="e#256#275#0" expanded="true" />
+            <element signature="e#854#2954#0" expanded="false" />
+            <element signature="e#3042#3797#0" expanded="false" />
+            <element signature="e#3875#4183#0" expanded="false" />
+            <element signature="e#4223#4579#0" expanded="false" />
+            <element signature="e#4628#6699#0" expanded="false" />
+            <element signature="e#6729#7200#0" expanded="false" />
+            <element signature="e#7237#8223#0" expanded="false" />
+            <element signature="e#8280#8965#0" expanded="false" />
+            <element signature="e#8994#9225#0" expanded="false" />
+            <element signature="e#9323#10713#0" expanded="false" />
+            <element signature="e#10812#11866#0" expanded="false" />
+            <element signature="e#11910#13818#0" expanded="false" />
+            <element signature="e#13872#15875#0" expanded="false" />
+            <element signature="e#15936#16066#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

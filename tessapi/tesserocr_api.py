@@ -9,23 +9,8 @@
 from tesserocr import PyTessBaseAPI, RIL, iterate_level
 import string as string
 from skimage.io import imread, imsave
-import os
 import re
-
-########## COMMON FUNCTION ##########
-def create_dir(newdir:str)->int:
-    """
-    Creates a new directory
-    :param_newdir: Directory which should be created
-    :return: None
-    """
-    if not os.path.isdir(newdir):
-        try:
-            os.makedirs(newdir)
-            print(newdir)
-        except IOError:
-            print("cannot create %s directoy" % newdir)
-    return 0
+from mocrolib.common import safe_imread, create_dir
 
 ########## EXTENDED HOCR FUNCTION ##########
 def extended_hocr(file, fileout, tess_profile=None):
@@ -130,7 +115,7 @@ def cutter(file, fileout, tess_profile):
             # it seems that charbboxes get calculated after recognition, which leads sometimes to false cutouts.
             level = {"char":RIL.SYMBOL,"word":RIL.WORD,"line":RIL.TEXTLINE}.get(cutter["level"], "char")
             expr_finder = init_expr_finder(cutter)
-            img = imread(file)
+            img = safe_imread(file)
             count = 0
             for r in iterate_level(ri, level):
                 symbol = r.GetUTF8Text(level)  # r == ri

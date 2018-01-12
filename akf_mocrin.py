@@ -24,6 +24,7 @@ import copy
 import warnings
 import datetime
 from tessapi.tesserocr_api import tess_pprocess
+from mocrolib.common import safe_imread, create_dir
 
 import sys
 import os.path as path
@@ -92,42 +93,7 @@ class DefaultRemover(json.JSONDecoder):
             del obj[delitem]
         return obj
 
-########## FUNCTIONS ##########
-def store_settings(path_out,profile,args,ocrname):
-    """
-
-    :param path_out:
-    :param profile:
-    :param args:
-    :param ocrname:
-    :return:
-    """
-    with open(path_out+ocrname+"_"+args.infotxt+"settings.txt","w") as settings:
-        justnow = datetime.datetime.now()
-        settings.write("-" * 200 + "\n")
-        settings.write(ocrname+"-Settings for the run "+'"'+args.info+'"'+"\n"+"Timestamp:"+justnow.ctime()+"\n")
-        settings.write("-" * 200 + "\n")
-        settings.write("Arguments:\n")
-        json.dump(vars(args), settings, sort_keys=True, indent=4)
-        settings.write("\n"+"-" * 200 + "\n")
-        settings.write("Profile:\n")
-        json.dump(profile,settings, sort_keys=True, indent=4)
-    return 0
-
-def valid_check(file):
-    """
-
-    :param file:
-    :return:
-    """
-    try:
-        image = imread("%s" % file)
-    except IOError:
-        print("cannot open %s" % file)
-        #logging.warning("cannot open %s" % input)
-        return 1
-    return image
-
+########## COMMON FUNCTIONS ##########
 def cut_check(args,tess_profile):
     """
 
@@ -214,20 +180,6 @@ def get_uintimg(image):
             uintimage = ski.img_as_uint(uintimage, force_copy=True)
     return uintimage
 
-def create_dir(newdir:str)->int:
-    """
-    Creates a new directory
-    :param_newdir: Directory which should be created
-    :return: None
-    """
-    if not os.path.isdir(newdir):
-        try:
-            os.makedirs(newdir)
-            print(newdir)
-        except IOError:
-            print("cannot create %s directoy" % newdir)
-    return 0
-
 def get_profiles(args,config):
     """
     This function loads the json-profiles for tesseract and ocropy,
@@ -252,6 +204,28 @@ def get_profiles(args,config):
             ocropy_profile = ""
     return (tess_profile,ocropy_profile)
 
+def store_settings(path_out,profile,args,ocrname):
+    """
+
+    :param path_out:
+    :param profile:
+    :param args:
+    :param ocrname:
+    :return:
+    """
+    with open(path_out+ocrname+"_"+args.infotxt+"settings.txt","w") as settings:
+        justnow = datetime.datetime.now()
+        settings.write("-" * 200 + "\n")
+        settings.write(ocrname+"-Settings for the run "+'"'+args.info+'"'+"\n"+"Timestamp:"+justnow.ctime()+"\n")
+        settings.write("-" * 200 + "\n")
+        settings.write("Arguments:\n")
+        json.dump(vars(args), settings, sort_keys=True, indent=4)
+        settings.write("\n"+"-" * 200 + "\n")
+        settings.write("Profile:\n")
+        json.dump(profile,settings, sort_keys=True, indent=4)
+    return 0
+
+########## TESSERACT FUNCTIONS ##########
 def start_tess(file,path_out, tess_profile,args):
     """
     Start tesseract over "pytesseract" a cli-module
@@ -282,6 +256,7 @@ def start_tess(file,path_out, tess_profile,args):
     print("Finished tesseract for: "+file.split('/')[-1])
     return 0
 
+########## OCROPY FUNCTIONS ##########
 def start_ocropy(file,path_out, ocropy_profile,args):
     """
     Start tesseract over a cli
@@ -373,8 +348,8 @@ def start_mocrin():
         for pathparts in path_in[:-1]:
             path_out += pathparts + "/"
 
-        # Check if the file is a valid image for the ocr
-        image = valid_check(file)
+        # Safe image read function
+        image = safe_imread(file)
 
         # Produce a binary image, could improve the results of the ocr?
         if args.binary:
