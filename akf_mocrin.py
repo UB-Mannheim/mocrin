@@ -23,7 +23,7 @@ import shlex
 import copy
 import warnings
 import datetime
-from tessapi.tesserocr_api import tess_charconf_hocr
+from tessapi.tesserocr_api import tess_pprocess
 
 import sys
 import os.path as path
@@ -46,6 +46,7 @@ def get_args():
     argparser.add_argument("--info", type=str, default="sauvola", help="Text that will be tagged to the outputdirectory. Default prints datetime.")
 
     argparser.add_argument("-i", "--image",help="path to input image to be OCR'd")
+    argparser.add_argument("-c", "--cut", action='store_true', help="Cut certain areas of the image.")
     argparser.add_argument("-f", "--imageformat", default="jpg",help="format of the images")
     argparser.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
     argparser.add_argument("-b", "--binary", action='store_true', help="Produce a binary")
@@ -113,6 +114,18 @@ def valid_check(file):
         #logging.warning("cannot open %s" % input)
         return 1
     return image
+
+def cut_check(args,tess_profile):
+    try:
+        if tess_profile["cutter"] and tess_profile["parameters"]["--cut"]["value"] == "True":
+            args.cut = True
+        if args.cut:
+            args.no_ocropy = True
+        else:
+            del tess_profile["cutter"]
+    except:
+        args.cut = False
+    return 0
 
 def get_binary(args, image, file,binpath):
     if not os.path.exists(binpath + file.split('/')[-1]):
@@ -196,6 +209,7 @@ def get_profiles(args,config):
         tess_profile_path = config['DEFAULT']['Tessprofile'] + args.tess_profile + "_tess_profile.json"
         with open(tess_profile_path,"r") as file:
             tess_profile = json.load(file, cls=DefaultRemover)
+            cut_check(args,tess_profile)
         if tess_profile == None:
             tess_profile = ""
     if not args.no_ocropy:
@@ -232,7 +246,7 @@ def start_tess(file,path_out, tess_profile,args):
         #parameters = shlex.split(parameters)
         #subprocess.Popen(args=['tesseract',file,file_out]+parameters).wait()
     file_out = path_out + file.split('/')[-1]
-    tess_charconf_hocr(file,file_out,tess_profile)
+    tess_pprocess(file, file_out, args.cut, tess_profile)
     print("Finished tesseract for: "+file.split('/')[-1])
     return 0
 
@@ -250,7 +264,7 @@ def start_ocropy(file,path_out, ocropy_profile,args):
         store_settings(path_out,ocropy_profile,args, "Ocropy")
     parameters = get_ocropy_param(ocropy_profile)
     subprocess.Popen(args=["ocropus-nlbin",file,"-o"+path_out+args.infotxt+fname+"/"]+parameters["ocropus-nlbin"]).wait()
-    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]).wait()
+    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]+["--debug"]).wait()
     subprocess.Popen(args=["ocropus-rpred",path_out+args.infotxt+fname+"/????/??????.bin.png"]+parameters["ocropus-rpred"]).wait()
     subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]).wait()
     print("Finished ocropy for: " + file.split('/')[-1])

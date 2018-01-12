@@ -1,4 +1,25 @@
 {
+    "cutter": {
+            "level": "word",
+            "filter": "m|lage|*digits||Gesch|b",
+            "filtergrp": "digits|punctuation",
+            "filterop": "and",
+            "grpop": "and",
+            "regex": "",
+            "min_wordlen": 0,
+            "max_wordlen": -1,
+            "min_conf": 0,
+            "max_conf": 100,
+            "pad": 0,
+            "padprc": 0.0,
+            "choices":{
+                "level": "char, word, line",
+                "filter": "Takes the expr seperated by '|' grp of expr '||'. E.g. a|home|wer||b|garden",
+                "filterop":"and, or",
+                "filtergrp":"*ascii_letters,*ascii_lowercase,*ascii_uppercase,*digits,*punctuation",
+                "padprc": "1.0 = 100%,.. 0.0 = 0%"
+            }
+    },
     "parameters": {
         "--tessdata-dir": {
             "value": "",
@@ -17,7 +38,7 @@
         },
         "-l": {
             "value": "deu",
-            "default": "",
+            "default": "eng",
             "help": "Specify language(s) used for OCR."
         },
         "--psm": {
@@ -71,185 +92,15 @@
             "default": "",
             "help": "Set value for config variables. Multiple -c arguments are allowed.",
             "choices": "range(0,600)",
-            "description": "Number of variables which should be change"
+            "description": "Number of variables which should be change."
+        },
+        "--cut": {
+            "value": "True",
+            "default": "False",
+            "help": "Cuts certain areas out of the image (see cutter)."
         }
     },
     "variables": {
-        "save_blob_choices": {
-            "value": "False",
-            "default": "False",
-            "help": "Save the blob choices"
-        },
-        "classify_num_cp_levels": {
-            "value": "3",
-            "default": "3",
-            "help": "Number of Class Pruner Levels"
-        },
-        "textord_dotmatrix_gap": {
-            "value": "3",
-            "default": "3",
-            "help": "Max pixel gap for broken pixed pitch"
-        },
-        "textord_debug_block": {
-            "value": "0",
-            "default": "0",
-            "help": "Block to do debug on"
-        },
-        "textord_pitch_range": {
-            "value": "2",
-            "default": "2",
-            "help": "Max range test on pitch"
-        },
-        "textord_words_veto_power": {
-            "value": "5",
-            "default": "5",
-            "help": "Rows required to outvote a veto"
-        },
-        "textord_tabfind_show_strokewidths": {
-            "value": "0",
-            "default": "0",
-            "help": "Show stroke widths"
-        },
-        "pitsync_linear_version": {
-            "value": "6",
-            "default": "6",
-            "help": "Use new fast algorithm"
-        },
-        "pitsync_fake_depth": {
-            "value": "1",
-            "default": "1",
-            "help": "Max advance fake generation"
-        },
-        "oldbl_holed_losscount": {
-            "value": "10",
-            "default": "10",
-            "help": "Max lost before fallback line used"
-        },
-        "textord_skewsmooth_offset": {
-            "value": "4",
-            "default": "4",
-            "help": "For smooth factor"
-        },
-        "textord_skewsmooth_offset2": {
-            "value": "1",
-            "default": "1",
-            "help": "For smooth factor"
-        },
-        "textord_test_x": {
-            "value": "-2147483647",
-            "default": "-2147483647",
-            "help": "coord of test pt"
-        },
-        "textord_test_y": {
-            "value": "-2147483647",
-            "default": "-2147483647",
-            "help": "coord of test pt"
-        },
-        "textord_min_blobs_in_row": {
-            "value": "4",
-            "default": "4",
-            "help": "Min blobs before gradient counted"
-        },
-        "textord_spline_minblobs": {
-            "value": "8",
-            "default": "8",
-            "help": "Min blobs in each spline segment"
-        },
-        "textord_spline_medianwin": {
-            "value": "6",
-            "default": "6",
-            "help": "Size of window for spline segmentation"
-        },
-        "textord_max_blob_overlaps": {
-            "value": "4",
-            "default": "4",
-            "help": "Max number of blobs a big blob can overlap"
-        },
-        "textord_min_xheight": {
-            "value": "10",
-            "default": "10",
-            "help": "Min credible pixel xheight"
-        },
-        "textord_lms_line_trials": {
-            "value": "12",
-            "default": "12",
-            "help": "Number of linew fits to do"
-        },
-        "textord_tabfind_show_images": {
-            "value": "0",
-            "default": "0",
-            "help": "Show image blobs"
-        },
-        "textord_fp_chop_error": {
-            "value": "2",
-            "default": "2",
-            "help": "Max allowed bending of chop cells"
-        },
-        "edges_max_children_per_outline": {
-            "value": "10",
-            "default": "10",
-            "help": "Max number of children inside a character outline"
-        },
-        "edges_max_children_layers": {
-            "value": "5",
-            "default": "5",
-            "help": "Max layers of nested children inside a character outline"
-        },
-        "edges_children_per_grandchild": {
-            "value": "10",
-            "default": "10",
-            "help": "Importance ratio for chucking outlines"
-        },
-        "edges_children_count_limit": {
-            "value": "45",
-            "default": "45",
-            "help": "Max holes allowed in blob"
-        },
-        "edges_min_nonhole": {
-            "value": "12",
-            "default": "12",
-            "help": "Min pixels for potential char in box"
-        },
-        "edges_patharea_ratio": {
-            "value": "40",
-            "default": "40",
-            "help": "Max lensq/area for acceptable child outline"
-        },
-        "devanagari_split_debuglevel": {
-            "value": "0",
-            "default": "0",
-            "help": "Debug level for split shiro-rekha process."
-        },
-        "textord_debug_tabfind": {
-            "value": "0",
-            "default": "0",
-            "help": "Debug tab finding"
-        },
-        "textord_debug_bugs": {
-            "value": "0",
-            "default": "0",
-            "help": "Turn on output related to bugs in tab finding"
-        },
-        "textord_testregion_left": {
-            "value": "-1",
-            "default": "-1",
-            "help": "Left edge of debug reporting rectangle"
-        },
-        "textord_testregion_top": {
-            "value": "-1",
-            "default": "-1",
-            "help": "Top edge of debug reporting rectangle"
-        },
-        "textord_testregion_right": {
-            "value": "2147483647",
-            "default": "2147483647",
-            "help": "Right edge of debug rectangle"
-        },
-        "textord_testregion_bottom": {
-            "value": "2147483647",
-            "default": "2147483647",
-            "help": "Bottom edge of debug rectangle"
-        },
         "editor_image_xpos": {
             "value": "590",
             "default": "590",
@@ -320,220 +171,285 @@
             "default": "655",
             "help": "Word window width"
         },
-        "wordrec_display_splits": {
+        "textord_debug_tabfind": {
             "value": "0",
             "default": "0",
-            "help": "Display splits"
+            "help": "Debug tab finding"
         },
-        "poly_debug": {
+        "textord_debug_bugs": {
             "value": "0",
             "default": "0",
-            "help": "Debug old poly"
+            "help": "Turn on output related to bugs in tab finding"
         },
-        "poly_wide_objects_better": {
+        "textord_testregion_left": {
+            "value": "-1",
+            "default": "-1",
+            "help": "Left edge of debug reporting rectangle"
+        },
+        "textord_testregion_top": {
+            "value": "-1",
+            "default": "-1",
+            "help": "Top edge of debug reporting rectangle"
+        },
+        "textord_testregion_right": {
+            "value": "2147483647",
+            "default": "2147483647",
+            "help": "Right edge of debug rectangle"
+        },
+        "textord_testregion_bottom": {
+            "value": "2147483647",
+            "default": "2147483647",
+            "help": "Bottom edge of debug rectangle"
+        },
+        "textord_tabfind_show_partitions": {
+            "value": "0",
+            "default": "0",
+            "help": "Show partition bounds, waiting if >1"
+        },
+        "devanagari_split_debuglevel": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug level for split shiro-rekha process."
+        },
+        "edges_max_children_per_outline": {
+            "value": "10",
+            "default": "10",
+            "help": "Max number of children inside a character outline"
+        },
+        "edges_max_children_layers": {
+            "value": "5",
+            "default": "5",
+            "help": "Max layers of nested children inside a character outline"
+        },
+        "edges_children_per_grandchild": {
+            "value": "10",
+            "default": "10",
+            "help": "Importance ratio for chucking outlines"
+        },
+        "edges_children_count_limit": {
+            "value": "45",
+            "default": "45",
+            "help": "Max holes allowed in blob"
+        },
+        "edges_min_nonhole": {
+            "value": "12",
+            "default": "12",
+            "help": "Min pixels for potential char in box"
+        },
+        "edges_patharea_ratio": {
+            "value": "40",
+            "default": "40",
+            "help": "Max lensq/area for acceptable child outline"
+        },
+        "textord_fp_chop_error": {
+            "value": "2",
+            "default": "2",
+            "help": "Max allowed bending of chop cells"
+        },
+        "textord_tabfind_show_images": {
+            "value": "0",
+            "default": "0",
+            "help": "Show image blobs"
+        },
+        "textord_skewsmooth_offset": {
+            "value": "4",
+            "default": "4",
+            "help": "For smooth factor"
+        },
+        "textord_skewsmooth_offset2": {
             "value": "1",
             "default": "1",
-            "help": "More accurate approx on wide things"
+            "help": "For smooth factor"
         },
-        "wordrec_display_all_blobs": {
-            "value": "0",
-            "default": "0",
-            "help": "Display Blobs"
+        "textord_test_x": {
+            "value": "-2147483647",
+            "default": "-2147483647",
+            "help": "coord of test pt"
         },
-        "wordrec_display_all_words": {
-            "value": "0",
-            "default": "0",
-            "help": "Display Words"
+        "textord_test_y": {
+            "value": "-2147483647",
+            "default": "-2147483647",
+            "help": "coord of test pt"
         },
-        "wordrec_blob_pause": {
-            "value": "0",
-            "default": "0",
-            "help": "Blob pause"
+        "textord_min_blobs_in_row": {
+            "value": "4",
+            "default": "4",
+            "help": "Min blobs before gradient counted"
         },
-        "textord_fp_chopping": {
+        "textord_spline_minblobs": {
+            "value": "8",
+            "default": "8",
+            "help": "Min blobs in each spline segment"
+        },
+        "textord_spline_medianwin": {
+            "value": "6",
+            "default": "6",
+            "help": "Size of window for spline segmentation"
+        },
+        "textord_max_blob_overlaps": {
+            "value": "4",
+            "default": "4",
+            "help": "Max number of blobs a big blob can overlap"
+        },
+        "textord_min_xheight": {
+            "value": "10",
+            "default": "10",
+            "help": "Min credible pixel xheight"
+        },
+        "textord_lms_line_trials": {
+            "value": "12",
+            "default": "12",
+            "help": "Number of linew fits to do"
+        },
+        "oldbl_holed_losscount": {
+            "value": "10",
+            "default": "10",
+            "help": "Max lost before fallback line used"
+        },
+        "pitsync_linear_version": {
+            "value": "6",
+            "default": "6",
+            "help": "Use new fast algorithm"
+        },
+        "pitsync_fake_depth": {
             "value": "1",
             "default": "1",
-            "help": "Do fixed pitch chopping"
+            "help": "Max advance fake generation"
         },
-        "textord_force_make_prop_words": {
+        "textord_tabfind_show_strokewidths": {
             "value": "0",
             "default": "0",
-            "help": "Force proportional word segmentation on all rows"
+            "help": "Show stroke widths"
         },
-        "textord_chopper_test": {
+        "textord_dotmatrix_gap": {
+            "value": "3",
+            "default": "3",
+            "help": "Max pixel gap for broken pixed pitch"
+        },
+        "textord_debug_block": {
             "value": "0",
             "default": "0",
-            "help": "Chopper is being tested."
+            "help": "Block to do debug on"
         },
-        "textord_restore_underlines": {
+        "textord_pitch_range": {
+            "value": "2",
+            "default": "2",
+            "help": "Max range test on pitch"
+        },
+        "textord_words_veto_power": {
+            "value": "5",
+            "default": "5",
+            "help": "Rows required to outvote a veto"
+        },
+        "classify_num_cp_levels": {
+            "value": "3",
+            "default": "3",
+            "help": "Number of Class Pruner Levels"
+        },
+        "stream_filelist": {
+            "value": "0",
+            "default": "0",
+            "help": "Stream a filelist from stdin"
+        },
+        "equationdetect_save_bi_image": {
+            "value": "0",
+            "default": "0",
+            "help": "Save input bi image"
+        },
+        "equationdetect_save_spt_image": {
+            "value": "0",
+            "default": "0",
+            "help": "Save special character image"
+        },
+        "equationdetect_save_seed_image": {
+            "value": "0",
+            "default": "0",
+            "help": "Save the seed image"
+        },
+        "equationdetect_save_merged_image": {
+            "value": "0",
+            "default": "0",
+            "help": "Save the merged image"
+        },
+        "textord_debug_printable": {
+            "value": "0",
+            "default": "0",
+            "help": "Make debug windows printable"
+        },
+        "textord_space_size_is_variable": {
+            "value": "0",
+            "default": "0",
+            "help": "If true, word delimiter spaces are assumed to have variable width, even though characters have fixed pitch."
+        },
+        "textord_tabfind_show_initial_partitions": {
+            "value": "0",
+            "default": "0",
+            "help": "Show partition bounds"
+        },
+        "textord_tabfind_show_reject_blobs": {
+            "value": "0",
+            "default": "0",
+            "help": "Show blobs rejected as noise"
+        },
+        "textord_tabfind_show_columns": {
+            "value": "0",
+            "default": "0",
+            "help": "Show column bounds"
+        },
+        "textord_tabfind_show_blocks": {
+            "value": "0",
+            "default": "0",
+            "help": "Show final block bounds"
+        },
+        "textord_tabfind_find_tables": {
             "value": "1",
             "default": "1",
-            "help": "Chop underlines & put back"
+            "help": "run table detection"
         },
-        "textord_show_initial_words": {
+        "textord_tabfind_show_color_fit": {
             "value": "0",
             "default": "0",
-            "help": "Display separate words"
+            "help": "Show stroke widths"
         },
-        "textord_show_new_words": {
+        "devanagari_split_debugimage": {
             "value": "0",
             "default": "0",
-            "help": "Display separate words"
+            "help": "Whether to create a debug image for split shiro-rekha process."
         },
-        "textord_show_fixed_words": {
+        "textord_show_fixed_cuts": {
             "value": "0",
             "default": "0",
-            "help": "Display forced fixed pitch words"
+            "help": "Draw fixed pitch cell boundaries"
         },
-        "textord_blocksall_fixed": {
+        "edges_use_new_outline_complexity": {
             "value": "0",
             "default": "0",
-            "help": "Moan about prop blocks"
+            "help": "Use the new outline complexity module"
         },
-        "textord_blocksall_prop": {
+        "edges_debug": {
             "value": "0",
             "default": "0",
-            "help": "Moan about fixed pitch blocks"
+            "help": "turn on debugging for this module"
         },
-        "textord_blocksall_testing": {
+        "edges_children_fix": {
             "value": "0",
             "default": "0",
-            "help": "Dump stats when moaning"
+            "help": "Remove boxy parents of char-like children"
         },
-        "textord_test_mode": {
+        "gapmap_debug": {
             "value": "0",
             "default": "0",
-            "help": "Do current test"
+            "help": "Say which blocks have tables"
         },
-        "textord_pitch_scalebigwords": {
+        "gapmap_use_ends": {
             "value": "0",
             "default": "0",
-            "help": "Scale scores on big words"
+            "help": "Use large space at start and end of rows"
         },
-        "textord_all_prop": {
+        "gapmap_no_isolated_quanta": {
             "value": "0",
             "default": "0",
-            "help": "All doc is proportial text"
-        },
-        "textord_debug_pitch_test": {
-            "value": "0",
-            "default": "0",
-            "help": "Debug on fixed pitch test"
-        },
-        "textord_disable_pitch_test": {
-            "value": "0",
-            "default": "0",
-            "help": "Turn off dp fixed pitch algorithm"
-        },
-        "textord_fast_pitch_test": {
-            "value": "0",
-            "default": "0",
-            "help": "Do even faster pitch algorithm"
-        },
-        "textord_debug_pitch_metric": {
-            "value": "0",
-            "default": "0",
-            "help": "Write full metric stuff"
-        },
-        "textord_show_row_cuts": {
-            "value": "0",
-            "default": "0",
-            "help": "Draw row-level cuts"
-        },
-        "textord_show_page_cuts": {
-            "value": "0",
-            "default": "0",
-            "help": "Draw page-level cuts"
-        },
-        "textord_pitch_cheat": {
-            "value": "0",
-            "default": "0",
-            "help": "Use correct answer for fixed/prop"
-        },
-        "textord_blockndoc_fixed": {
-            "value": "0",
-            "default": "0",
-            "help": "Attempt whole doc/block fixed pitch"
-        },
-        "textord_show_tables": {
-            "value": "0",
-            "default": "0",
-            "help": "Show table regions"
-        },
-        "textord_tablefind_show_mark": {
-            "value": "0",
-            "default": "0",
-            "help": "Debug table marking steps in detail"
-        },
-        "textord_tablefind_show_stats": {
-            "value": "0",
-            "default": "0",
-            "help": "Show page stats used in table finding"
-        },
-        "textord_tablefind_recognize_tables": {
-            "value": "0",
-            "default": "0",
-            "help": "Enables the table recognizer for table layout and filtering."
-        },
-        "textord_tabfind_show_initialtabs": {
-            "value": "0",
-            "default": "0",
-            "help": "Show tab candidates"
-        },
-        "textord_tabfind_show_finaltabs": {
-            "value": "0",
-            "default": "0",
-            "help": "Show tab vectors"
-        },
-        "textord_tabfind_only_strokewidths": {
-            "value": "0",
-            "default": "0",
-            "help": "Only run stroke widths"
-        },
-        "textord_really_old_xheight": {
-            "value": "0",
-            "default": "0",
-            "help": "Use original wiseowl xheight"
-        },
-        "textord_oldbl_debug": {
-            "value": "0",
-            "default": "0",
-            "help": "Debug old baseline generation"
-        },
-        "textord_debug_baselines": {
-            "value": "0",
-            "default": "0",
-            "help": "Debug baseline generation"
-        },
-        "textord_oldbl_paradef": {
-            "value": "1",
-            "default": "1",
-            "help": "Use para default mechanism"
-        },
-        "textord_oldbl_split_splines": {
-            "value": "1",
-            "default": "1",
-            "help": "Split stepped splines"
-        },
-        "textord_oldbl_merge_parts": {
-            "value": "1",
-            "default": "1",
-            "help": "Merge suspect partitions"
-        },
-        "oldbl_corrfix": {
-            "value": "1",
-            "default": "1",
-            "help": "Improve correlation of heights"
-        },
-        "oldbl_xhfix": {
-            "value": "0",
-            "default": "0",
-            "help": "Fix bug in modes threshold for xheights"
-        },
-        "textord_ocropus_mode": {
-            "value": "0",
-            "default": "0",
-            "help": "Make baselines for ocropus"
+            "help": "Ensure gaps not less than 2quanta wide"
         },
         "textord_heavy_nr": {
             "value": "0",
@@ -625,135 +541,295 @@
             "default": "0",
             "help": "Print test blob information"
         },
-        "gapmap_debug": {
+        "textord_really_old_xheight": {
             "value": "0",
             "default": "0",
-            "help": "Say which blocks have tables"
+            "help": "Use original wiseowl xheight"
         },
-        "gapmap_use_ends": {
+        "textord_oldbl_debug": {
             "value": "0",
             "default": "0",
-            "help": "Use large space at start and end of rows"
+            "help": "Debug old baseline generation"
         },
-        "gapmap_no_isolated_quanta": {
+        "textord_debug_baselines": {
             "value": "0",
             "default": "0",
-            "help": "Ensure gaps not less than 2quanta wide"
+            "help": "Debug baseline generation"
         },
-        "edges_use_new_outline_complexity": {
-            "value": "0",
-            "default": "0",
-            "help": "Use the new outline complexity module"
-        },
-        "edges_debug": {
-            "value": "0",
-            "default": "0",
-            "help": "turn on debugging for this module"
-        },
-        "edges_children_fix": {
-            "value": "0",
-            "default": "0",
-            "help": "Remove boxy parents of char-like children"
-        },
-        "textord_show_fixed_cuts": {
-            "value": "0",
-            "default": "0",
-            "help": "Draw fixed pitch cell boundaries"
-        },
-        "devanagari_split_debugimage": {
-            "value": "0",
-            "default": "0",
-            "help": "Whether to create a debug image for split shiro-rekha process."
-        },
-        "textord_tabfind_show_color_fit": {
-            "value": "0",
-            "default": "0",
-            "help": "Show stroke widths"
-        },
-        "textord_tabfind_show_reject_blobs": {
-            "value": "0",
-            "default": "0",
-            "help": "Show blobs rejected as noise"
-        },
-        "textord_tabfind_show_columns": {
-            "value": "0",
-            "default": "0",
-            "help": "Show column bounds"
-        },
-        "textord_tabfind_show_blocks": {
-            "value": "0",
-            "default": "0",
-            "help": "Show final block bounds"
-        },
-        "textord_tabfind_find_tables": {
+        "textord_oldbl_paradef": {
             "value": "1",
             "default": "1",
-            "help": "run table detection"
+            "help": "Use para default mechanism"
         },
-        "textord_space_size_is_variable": {
+        "textord_oldbl_split_splines": {
+            "value": "1",
+            "default": "1",
+            "help": "Split stepped splines"
+        },
+        "textord_oldbl_merge_parts": {
+            "value": "1",
+            "default": "1",
+            "help": "Merge suspect partitions"
+        },
+        "oldbl_corrfix": {
+            "value": "1",
+            "default": "1",
+            "help": "Improve correlation of heights"
+        },
+        "oldbl_xhfix": {
             "value": "0",
             "default": "0",
-            "help": "If true, word delimiter spaces are assumed to have variable width, even though characters have fixed pitch."
+            "help": "Fix bug in modes threshold for xheights"
         },
-        "textord_debug_printable": {
+        "textord_ocropus_mode": {
             "value": "0",
             "default": "0",
-            "help": "Make debug windows printable"
+            "help": "Make baselines for ocropus"
         },
-        "equationdetect_save_bi_image": {
+        "textord_tabfind_only_strokewidths": {
             "value": "0",
             "default": "0",
-            "help": "Save input bi image"
+            "help": "Only run stroke widths"
         },
-        "equationdetect_save_spt_image": {
+        "textord_tabfind_show_initialtabs": {
             "value": "0",
             "default": "0",
-            "help": "Save special character image"
+            "help": "Show tab candidates"
         },
-        "equationdetect_save_seed_image": {
+        "textord_tabfind_show_finaltabs": {
             "value": "0",
             "default": "0",
-            "help": "Save the seed image"
+            "help": "Show tab vectors"
         },
-        "equationdetect_save_merged_image": {
+        "textord_show_tables": {
             "value": "0",
             "default": "0",
-            "help": "Save the merged image"
+            "help": "Show table regions"
         },
-        "stream_filelist": {
+        "textord_tablefind_show_mark": {
             "value": "0",
             "default": "0",
-            "help": "Stream a filelist from stdin"
+            "help": "Debug table marking steps in detail"
         },
-        "classify_training_file": {
-            "value": "MicroFeatures",
-            "default": "MicroFeatures",
-            "help": "Training file"
+        "textord_tablefind_show_stats": {
+            "value": "0",
+            "default": "0",
+            "help": "Show page stats used in table finding"
+        },
+        "textord_tablefind_recognize_tables": {
+            "value": "0",
+            "default": "0",
+            "help": "Enables the table recognizer for table layout and filtering."
+        },
+        "textord_all_prop": {
+            "value": "0",
+            "default": "0",
+            "help": "All doc is proportial text"
+        },
+        "textord_debug_pitch_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug on fixed pitch test"
+        },
+        "textord_disable_pitch_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Turn off dp fixed pitch algorithm"
+        },
+        "textord_fast_pitch_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Do even faster pitch algorithm"
+        },
+        "textord_debug_pitch_metric": {
+            "value": "0",
+            "default": "0",
+            "help": "Write full metric stuff"
+        },
+        "textord_show_row_cuts": {
+            "value": "0",
+            "default": "0",
+            "help": "Draw row-level cuts"
+        },
+        "textord_show_page_cuts": {
+            "value": "0",
+            "default": "0",
+            "help": "Draw page-level cuts"
+        },
+        "textord_pitch_cheat": {
+            "value": "0",
+            "default": "0",
+            "help": "Use correct answer for fixed/prop"
+        },
+        "textord_blockndoc_fixed": {
+            "value": "0",
+            "default": "0",
+            "help": "Attempt whole doc/block fixed pitch"
+        },
+        "textord_show_initial_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Display separate words"
+        },
+        "textord_show_new_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Display separate words"
+        },
+        "textord_show_fixed_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Display forced fixed pitch words"
+        },
+        "textord_blocksall_fixed": {
+            "value": "0",
+            "default": "0",
+            "help": "Moan about prop blocks"
+        },
+        "textord_blocksall_prop": {
+            "value": "0",
+            "default": "0",
+            "help": "Moan about fixed pitch blocks"
+        },
+        "textord_blocksall_testing": {
+            "value": "0",
+            "default": "0",
+            "help": "Dump stats when moaning"
+        },
+        "textord_test_mode": {
+            "value": "0",
+            "default": "0",
+            "help": "Do current test"
+        },
+        "textord_pitch_scalebigwords": {
+            "value": "0",
+            "default": "0",
+            "help": "Scale scores on big words"
+        },
+        "textord_restore_underlines": {
+            "value": "1",
+            "default": "1",
+            "help": "Chop underlines & put back"
+        },
+        "textord_fp_chopping": {
+            "value": "1",
+            "default": "1",
+            "help": "Do fixed pitch chopping"
+        },
+        "textord_force_make_prop_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Force proportional word segmentation on all rows"
+        },
+        "textord_chopper_test": {
+            "value": "0",
+            "default": "0",
+            "help": "Chopper is being tested."
+        },
+        "wordrec_display_all_blobs": {
+            "value": "0",
+            "default": "0",
+            "help": "Display Blobs"
+        },
+        "wordrec_display_all_words": {
+            "value": "0",
+            "default": "0",
+            "help": "Display Words"
+        },
+        "wordrec_blob_pause": {
+            "value": "0",
+            "default": "0",
+            "help": "Blob pause"
+        },
+        "poly_debug": {
+            "value": "0",
+            "default": "0",
+            "help": "Debug old poly"
+        },
+        "poly_wide_objects_better": {
+            "value": "1",
+            "default": "1",
+            "help": "More accurate approx on wide things"
+        },
+        "wordrec_display_splits": {
+            "value": "0",
+            "default": "0",
+            "help": "Display splits"
+        },
+        "editor_image_win_name": {
+            "value": "EditorImage",
+            "default": "EditorImage",
+            "help": "Editor image window name"
+        },
+        "editor_dbwin_name": {
+            "value": "EditorDBWin",
+            "default": "EditorDBWin",
+            "help": "Editor debug window name"
+        },
+        "editor_word_name": {
+            "value": "BlnWords",
+            "default": "BlnWords",
+            "help": "BL normalized word window"
+        },
+        "editor_debug_config_file": {
+            "value": "",
+            "default": "",
+            "help": "Config file to apply to single words"
+        },
+        "fx_debugfile": {
+            "value": "FXDebug",
+            "default": "FXDebug",
+            "help": "Name of debugfile"
         },
         "classify_font_name": {
             "value": "UnknownFont",
             "default": "UnknownFont",
             "help": "Default font name to be used in training"
         },
-        "oldbl_xhfract": {
-            "value": "0.4",
-            "default": "0.4",
-            "help": "Fraction of est allowed in calc"
+        "classify_training_file": {
+            "value": "MicroFeatures",
+            "default": "MicroFeatures",
+            "help": "Training file"
         },
-        "oldbl_dot_error_size": {
-            "value": "1.26",
-            "default": "1.26",
-            "help": "Max aspect ratio of a dot"
+        "debug_file": {
+            "value": "",
+            "default": "",
+            "help": "File to send tprintf output to"
         },
-        "textord_oldbl_jumplimit": {
-            "value": "0.15",
-            "default": "0.15",
-            "help": "X fraction for new partition"
+        "textord_underline_threshold": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Fraction of width occupied"
+        },
+        "edges_childarea": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Min area fraction of child outline"
+        },
+        "edges_boxarea": {
+            "value": "0.875",
+            "default": "0.875",
+            "help": "Min area fraction of grandchild for box"
+        },
+        "textord_fp_chop_snap": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Max distance of chop pt from vertex"
+        },
+        "gapmap_big_gaps": {
+            "value": "1.75",
+            "default": "1.75",
+            "help": "xht multiplier"
         },
         "textord_spline_shift_fraction": {
             "value": "0.02",
             "default": "0.02",
             "help": "Fraction of line spacing for quad"
+        },
+        "textord_spline_outlier_fraction": {
+            "value": "0.1",
+            "default": "0.1",
+            "help": "Fraction of line spacing for outlier"
         },
         "textord_skew_ile": {
             "value": "0.5",
@@ -825,6 +901,11 @@
             "default": "0.4",
             "help": "Min pile height to make xheight"
         },
+        "textord_ascheight_mode_fraction": {
+            "value": "0.08",
+            "default": "0.08",
+            "help": "Min pile height to make ascheight"
+        },
         "textord_descheight_mode_fraction": {
             "value": "0.08",
             "default": "0.08",
@@ -855,30 +936,270 @@
             "default": "0.1",
             "help": "Accepted variation"
         },
-        "gapmap_big_gaps": {
-            "value": "1.75",
-            "default": "1.75",
-            "help": "xht multiplier"
+        "oldbl_xhfract": {
+            "value": "0.4",
+            "default": "0.4",
+            "help": "Fraction of est allowed in calc"
         },
-        "textord_fp_chop_snap": {
+        "oldbl_dot_error_size": {
+            "value": "1.26",
+            "default": "1.26",
+            "help": "Max aspect ratio of a dot"
+        },
+        "textord_oldbl_jumplimit": {
+            "value": "0.15",
+            "default": "0.15",
+            "help": "X fraction for new partition"
+        },
+        "pitsync_joined_edge": {
+            "value": "0.75",
+            "default": "0.75",
+            "help": "Dist inside big blob for chopping"
+        },
+        "pitsync_offset_freecut_fraction": {
+            "value": "0.25",
+            "default": "0.25",
+            "help": "Fraction of cut for free cuts"
+        },
+        "textord_tabvector_vertical_gap_fraction": {
             "value": "0.5",
             "default": "0.5",
-            "help": "Max distance of chop pt from vertex"
+            "help": "max fraction of mean blob width allowed for vertical gaps in vertical text"
         },
-        "edges_childarea": {
+        "textord_tabvector_vertical_box_ratio": {
             "value": "0.5",
             "default": "0.5",
-            "help": "Min area fraction of child outline"
+            "help": "Fraction of box matches required to declare a line vertical"
         },
-        "edges_boxarea": {
-            "value": "0.875",
-            "default": "0.875",
-            "help": "Min area fraction of grandchild for box"
+        "textord_projection_scale": {
+            "value": "0.2",
+            "default": "0.2",
+            "help": "Ding rate for mid-cuts"
         },
-        "textord_underline_threshold": {
+        "textord_balance_factor": {
+            "value": "1",
+            "default": "1",
+            "help": "Ding rate for unbalanced char cells"
+        },
+        "textord_wordstats_smooth_factor": {
+            "value": "0.05",
+            "default": "0.05",
+            "help": "Smoothing gap stats"
+        },
+        "textord_width_smooth_factor": {
+            "value": "0.1",
+            "default": "0.1",
+            "help": "Smoothing width stats"
+        },
+        "textord_words_width_ile": {
+            "value": "0.4",
+            "default": "0.4",
+            "help": "Ile of blob widths for space est"
+        },
+        "textord_words_maxspace": {
+            "value": "4",
+            "default": "4",
+            "help": "Multiple of xheight"
+        },
+        "textord_words_default_maxspace": {
+            "value": "3.5",
+            "default": "3.5",
+            "help": "Max believable third space"
+        },
+        "textord_words_default_minspace": {
+            "value": "0.6",
+            "default": "0.6",
+            "help": "Fraction of xheight"
+        },
+        "textord_words_min_minspace": {
+            "value": "0.3",
+            "default": "0.3",
+            "help": "Fraction of xheight"
+        },
+        "textord_words_default_nonspace": {
+            "value": "0.2",
+            "default": "0.2",
+            "help": "Fraction of xheight"
+        },
+        "textord_words_initial_lower": {
+            "value": "0.25",
+            "default": "0.25",
+            "help": "Max initial cluster size"
+        },
+        "textord_words_initial_upper": {
+            "value": "0.15",
+            "default": "0.15",
+            "help": "Min initial cluster spacing"
+        },
+        "textord_words_minlarge": {
+            "value": "0.75",
+            "default": "0.75",
+            "help": "Fraction of valid gaps needed"
+        },
+        "textord_words_pitchsd_threshold": {
+            "value": "0.04",
+            "default": "0.04",
+            "help": "Pitch sync threshold"
+        },
+        "textord_words_def_fixed": {
+            "value": "0.016",
+            "default": "0.016",
+            "help": "Threshold for definite fixed"
+        },
+        "textord_words_def_prop": {
+            "value": "0.09",
+            "default": "0.09",
+            "help": "Threshold for definite prop"
+        },
+        "textord_pitch_rowsimilarity": {
+            "value": "0.08",
+            "default": "0.08",
+            "help": "Fraction of xheight for sameness"
+        },
+        "words_initial_lower": {
             "value": "0.5",
             "default": "0.5",
-            "help": "Fraction of width occupied"
+            "help": "Max initial cluster size"
+        },
+        "words_initial_upper": {
+            "value": "0.15",
+            "default": "0.15",
+            "help": "Min initial cluster spacing"
+        },
+        "words_default_prop_nonspace": {
+            "value": "0.25",
+            "default": "0.25",
+            "help": "Fraction of xheight"
+        },
+        "words_default_fixed_space": {
+            "value": "0.75",
+            "default": "0.75",
+            "help": "Fraction of xheight"
+        },
+        "words_default_fixed_limit": {
+            "value": "0.6",
+            "default": "0.6",
+            "help": "Allowed size variance"
+        },
+        "textord_words_definite_spread": {
+            "value": "0.3",
+            "default": "0.3",
+            "help": "Non-fuzzy spacing region"
+        },
+        "textord_spacesize_ratiofp": {
+            "value": "2.8",
+            "default": "2.8",
+            "help": "Min ratio space/nonspace"
+        },
+        "textord_spacesize_ratioprop": {
+            "value": "2",
+            "default": "2",
+            "help": "Min ratio space/nonspace"
+        },
+        "textord_fpiqr_ratio": {
+            "value": "1.5",
+            "default": "1.5",
+            "help": "Pitch IQR/Gap IQR threshold"
+        },
+        "textord_max_pitch_iqr": {
+            "value": "0.2",
+            "default": "0.2",
+            "help": "Xh fraction noise in pitch"
+        },
+        "textord_fp_min_width": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Min width of decent blobs"
+        },
+        "textord_underline_offset": {
+            "value": "0.1",
+            "default": "0.1",
+            "help": "Fraction of x to ignore"
+        },
+        "classify_cp_angle_pad_loose": {
+            "value": "45",
+            "default": "45",
+            "help": "Class Pruner Angle Pad Loose"
+        },
+        "classify_cp_angle_pad_medium": {
+            "value": "20",
+            "default": "20",
+            "help": "Class Pruner Angle Pad Medium"
+        },
+        "classify_cp_angle_pad_tight": {
+            "value": "10",
+            "default": "10",
+            "help": "CLass Pruner Angle Pad Tight"
+        },
+        "classify_cp_end_pad_loose": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Class Pruner End Pad Loose"
+        },
+        "classify_cp_end_pad_medium": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Class Pruner End Pad Medium"
+        },
+        "classify_cp_end_pad_tight": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Class Pruner End Pad Tight"
+        },
+        "classify_cp_side_pad_loose": {
+            "value": "2.5",
+            "default": "2.5",
+            "help": "Class Pruner Side Pad Loose"
+        },
+        "classify_cp_side_pad_medium": {
+            "value": "1.2",
+            "default": "1.2",
+            "help": "Class Pruner Side Pad Medium"
+        },
+        "classify_cp_side_pad_tight": {
+            "value": "0.6",
+            "default": "0.6",
+            "help": "Class Pruner Side Pad Tight"
+        },
+        "classify_pp_angle_pad": {
+            "value": "45",
+            "default": "45",
+            "help": "Proto Pruner Angle Pad"
+        },
+        "classify_pp_end_pad": {
+            "value": "0.5",
+            "default": "0.5",
+            "help": "Proto Prune End Pad"
+        },
+        "classify_pp_side_pad": {
+            "value": "2.5",
+            "default": "2.5",
+            "help": "Proto Pruner Side Pad"
+        },
+        "classify_min_slope": {
+            "value": "0.414214",
+            "default": "0.414214",
+            "help": "Slope below which lines are called horizontal"
+        },
+        "classify_max_slope": {
+            "value": "2.41421",
+            "default": "2.41421",
+            "help": "Slope above which lines are called vertical"
+        },
+        "classify_norm_adj_midpoint": {
+            "value": "32",
+            "default": "32",
+            "help": "Norm adjust midpoint ..."
+        },
+        "classify_norm_adj_curl": {
+            "value": "2",
+            "default": "2",
+            "help": "Norm adjust curl ..."
+        },
+        "classify_pico_feature_length": {
+            "value": "0.05",
+            "default": "0.05",
+            "help": "Pico Feature Length"
         },
         "ambigs_debug_level": {
             "value": "0",
@@ -894,6 +1215,11 @@
             "value": "0",
             "default": "0",
             "help": "Classify debug level"
+        },
+        "classify_norm_method": {
+            "value": "1",
+            "default": "1",
+            "help": "Normalization Method  ..."
         },
         "matcher_debug_level": {
             "value": "0",
@@ -930,6 +1256,16 @@
             "default": "230",
             "help": "Threshold for good protos during adaptive 0-255"
         },
+        "classify_adapt_feature_threshold": {
+            "value": "230",
+            "default": "230",
+            "help": "Threshold for good features during adaptive 0-255"
+        },
+        "classify_class_pruner_threshold": {
+            "value": "229",
+            "default": "229",
+            "help": "Class Pruner Threshold 0-255"
+        },
         "classify_class_pruner_multiplier": {
             "value": "15",
             "default": "15",
@@ -939,6 +1275,11 @@
             "value": "7",
             "default": "7",
             "help": "Class Pruner CutoffStrength:"
+        },
+        "classify_integer_matcher_multiplier": {
+            "value": "10",
+            "default": "10",
+            "help": "Integer Matcher Multiplier  0-255:"
         },
         "il1_adaption_test": {
             "value": "0",
@@ -1030,10 +1371,10 @@
             "default": "90",
             "help": "Width of (smaller) chopped blobs above which we don't care that a chop is not near the center."
         },
-        "chop_x_y_weight 3": {
-            "value": "X / Y",
-            "default": "X / Y",
-            "help": "length weight"
+        "chop_x_y_weight": {
+            "value": "3",
+            "default": "3",
+            "help": "X / Y  length weight"
         },
         "segment_adjust_debug": {
             "value": "0",
@@ -1063,7 +1404,7 @@
         "segsearch_max_futile_classifications": {
             "value": "20",
             "default": "20",
-            "help": "Maximum number of pain point classifications per chunk thatdid not result in finding a better word choice."
+            "help": "Maximum number of pain point classifications per chunk that did not result in finding a better word choice."
         },
         "language_model_debug_level": {
             "value": "0",
@@ -1154,6 +1495,11 @@
             "value": "0",
             "default": "0",
             "help": "Reestimate debug"
+        },
+        "quality_min_initial_alphas_reqd": {
+            "value": "2",
+            "default": "2",
+            "help": "alphas in a good word"
         },
         "tessedit_tess_adaption_mode": {
             "value": "39",
@@ -1274,11 +1620,6 @@
             "value": "-1",
             "default": "-1",
             "help": "-1 -> All pages , else specific page to process"
-        },
-        "tessdata_manager_debug_level": {
-            "value": "0",
-            "default": "0",
-            "help": "Debug level for TessdataManager functions."
         },
         "tessedit_parallelize": {
             "value": "0",
@@ -1483,7 +1824,7 @@
         "segment_nonalphabetic_script": {
             "value": "0",
             "default": "0",
-            "help": "Don't use any alphabetic-specific tricks.Set to true in the traineddata config file for scripts that are cursive or inherently fixed-pitch"
+            "help": "Don't use any alphabetic-specific tricks. Set to true in the traineddata config file for scripts that are cursive or inherently fixed-pitch"
         },
         "save_doc_words": {
             "value": "0",
@@ -1508,7 +1849,7 @@
         "force_word_assoc": {
             "value": "0",
             "default": "0",
-            "help": "force associator to run regardless of what enable_assoc is.This is used for CJK where component grouping is necessary."
+            "help": "force associator to run regardless of what enable_assoc is. This is used for CJK where component grouping is necessary."
         },
         "fragments_guide_chopper": {
             "value": "0",
@@ -1529,6 +1870,11 @@
             "value": "1",
             "default": "1",
             "help": "Use new seam_pile"
+        },
+        "assume_fixed_pitch_char_segment": {
+            "value": "0",
+            "default": "0",
+            "help": "include fixed-pitch heuristics in char segmentation"
         },
         "wordrec_skip_no_truth_words": {
             "value": "0",
@@ -1674,6 +2020,11 @@
             "value": "1",
             "default": "1",
             "help": "Enable correction based on the word bigram dictionary."
+        },
+        "tessedit_enable_dict_correction": {
+            "value": "0",
+            "default": "0",
+            "help": "Enable single word correction based on the dictionary."
         },
         "enable_noise_removal": {
             "value": "1",
@@ -1830,6 +2181,11 @@
             "default": "0",
             "help": "Reward punctation joins"
         },
+        "tessedit_write_block_separators": {
+            "value": "0",
+            "default": "0",
+            "help": "Write block separators in output"
+        },
         "tessedit_write_rep_codes": {
             "value": "0",
             "default": "0",
@@ -1841,12 +2197,12 @@
             "help": "Write .unlv output file"
         },
         "tessedit_create_txt": {
-            "value": "1",
+            "value": "0",
             "default": "0",
             "help": "Write .txt output file"
         },
         "tessedit_create_hocr": {
-            "value": "1",
+            "value": "0",
             "default": "0",
             "help": "Write .html hOCR output file"
         },
@@ -2010,10 +2366,10 @@
             "default": "0",
             "help": "Preserve multiple interword spaces"
         },
-        "include_page_breaks": {
-            "value": "0",
-            "default": "0",
-            "help": "Include page separator string in output text after each image/page."
+        "textord_tabfind_vertical_horizontal_mix": {
+            "value": "1",
+            "default": "1",
+            "help": "find horizontal lines such as headers in vertical page mode"
         },
         "load_fixed_length_dawgs": {
             "value": "1",
@@ -2210,10 +2566,65 @@
             "default": "tessdata/",
             "help": "Directory for data files"
         },
-        "tessedit_module_name": {
-            "value": "libtesseract",
-            "default": "libtesseract",
-            "help": "Module colocated with tessdata dir"
+        "classify_learn_debug_str": {
+            "value": "",
+            "default": "",
+            "help": "Class str to debug learning"
+        },
+        "user_words_file": {
+            "value": "",
+            "default": "",
+            "help": "A filename of user-provided words."
+        },
+        "user_words_suffix": {
+            "value": "",
+            "default": "",
+            "help": "A suffix of user-provided words located in tessdata."
+        },
+        "user_patterns_file": {
+            "value": "",
+            "default": "",
+            "help": "A filename of user-provided patterns."
+        },
+        "user_patterns_suffix": {
+            "value": "",
+            "default": "",
+            "help": "A suffix of user-provided patterns located in tessdata."
+        },
+        "output_ambig_words_file": {
+            "value": "",
+            "default": "",
+            "help": "Output file for ambiguities found in the dictionary"
+        },
+        "word_to_debug": {
+            "value": "",
+            "default": "",
+            "help": "Word for which stopper debug information should be printed to stdout"
+        },
+        "word_to_debug_lengths": {
+            "value": "",
+            "default": "",
+            "help": "Lengths of unichars in word_to_debug"
+        },
+        "tessedit_char_blacklist": {
+            "value": "",
+            "default": "",
+            "help": "Blacklist of chars not to recognize"
+        },
+        "tessedit_char_whitelist": {
+            "value": "",
+            "default": "",
+            "help": "Whitelist of chars to recognize"
+        },
+        "tessedit_char_unblacklist": {
+            "value": "",
+            "default": "",
+            "help": "List of chars to override tessedit_char_blacklist"
+        },
+        "tessedit_write_params_to_file": {
+            "value": "",
+            "default": "",
+            "help": "Write all parameters to the given file."
         },
         "applybox_exposure_pattern": {
             "value": ".exp",
@@ -2224,6 +2635,11 @@
             "value": "('`\"",
             "default": "('`\"",
             "help": "Leading punctuation"
+        },
+        "chs_trailing_punct1": {
+            "value": ").,;:?!",
+            "default": ").,;:?!",
+            "help": "1st Trailing punctuation"
         },
         "chs_trailing_punct2": {
             "value": ")'`\"",
@@ -2250,6 +2666,11 @@
             "default": "|",
             "help": "Output char for unidentified blobs"
         },
+        "ok_repeated_ch_non_alphanum_wds": {
+            "value": "-?*=",
+            "default": "-?*=",
+            "help": "Allow NN to unrej"
+        },
         "conflict_set_I_l_1": {
             "value": "Il1[]",
             "default": "Il1[]",
@@ -2260,9 +2681,14 @@
             "default": ".tif",
             "help": "Filename extension"
         },
+        "tessedit_load_sublangs": {
+            "value": "",
+            "default": "",
+            "help": "List of languages to load with this one"
+        },
         "page_separator": {
-            "value": "\u00e2\u2122\u20ac",
-            "default": "\u00e2\u2122\u20ac",
+            "value": "",
+            "default": "",
             "help": "Page separator (default is form feed control character)"
         },
         "classify_char_norm_range": {
@@ -2355,6 +2781,11 @@
             "default": "0.00390625",
             "help": "Scale factor for features not used"
         },
+        "classify_adapted_pruning_factor": {
+            "value": "2.5",
+            "default": "2.5",
+            "help": "Prune poor adapted results this much worse than best result"
+        },
         "classify_adapted_pruning_threshold": {
             "value": "-1",
             "default": "-1",
@@ -2388,7 +2819,7 @@
         "segment_penalty_dict_frequent_word": {
             "value": "1",
             "default": "1",
-            "help": "Score multiplier for word matches which have good case andare frequent in the given language (lower is better)."
+            "help": "Score multiplier for word matches which have good case and are frequent in the given language (lower is better)."
         },
         "segment_penalty_dict_case_ok": {
             "value": "1.1",
@@ -2443,7 +2874,7 @@
         "doc_dict_certainty_threshold": {
             "value": "-2.25",
             "default": "-2.25",
-            "help": "Worst certainty for words that can be inserted into thedocument dictionary"
+            "help": "Worst certainty for words that can be inserted into the document dictionary"
         },
         "wordrec_worst_state": {
             "value": "1",
@@ -2495,6 +2926,11 @@
             "default": "2",
             "help": "Maximum character width-to-height ratio"
         },
+        "language_model_ngram_small_prob": {
+            "value": "1e-06",
+            "default": "1e-06",
+            "help": "To avoid overly small denominators use this as the floor of the probability returned by the ngram model."
+        },
         "language_model_ngram_nonmatch_score": {
             "value": "-40",
             "default": "-40",
@@ -2534,6 +2970,11 @@
             "value": "0.5",
             "default": "0.5",
             "help": "Penalty for inconsistent script"
+        },
+        "language_model_penalty_chartype": {
+            "value": "0.3",
+            "default": "0.3",
+            "help": "Penalty for inconsistent character type"
         },
         "language_model_penalty_font": {
             "value": "0",
@@ -2618,7 +3059,7 @@
         "tessedit_whole_wd_rej_row_percent": {
             "value": "70",
             "default": "70",
-            "help": "Number of row rejects in whole word rejectswhich prevents whole row rejection"
+            "help": "Number of row rejects in whole word rejects which prevents whole row rejection"
         },
         "tessedit_good_doc_still_rowrej_wd": {
             "value": "1.1",
@@ -2705,6 +3146,16 @@
             "default": "2",
             "help": "How many times worse certainty does a superscript position glyph need to be for us to try classifying it as a char with a different baseline?"
         },
+        "superscript_bettered_certainty": {
+            "value": "0.97",
+            "default": "0.97",
+            "help": "What reduction in badness do we think sufficient to choose a superscript over what we'd thought.  For example, a value of 0.6 means we want to reduce badness of certainty by at least 40%"
+        },
+        "superscript_scaledown_ratio": {
+            "value": "0.4",
+            "default": "0.4",
+            "help": "A superscript scaled down more than this is unbelievably small.  For example, 0.3 means we expect the font size to be no smaller than 30% of the text line font size."
+        },
         "subscript_max_y_top": {
             "value": "0.5",
             "default": "0.5",
@@ -2778,12 +3229,12 @@
         "heuristic_segcost_rating_base": {
             "value": "1.25",
             "default": "1.25",
-            "help": "base factor for adding segmentation cost into word rating.It's a multiplying factor, the larger the value above 1, the bigger the effect of segmentation"
+            "help": "Base factor for adding segmentation cost into word rating. It's a multiplying factor, the larger the value above 1, the bigger the effect of segmentation cost."
         },
         "heuristic_weight_rating": {
             "value": "1",
             "default": "1",
-            "help": "weight associated with char rating in combined cost ofstate"
+            "help": "weight associated with char rating in combined cost of state"
         },
         "heuristic_weight_width": {
             "value": "1000",
@@ -2799,6 +3250,11 @@
             "value": "2",
             "default": "2",
             "help": "max char width-to-height ratio allowed in segmentation"
+        },
+        "segsearch_max_fixed_pitch_char_wh_ratio": {
+            "value": "2",
+            "default": "2",
+            "help": "Maximum character width-to-height ratio for fixed-pitch fonts"
         },
         "tosp_old_sp_kn_th_factor": {
             "value": "2",
@@ -2944,6 +3400,11 @@
             "value": "0.19",
             "default": "0.19",
             "help": "Limit use of xht gap with large kns"
+        },
+        "tosp_dont_fool_with_small_kerns": {
+            "value": "-1",
+            "default": "-1",
+            "help": "Limit use of xht gap with odd small kns"
         },
         "tosp_near_lh_edge": {
             "value": "0",
