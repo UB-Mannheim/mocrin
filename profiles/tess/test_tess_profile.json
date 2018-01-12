@@ -1,10 +1,10 @@
 {
     "cutter": {
             "level": "word",
-            "filter": "m|lage|*digits||Gesch",
+            "filter": "jahr||Gesch",
             "filtergrp": "digits|punctuation",
             "filterop": "and",
-            "grpop": "or",
+            "grpop": "and",
             "regex": "",
             "min_wordlen": 0,
             "max_wordlen": -1,

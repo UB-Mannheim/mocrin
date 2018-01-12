@@ -1,5 +1,5 @@
 ###################### INFORMATION #############################
-#           Module for talking to the tesseract api through tesserocr
+#           Module for talking to the tesseract api through tesserocr (please use tesserocr from git.com/ub-mannheim)
 
 ########## IMPORT ##########
 from tesserocr import PyTessBaseAPI, RIL, iterate_level

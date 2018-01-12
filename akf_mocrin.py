@@ -3,7 +3,7 @@
 # Program:  **akf-mocrin**
 # Info:     **Python 3.6**
 # Author:   **Jan Kamlah**
-# Date:     **01.12.2017**
+# Date:     **12.01.2018**
 
 ########## IMPORT ##########
 import configparser
@@ -96,7 +96,7 @@ def cut_check(args,tess_profile:dict)->int:
         args.cut = False
     return 0
 
-def get_profiles(args,config:dict):
+def get_profiles(args,config):
     """
     This function loads the json-profiles for tesseract and ocropy,
     which contains user-specific parameters and options.
@@ -120,7 +120,7 @@ def get_profiles(args,config:dict):
             ocropy_profile = ""
     return (tess_profile,ocropy_profile)
 
-def store_settings(path_out:str,profile:dict,args,ocrname:str)->int:
+def store_settings(path_out:str,profile:dict,args:dict,ocrname:str)->int:
     """
     Saves the used settings in the folder of the output file
     :param path_out:
@@ -142,7 +142,7 @@ def store_settings(path_out:str,profile:dict,args,ocrname:str)->int:
     return 0
 
 ########## TESSERACT FUNCTIONS ##########
-def start_tess(file:dict,path_out:dict, tess_profile:dict,args)->int:
+def start_tess(file:str,path_out:str, tess_profile:dict,args)->int:
     """
     Start tesseract over "pytesseract" a cli-module
     :param file: fileinputpath
@@ -154,7 +154,10 @@ def start_tess(file:dict,path_out:dict, tess_profile:dict,args)->int:
     if args.idx == 0:
         store_settings(path_out,tess_profile,args, "Tesseract")
     path_out+= args.infotxt
-    # with tesserocr obsolete
+    # with tesserocr obsolete ||
+    # use if tesserocr should not be installed -> than cut and extended hocr cant be used
+    # all dependencies have to be removed (tessapi..)
+    # maybe OCR-D can build another useful api, if so please replace
         #parameters = ""
         #for param in tess_profile['parameters']:
         #    if tess_profile['parameters'][param]['value'] != "" and tess_profile['parameters'][param]['value'] != "False":
