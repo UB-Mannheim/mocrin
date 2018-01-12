@@ -1,5 +1,5 @@
 import os
-from skimage.io import imread
+
 
 ########## COMMON FUNCTIONS ##########
 def create_dir(newdir:str)->int:
@@ -16,16 +16,3 @@ def create_dir(newdir:str)->int:
             print("cannot create %s directoy" % newdir)
     return 0
 
-def safe_imread(file):
-    """
-
-    :param file:
-    :return:
-    """
-    try:
-        image = imread("%s" % file)
-    except IOError:
-        print("cannot open %s" % file)
-        #logging.warning("cannot open %s" % input)
-        return 1
-    return image

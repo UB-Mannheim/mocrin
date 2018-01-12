@@ -7,38 +7,22 @@
 
 ########## IMPORT ##########
 import configparser
-import skimage as ski
-import scipy.misc as misc
-import skimage.filters as imgfilter
-from skimage.io import imread, imsave
-import skimage.color as color
 import numpy as np
 import argparse
-import os
 import glob as glob2
 import subprocess
 from multiprocessing import Process
 import json
 import shlex
-import copy
-import warnings
 import datetime
 from mocrinlib.tesserocr_api import tess_pprocess
-from mocrinlib.common import safe_imread, create_dir
-
-import sys
-import os.path as path
-
-#obsolete
-#from PIL import Image
-#import pytesseract
-#import cv2 as cv2
-#import tesserocr
+from mocrinlib.common import create_dir
+from mocrinlib.imgprocess import safe_imread, get_binary
 
 ########## CMD-PARSER-SETTINGS ##########
 def get_args():
     """
-    This function parses the cl-options
+    This function parses the command line-options
     :param:no params
     :return:the parsed cl-options
     """
@@ -96,9 +80,9 @@ class DefaultRemover(json.JSONDecoder):
 ########## COMMON FUNCTIONS ##########
 def cut_check(args,tess_profile):
     """
-
-    :param args:
-    :param tess_profile:
+    Checks requirements for cutting
+    :param args: see 'get_args'
+    :param tess_profile: see 'get_profile'
     :return:
     """
     try:
@@ -111,74 +95,6 @@ def cut_check(args,tess_profile):
     except:
         args.cut = False
     return 0
-
-def get_binary(args, image, file,binpath):
-    """
-
-    :param args:
-    :param image:
-    :param file:
-    :param binpath:
-    :return:
-    """
-    if not os.path.exists(binpath + file.split('/')[-1]):
-        create_dir(binpath)
-        uintimage = get_uintimg(image)
-        if args.filter == "sauvola":
-            thresh = imgfilter.threshold_sauvola(uintimage, args.threshwindow, args.threshweight)
-            binary = image > thresh
-        elif args.filter == "niblack":
-            thresh = imgfilter.threshold_niblack(uintimage, args.threshwindow, args.threshweight)
-            binary = thresh
-        elif args.filter == "otsu":
-            thresh = imgfilter.threshold_otsu(uintimage, args.threshbin)
-            binary = image <= thresh
-        elif args.filter == "yen":
-            thresh = imgfilter.threshold_yen(uintimage, args.threshbin)
-            binary = image <= thresh
-        elif args.filter == "triangle":
-            thresh = imgfilter.threshold_triangle(uintimage, args.threshbin)
-            binary = image > thresh
-        elif args.filter == "isodata":
-            thresh = imgfilter.threshold_isodata(uintimage, args.threshbin)
-            binary = image > thresh
-        elif args.filter == "minimum":
-            thresh = imgfilter.threshold_minimum(uintimage, args.threshbin, args.threshitter)
-            binary = image > thresh
-        elif args.filter == "li":
-            thresh = imgfilter.threshold_li(uintimage)
-            binary = image > thresh
-        elif args.filter == "mean":
-            thresh = imgfilter.threshold_mean(uintimage)
-            binary = image > thresh
-        else:
-            binary = uintimage
-            #if args.filter == "testall":
-        #    thresh = imgfilter.try_all_threshold(uintimage)
-        #binary = uintimage > thresh
-        #binary = 1 - binary  # inverse binary
-        with warnings.catch_warnings():
-            # Transform rotate convert the img to float and save convert it back
-            warnings.simplefilter("ignore")
-            misc.imsave(binpath+file.split('/')[-1],binary)
-    return binpath+file.split('/')[-1]
-
-def get_uintimg(image):
-    """
-
-    :param image:
-    :return:
-    """
-    if len(image.shape) > 2:
-        uintimage = color.rgb2gray(copy.deepcopy(image))
-    else:
-        uintimage = copy.deepcopy(image)
-    if uintimage.dtype == "float64":
-        with warnings.catch_warnings():
-            # Transform rotate convert the img to float and save convert it back
-            warnings.simplefilter("ignore")
-            uintimage = ski.img_as_uint(uintimage, force_copy=True)
-    return uintimage
 
 def get_profiles(args,config):
     """
