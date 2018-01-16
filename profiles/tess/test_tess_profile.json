@@ -1,7 +1,7 @@
 {
     "cutter": {
             "level": "word",
-            "filter": "jahr||Gesch",
+            "filter": "ale|jahr||Gesch",
             "filtergrp": "digits|punctuation",
             "filterop": "and",
             "grpop": "and",
@@ -96,7 +96,7 @@
             "description": "Number of variables which should be change."
         },
         "--cut": {
-            "value": "True",
+            "value": "False",
             "default": "False",
             "help": "Cuts certain areas out of the image (see cutter)."
         }

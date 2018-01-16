@@ -8,7 +8,12 @@ from skimage.io import imread, imsave
 import re
 from mocrinlib.common import create_dir
 from mocrinlib.imgproc import safe_imread
-
+import xml as xml
+#import xml.etree.ElementTree as ET
+import lxml.etree as ET
+from io import StringIO, BytesIO
+import xml.dom.minidom as minidom
+import pprint as pprint
 ########## EXTENDED HOCR FUNCTION ##########
 def extend_hocr(file:str, fileout:str, tess_profile:dict=None):
     """
@@ -22,7 +27,25 @@ def extend_hocr(file:str, fileout:str, tess_profile:dict=None):
     with PyTessBaseAPI(**parameters) as api:
         set_vars(api, file, tess_profile)
         ri = api.GetIterator()
-        hocr = api.GetHOCRText(0)
+        # TODO: Need to fix header ...
+        #lang = api.GetInitLanguagesAsString()
+        version = api.Version()
+        hocrparse = ET.parse(StringIO(
+f'''
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>OCR Results</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name='ocr-system' content='tesseract {version}' />
+<meta name='ocr-capabilities' content='ocr_page ocr_carea ocr_par ocr_line ocrx_word'/>
+</head>
+</html>'''))
+        hocrroot = hocrparse.getroot()
+        hocrtess = ET.fromstring(api.GetHOCRText(0))
+        hocrtess.set("title", "image "+file+"; bbox"+hocrtess.get("title").split("bbox")[-1])
+        allwordinfo = hocrtess.findall('.//div/p/span/span')
         level = RIL.SYMBOL
         bbinfo = tuple()
         conf = ""
@@ -30,24 +53,21 @@ def extend_hocr(file:str, fileout:str, tess_profile:dict=None):
             if bbinfo != r.BoundingBoxInternal(RIL.WORD):
                 if bbinfo != ():
                     bbox = "bbox " + " ".join(map(str, bbinfo))
-                    if bbox in hocr:
-                        idx = hocr.find(bbox)
-                        endtxt = hocr[idx:].find("/div") + idx
-                        shocr = hocr[:endtxt]
-                        found = True
-                        while found:
-                            idx_next = shocr.find(bbox, idx+1)
-                            if idx_next != -1:
-                                idx = idx_next
-                            else:
-                                found = False
-                        idx = hocr[idx:].find("'") + idx
-                        hocr = hocr[:idx]+"; x_confs"+conf+hocr[idx:]
+                    for wordinfo in allwordinfo:
+                        if bbox in wordinfo.get("title"):
+                            wordinfo.set("title", wordinfo.get("title")+";x_confs"+conf)
+                            allwordinfo.remove(wordinfo)
+                            break
                     conf = ""
                 bbinfo = r.BoundingBoxInternal(RIL.WORD)
             conf += " "+str(r.Confidence(level))
-    with open(fileout+".hocr","w") as hocrfile:
-        hocrfile.write(hocr)
+    bbox = "bbox " + " ".join(map(str, bbinfo))
+    for wordinfo in allwordinfo:
+        if bbox in wordinfo.get("title"):
+            wordinfo.set("title", wordinfo.get("title") + ";x_confs" + conf)
+    hocrbody = ET.SubElement(hocrroot, "body")
+    hocrbody.append(hocrtess)
+    hocrparse.write(fileout+".hocr", xml_declaration=True,encoding='UTF-8')
     return 0
 
 def get_param(tess_profile:dict):
@@ -93,6 +113,10 @@ def set_vars(api, file:str, tess_profile:dict):
             # else:
             api.SetVariable(var, str(tess_profile['variables'][var]['value']))
     api.Recognize()
+    return 0
+
+def add_header(hocr):
+
     return 0
 
 ########## CUTTER FUNCTION ##########
