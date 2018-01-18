@@ -1,0 +1,100 @@
+{
+    "--info": {
+        "value": "datetime",
+        "default": "datetime",
+        "help": "Text that will be tagged to the outputdirectory. Default prints datetime(year-month-day_hour%minutes)."
+    },
+    "--file": {
+        "value": "",
+        "default": "",
+        "help": "Set Filenname/Path without config.ini"
+    },
+    "--cut": {
+        "alias": "-c",
+        "action": "store_true",
+        "value": false,
+        "default": false,
+        "help": "Cut certain areas of the image (see tess_profile['Cutter']."
+    },
+    "--fileformat": {
+        "alias": "-f",
+        "value": "jpg",
+        "default": "jpg",
+        "help": "Specify page segmentation mode.",
+        "description": "Fileformat of the images"
+    },
+    "--binary": {
+        "alias": "-b",
+        "action": "store_true",
+        "value": false,
+        "default": false,
+        "help": "Binarize the image"
+    },
+    "--no-tess": {
+        "action": "store_true",
+        "value": false,
+        "default": false,
+        "help": "Don't perfom tessract."
+    },
+    "--no-ocropy": {
+        "action": "store_true",
+        "value": true,
+        "default":false,
+        "help": "Don't perfom ocropy."
+    },
+    "--tess-profile": {
+        "value": "test",
+        "default": "default",
+        "choices": [
+            "default",
+            "test"
+        ],
+        "help": "Don't perfom tessract."
+    },
+    "--ocropy-profile": {
+        "value": "test",
+        "default": "default",
+        "choices": [
+            "default",
+            "test"
+        ],
+        "help": "Don't perfom tessract."
+    },
+    "--filter": {
+        "value": "sauvola",
+        "default": "sauvola",
+        "choices": [
+            "sauvola",
+            "niblack",
+            "otsu",
+            "yen",
+            "triangle",
+            "isodata",
+            "minimum",
+            "li",
+            "mean"
+        ],
+        "help": "Chose your favorite threshold filter: %(choices)s"
+    },
+    "--threshwindow": {
+        "value": 31,
+        "default": 31,
+        "help": "Size of the window (binarization): %(default)s"
+    },
+    "--threshweight": {
+        "value": 0.2,
+        "default": 0.2,
+        "choices": "np.arange(0, 1.0)",
+        "help": "Weight the effect of the standard deviation (binarization): %(default)s"
+    },
+    "--threshbin": {
+        "value": 256,
+        "default": 256,
+        "help": "Number of bins used to calculate histogram. This value is ignored for integer arrays."
+    },
+    "--threshhitter": {
+        "value": 10000,
+        "default": 10000,
+        "help": "Maximum number of iterations to smooth the histogram."
+    }
+}

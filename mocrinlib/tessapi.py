@@ -8,12 +8,9 @@ from skimage.io import imread, imsave
 import re
 from mocrinlib.common import create_dir
 from mocrinlib.imgproc import safe_imread
-import xml as xml
-#import xml.etree.ElementTree as ET
 import lxml.etree as ET
-from io import StringIO, BytesIO
-import xml.dom.minidom as minidom
-import pprint as pprint
+from io import StringIO
+
 ########## EXTENDED HOCR FUNCTION ##########
 def extend_hocr(file:str, fileout:str, tess_profile:dict=None):
     """
@@ -113,10 +110,6 @@ def set_vars(api, file:str, tess_profile:dict):
             # else:
             api.SetVariable(var, str(tess_profile['variables'][var]['value']))
     api.Recognize()
-    return 0
-
-def add_header(hocr):
-
     return 0
 
 ########## CUTTER FUNCTION ##########

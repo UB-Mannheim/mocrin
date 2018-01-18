@@ -9,48 +9,51 @@
 import configparser
 import numpy as np
 import argparse
-import glob as glob2
 import subprocess
 from multiprocessing import Process
 import json
 import shlex
 import datetime
+import os
+import sys
 from mocrinlib.tessapi import tess_pprocess
-from mocrinlib.common import create_dir
+from mocrinlib.common import create_dir, get_iopath, get_filenames
 from mocrinlib.imgproc import safe_imread, get_binary
 
 ########## CMD-PARSER-SETTINGS ##########
-def get_args():
+def get_args(argv):
     """
     This function parses the command line-options
     :param:no params
     :return:the parsed cl-options
     """
+    if argv:
+        sys.argv.extend(argv)
+
     argparser = argparse.ArgumentParser()
 
-    argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputdirectory. Default prints datetime.")
+    argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputdirectory. Default prints datetime (year-month-day_hour%minutes).")
 
-    argparser.add_argument("-i", "--image",help="path to input image to be OCR'd")
+    argparser.add_argument("--file", type=str, default="", help="Set Filenname/Path without config.ini")
     argparser.add_argument("-c", "--cut", action='store_true', help="Cut certain areas of the image (see tess_profile['Cutter'].")
-    argparser.add_argument("-f", "--imageformat", default="jpg",help="format of the images")
-    argparser.add_argument("-p", "--preprocess", type=str, default="thresh",help="type of preprocessing to be done")
-    argparser.add_argument("-b", "--binary", action='store_true', help="Produce a binary")
+    argparser.add_argument("-f", "--fileformat", default="jpg",help="Fileformat of the images")
+    argparser.add_argument("-b", "--binary", action='store_true', help="Binarize the image")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
-    argparser.add_argument("--no-ocropy", action='store_false', help="Don't perfom ocropy.")
-    argparser.add_argument("--tess-profile", default='test', choices=["default"], help="Don't perfom tessract.")
-    argparser.add_argument("--ocropy-profile", default='test', choices=["default"], help="Don't perfom ocropy.")
-    argparser.add_argument('--filter', type=str, default="sauvola",choices=["sauvola","niblack","otsu","yen","triangle","isodata","minimum","li","mean"],help='Chose your favorite threshold filter: %(choices)s')
-    argparser.add_argument('--threshwindow', type=int, default=31, help='Size of the window (binarization): %(default)s')
-    argparser.add_argument('--threshweight', type=float, default=0.2, choices=np.arange(0, 1.0),help='Weight the effect of the standard deviation (binarization): %(default)s')
-    argparser.add_argument('--threshbin', type=int, default=256,
+    argparser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
+    argparser.add_argument("--tess-profile", default='test', choices=["default","test"], help="Don't perfom tessract.")
+    argparser.add_argument("--ocropy-profile", default='test', choices=["default","test"], help="Don't perfom ocropy.")
+    argparser.add_argument("--filter", type=str, default="sauvola",choices=["sauvola","niblack","otsu","yen","triangle","isodata","minimum","li","mean"],help='Chose your favorite threshold filter: %(choices)s')
+    argparser.add_argument("--threshwindow", type=int, default=31, help='Size of the window (binarization): %(default)s')
+    argparser.add_argument("--threshweight", type=float, default=0.2, choices=np.arange(0, 1.0),help='Weight the effect of the standard deviation (binarization): %(default)s')
+    argparser.add_argument("--threshbin", type=int, default=256,
                            help='Number of bins used to calculate histogram. This value is ignored for integer arrays.')
-    argparser.add_argument('--threshitter', type=int, default=10000,
+    argparser.add_argument("--threshhitter", type=int, default=10000,
                            help='Maximum number of iterations to smooth the histogram.')
 
     args = argparser.parse_args()
     return args
 
-########## JSON_defaultremover ##########
+########## JSON_DefaultRemover ##########
 class DefaultRemover(json.JSONDecoder):
     """
     Removes all Null/None and all parameters if value == default
@@ -77,7 +80,7 @@ class DefaultRemover(json.JSONDecoder):
             del obj[delitem]
         return obj
 
-########## COMMON FUNCTIONS ##########
+########## FUNCTIONS ##########
 def cut_check(args,tess_profile:dict)->int:
     """
     Checks requirements for cutting
@@ -120,7 +123,18 @@ def get_profiles(args,config):
             ocropy_profile = ""
     return (tess_profile,ocropy_profile)
 
-def store_settings(path_out:str,profile:dict,args:dict,ocrname:str)->int:
+def update_args(args,config):
+    cli_args_profile_path = config['DEFAULT']['CLI_ARGSPATH']+config['DEFAULT']['CLI_ARGSNAME']+"_argparse_profile.json"
+    with open(cli_args_profile_path, "r") as file:
+        args_profile = json.load(file, cls=DefaultRemover)
+        for key, value in args_profile.items():
+            if key in sys.argv: continue
+            if "alias" in value and value["alias"] in sys.argv: continue
+            key = key.lstrip("-").replace("-","_")
+            vars(args)[key] = value["value"]
+    return 0
+
+def store_settings(path_out:str,profile:dict,args,ocrname:str)->int:
     """
     Saves the used settings in the folder of the output file
     :param path_out:
@@ -176,7 +190,7 @@ def start_tess(file:str,path_out:str, tess_profile:dict,args)->int:
     return 0
 
 ########## OCROPY FUNCTIONS ##########
-def start_ocropy(file:dict,path_out:dict, ocropy_profile:dict,args)->int:
+def start_ocropy(file:str,path_out:str, ocropy_profile:dict,args)->int:
     """
     Start tesseract over a cli
     :param file: fileinputpath
@@ -193,7 +207,7 @@ def start_ocropy(file:dict,path_out:dict, ocropy_profile:dict,args)->int:
     subprocess.Popen(args=["ocropus-nlbin",file,"-o"+path_out+args.infotxt+fname+"/"]+parameters["ocropus-nlbin"]).wait()
     subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]).wait()
     subprocess.Popen(args=["ocropus-rpred",path_out+args.infotxt+fname+"/????/??????.bin.png"]+parameters["ocropus-rpred"]).wait()
-    subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+fname.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]).wait()
+    subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+file.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]).wait()
     print("Finished ocropy for: " + file.split('/')[-1])
     return 0
 
@@ -239,16 +253,18 @@ def get_ocropy_param(ocropy_profile:dict)->dict:
 
     return parameters
 
-########### MAIN ##########
-def start_mocrin()->int:
+########### MAIN FUNCTION ##########
+def start_mocrin(*argv)->int:
     """
     The filespath are stored in the config.ini file.
     And can be changed there.
+    :param *argv: argument vector with arguments parsed by function call not commandline
     """
     config = configparser.ConfigParser()
     config.sections()
     config.read('config.ini')
-    args = get_args()
+    args = get_args(argv)
+    update_args(args,config)
     args.infofolder = ""
     args.infotxt = ""
     if args.info != "":
@@ -258,19 +274,13 @@ def start_mocrin()->int:
         else:
             args.infofolder = args.info+"/"
             args.infotxt = args.info+"_"
-
-    PATHINPUT = config['DEFAULT']['PATHINPUT']
-    PATHOUTPUT = config['DEFAULT']['PATHOUTPUT']
+    PATHINPUT, PATHOUTPUT = get_iopath(args,config)
+    files = get_filenames(args,PATHINPUT)
     tess_profile, ocropy_profile = get_profiles(args, config)
-    # Get all filenames and companynames (iglob-iterator)
-    files = glob2.iglob(PATHINPUT + "**/*." + args.imageformat, recursive=True)
 
     for idx,file in enumerate(files):
         args.idx = idx
-        path_in = file.replace(PATHINPUT, "").split("/")
-        path_out = PATHOUTPUT
-        for pathparts in path_in[:-1]:
-            path_out += pathparts + "/"
+        path_out = PATHOUTPUT+ os.path.dirname(file).replace(PATHINPUT,"")
 
         # Safe image read function
         image = safe_imread(file)
