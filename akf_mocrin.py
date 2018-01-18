@@ -34,7 +34,8 @@ def get_args(argv):
 
     argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputdirectory. Default prints datetime (year-month-day_hour%minutes).")
 
-    argparser.add_argument("--file", type=str, default="", help="Set Filenname/Path without config.ini")
+    argparser.add_argument("--filein", type=str, default="", help="Set Input Filenname/Path without config.ini")
+    argparser.add_argument("--fileout", type=str, default="", help="Set Output Filenname/Path without config.ini")
     argparser.add_argument("-c", "--cut", action='store_true', help="Cut certain areas of the image (see tess_profile['Cutter'].")
     argparser.add_argument("-f", "--fileformat", default="jpg",help="Fileformat of the images")
     argparser.add_argument("-b", "--binary", action='store_true', help="Binarize the image")
@@ -109,14 +110,18 @@ def get_profiles(args,config):
     """
     tess_profile, ocropy_profile = {}, {}
     if not args.no_tess:
-        tess_profile_path = config['DEFAULT']['Tessprofile'] + args.tess_profile + "_tess_profile.json"
+        profilename = config['DEFAULT']['TESSPROFILENAME']
+        if args.tess_profile != "" and args.tess_profile != profilename: profilename = args.tess_profile
+        tess_profile_path = config['DEFAULT']['TESSPROFILEPATH'] + profilename + "_tess_profile.json"
         with open(tess_profile_path,"r") as file:
             tess_profile = json.load(file, cls=DefaultRemover)
             cut_check(args,tess_profile)
         if tess_profile == None:
             tess_profile = ""
     if not args.no_ocropy:
-        ocropy_profile_path = config['DEFAULT']['Ocropyprofile']+args.ocropy_profile+"_ocropy_profile.json"
+        profilename = config['DEFAULT']['OCROPYPROFILENAME']
+        if args.ocropy_profile != "" and args.ocropy_profile != profilename: profilename = args.ocropy_profile
+        ocropy_profile_path = config['DEFAULT']['OCROPYPROFILEPATH']+profilename+"_ocropy_profile.json"
         with open(ocropy_profile_path,"r") as file:
             ocropy_profile = json.load(file,cls=DefaultRemover)
         if ocropy_profile == None:
@@ -233,14 +238,14 @@ def get_ocropy_param(ocropy_profile:dict)->dict:
                         if next_param == "files":
                             continue
                         if ocropy_profile['parameters'][funcall][param][next_param]['value'] != "" and \
-                                ocropy_profile['parameters'][funcall][param][next_param]['value'] != "False":
+                                ocropy_profile['parameters'][funcall][param][next_param]['value'] != False:
                             if "action" in ocropy_profile['parameters'][funcall][param][next_param]:
                                 parameters[funcall] += next_param + " "
                             else:
                                 parameters[funcall] += next_param + " " + ocropy_profile['parameters'][funcall][param][next_param][
                                     'value'] + " "
                 else:
-                    if ocropy_profile['parameters'][funcall][param]['value'] != "" and ocropy_profile['parameters'][funcall][param]['value'] != "False":
+                    if ocropy_profile['parameters'][funcall][param]['value'] != "" and ocropy_profile['parameters'][funcall][param]['value'] != False:
                         if "action" in ocropy_profile['parameters'][funcall][param]:
                             parameters[funcall] += param + " "
                         else:
@@ -274,13 +279,13 @@ def start_mocrin(*argv)->int:
         else:
             args.infofolder = args.info+"/"
             args.infotxt = args.info+"_"
-    PATHINPUT, PATHOUTPUT = get_iopath(args,config)
-    files = get_filenames(args,PATHINPUT)
+    PATHINPUTPATH, PATHOUTPUTPATH = get_iopath(args,config)
+    files = get_filenames(args,PATHINPUTPATH)
     tess_profile, ocropy_profile = get_profiles(args, config)
 
     for idx,file in enumerate(files):
         args.idx = idx
-        path_out = PATHOUTPUT+ os.path.dirname(file).replace(PATHINPUT,"")
+        path_out = PATHOUTPUTPATH+ os.path.dirname(file).replace(PATHINPUTPATH,"")
 
         # Safe image read function
         image = safe_imread(file)

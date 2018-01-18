@@ -9,20 +9,20 @@
                 },
                 "--overwrite": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "alias": "-O"
                 },
                 "--allowempty": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "alias": "-e"
                 },
                 "--deleteempty": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "alias": "-D"
                 },
                 "gtfile": {},
@@ -83,8 +83,8 @@
             "html": {
                 "--debug": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "alias": "-d"
                 },
                 "--output": {
@@ -127,8 +127,8 @@
                 },
                 "--overwrite": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "alias": "-O"
                 },
                 "--extension": {
@@ -138,8 +138,8 @@
                 },
                 "--allowempty": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "alias": "-e"
                 },
                 "html": {}
@@ -149,8 +149,8 @@
             "error checking": {
                 "--nocheck": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "1",
+                    "value": true,
+                    "default": false,
                     "help": "disable error checking on inputs",
                     "alias": "-n"
                 },
@@ -202,8 +202,8 @@
                 },
                 "--usegauss": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "help": "use gaussian instead of uniform default: %(defaults)"
                 }
             },
@@ -249,8 +249,8 @@
             "output parameters": {
                 "--gray": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "help": "output grayscale lines as well default: %(defaults)"
                 },
                 "--pad": {
@@ -269,8 +269,8 @@
                 },
                 "--json": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "1",
+                    "value": false,
+                    "default": true,
                     "help": "store information about parameters in a *.ocropy.json-file (this option can be used to create an extended hocr output)",
                     "alias": "-j"
                 }
@@ -278,8 +278,8 @@
             "others": {
                 "--quiet": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "help": "be less verbose default: %(defaults)",
                     "alias": "-q"
                 },
@@ -292,14 +292,14 @@
                 },
                 "--debug": {
                     "action": "store_true",
-                    "default": "0",
-                    "value": "0",
+                    "value": false,
+                    "default": false,
                     "alias": "-d"
                 },
                 "--help": {
-                    " action": "help",
-                    "default": "0",
-                    "value": "0",
+                    "action": "store_true",
+                    "value": false,
+                    "default": false,
                     "help": "show this help message and exit",
                     "alias": "-h"
                 },
@@ -335,15 +335,15 @@
             },
             "--erroronly": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "only output an error rate",
                 "alias": "-e"
             },
             "--skipmissing": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "dont use missing or empty output files in the calculation",
                 "alias": "-s"
             },
@@ -375,8 +375,8 @@
             },
             "--skipmissing": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "dont use missing or empty output files in the calculation",
                 "alias": "-s"
             },
@@ -442,8 +442,8 @@
             },
             "--nolineest": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "dont perform line estimation and load .dew.png file",
                 "alias": "-E"
             },
@@ -456,8 +456,8 @@
             },
             "--dewarp": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "only perform line estimation and output .dew.png file"
             },
             "--codec": {
@@ -469,8 +469,8 @@
             },
             "--clstm": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "use C++ LSTM",
                 "alias": "-C"
             },
@@ -502,9 +502,9 @@
                 "alias": "-F"
             },
             "--strip": {
-                "action": "store_false",
-                "default": "0",
-                "value": "0",
+                "action": "store_true",
+                "value": false,
+                "default": false,
                 "help": "strip the model before saving"
             },
             "--ntrain": {
@@ -522,14 +522,14 @@
             },
             "--unidirectional": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "use only unidirectional LSTM"
             },
             "--updates": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "verbose LSTM updates"
             },
             "--load": {
@@ -552,8 +552,8 @@
             },
             "--verbose": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "alias": "-v"
             },
             "--display": {
@@ -575,14 +575,14 @@
             },
             "--quiet": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "alias": "-q"
             },
             "--nocheck": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "alias": "-Q"
             },
             "--pad": {
@@ -598,15 +598,15 @@
         "ocropus-rpred": {
             "--nocheck": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "disable error checking on inputs",
                 "alias": "-n"
             },
             "--nolineest": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "target line height (overrides recognizer",
                 "alias": "-e"
             },
@@ -632,39 +632,39 @@
             },
             "--nonormalize": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "dont normalize the textual output from the recognizer",
                 "alias": "-N"
             },
             "--llocs": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "output LSTM locations for characters"
             },
             "--alocs": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "output aligned LSTM locations for characters"
             },
             "--probabilities": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "output probabilities for each letter"
             },
             "--nojson": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "deactivates the output to the *.ocropy.json file of LSTM character-positions including start, end and maxima values and probabilities (on available if -j/--json was set in gpageseg)"
             },
             "--estrate": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "estimate error rate only",
                 "alias": "-r"
             },
@@ -702,8 +702,8 @@
             },
             "--quiet": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "turn off most output",
                 "alias": "-q"
             },
@@ -722,8 +722,8 @@
         "ocropus-nlbin": {
             "--nocheck": {
                 "action": "store_true",
-                "default": "0",
-                "value": "1",
+                "value": true,
+                "default": false,
                 "help": "disable error checking on inputs",
                 "alias": "-n"
             },
@@ -778,8 +778,8 @@
             },
             "--gray": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "force grayscale processing even if image seems binary",
                 "alias": "-g"
             },
@@ -809,14 +809,14 @@
             },
             "--show": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "display final result"
             },
             "--rawcopy": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "also copy the raw image"
             },
             "--output": {
@@ -913,8 +913,8 @@
             },
             "--eval": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "alias": "-e"
             },
             "--kind": {
@@ -1016,14 +1016,14 @@
             },
             "--display": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "alias": "-d"
             },
             "--numdir": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0"
+                "value": false,
+                "default": false
             },
             "--cleanup": {
                 "default": "[_~#]",
@@ -1040,29 +1040,29 @@
         "ocropus-hocr": {
             "--nobreaks": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "dont output line breaks",
                 "alias": "-b"
             },
             "--nopars": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "dont output paragraphs",
                 "alias": "-p"
             },
             "--normal": {
                 "action": "store_true",
-                "default": "0",
-                "value": "0",
+                "value": false,
+                "default": false,
                 "help": "surpress the output of extended hocr version (only available if '-j/--json' was set to gpageseg)",
                 "alias": "-n"
             },
             "--charconfs": {
                 "action": "store_true",
-                "default": "0",
-                "value": "1",
+                "value": true,
+                "default": false,
                 "help": "output confidences of every char, only in combination with extened hocr-file.",
                 "alias": "-c"
             },

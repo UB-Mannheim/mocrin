@@ -58,34 +58,40 @@
         },
         " --help": {
             "alias": "-h",
-            "value": "False",
-            "default": "False",
+            "action": "store_true",
+            "value": false,
+            "default": false,
             "help": "Show this help message."
         },
         "--help-psm": {
-            "value": "False",
-            "default": "False",
+            "action": "store_true",
+            "value": false,
+            "default": false,
             "help": "Show page segmentation modes."
         },
         "--help-oem": {
-            "value": "False",
-            "default": "False",
+            "action": "store_true",
+            "value": false,
+            "default": false,
             "help": "Show OCR Engine modes."
         },
         " --version": {
             "alias": "-v",
-            "value": "False",
-            "default": "False",
+            "action": "store_true",
+            "value": false,
+            "default": false,
             "help": "Show version information."
         },
         "--list-langs": {
-            "value": "False",
-            "default": "False",
+            "action": "store_true",
+            "value": false,
+            "default": false,
             "help": "List available languages for tesseract engine."
         },
         "--print-parameters": {
-            "value": "False",
-            "default": "False",
+            "action": "store_true",
+            "value": false,
+            "default": false,
             "help": "Print tesseract parameters to stdout."
         },
         "-c": {
@@ -96,8 +102,9 @@
             "description": "Number of variables which should be change."
         },
         "--cut": {
-            "value": "False",
-            "default": "False",
+            "action": "store_true",
+            "value": false,
+            "default": false,
             "help": "Cuts certain areas out of the image (see cutter)."
         }
     },
