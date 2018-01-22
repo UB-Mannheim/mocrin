@@ -153,8 +153,8 @@ def cutter(file:str, fileout:str, tess_profile:dict):
                         create_dir(cutdir)
                         fprefix = '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".", "-")
                         imsave(cutdir +  "_" + fprefix + fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
-                        with open("/".join(fileout.split("/")[:-1])+"/Cutinfo.txt","a") as cutinfo:
-                            cutinfo.write('{:06d}'.format(count)+"\t"+origsymbol)
+                        with open("/".join(fileout.split("/")[:-1])+"/cutinfo.txt","a") as cutinfo:
+                            cutinfo.write('{:06d}'.format(count)+"\t"+origsymbol+"\t"+'{:.3f}'.format(conf))
     except:
         print("Some nasty things while cutting happens.")
     return 0

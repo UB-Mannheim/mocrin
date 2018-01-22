@@ -36,7 +36,7 @@ def get_args(argv):
 
     argparser.add_argument("--fpathin", type=str, default="", help="Set Input Filenname/Path without config.ini")
     argparser.add_argument("--fpathout", type=str, default="", help="Set Output Filenname/Path without config.ini")
-    argparser.add_argument("-c", "--cut", action='store_false', help="Cut certain areas of the image (see tess_profile['Cutter'].")
+    argparser.add_argument("-c", "--cut", action='store_true', help="Cut certain areas of the image (see tess_profile['Cutter'].")
     argparser.add_argument("-f", "--fileformat", default="jpg",help="Fileformat of the images")
     argparser.add_argument("-b", "--binary", action='store_true', help="Binarize the image")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
