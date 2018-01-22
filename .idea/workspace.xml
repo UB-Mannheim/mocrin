@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea120959-5bbe-49c2-ac79-474097b23b4a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/profiles/cli_args/default_argparse_profile.json" afterPath="$PROJECT_DIR$/mocrin/profiles/cli_args/default_argparse_profile.json" />
-      <change beforePath="$PROJECT_DIR$/profiles/ocropy/default_ocropy_profile.json" afterPath="$PROJECT_DIR$/mocrin/profiles/ocropy/default_ocropy_profile.json" />
-      <change beforePath="$PROJECT_DIR$/profiles/ocropy/test_ocropy_profile.json" afterPath="$PROJECT_DIR$/mocrin/profiles/ocropy/test_ocropy_profile.json" />
-      <change beforePath="$PROJECT_DIR$/profiles/tess/default_tess_profile.json" afterPath="$PROJECT_DIR$/mocrin/profiles/tess/default_tess_profile.json" />
-      <change beforePath="$PROJECT_DIR$/profiles/tess/test_tess_profile.json" afterPath="$PROJECT_DIR$/mocrin/profiles/tess/test_tess_profile.json" />
+      <change beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,7 +12,48 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mocrin.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mocrin/mocrin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="321" column="0" lean-forward="false" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
+              <folding>
+                <element signature="e#659#3043#0" expanded="false" />
+                <element signature="e#3131#3886#0" expanded="false" />
+                <element signature="e#3968#4407#0" expanded="false" />
+                <element signature="e#4444#5684#0" expanded="false" />
+                <element signature="e#5720#6217#0" expanded="false" />
+                <element signature="e#6292#7037#0" expanded="false" />
+                <element signature="e#7153#8759#0" expanded="false" />
+                <element signature="e#8876#9981#0" expanded="false" />
+                <element signature="e#10036#12296#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -97,6 +134,7 @@
         <option value="$PROJECT_DIR$/mocrinlib/tessapi.py" />
         <option value="$PROJECT_DIR$/akf_mocrin.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/setup.py" />
       </list>
     </option>
@@ -130,11 +168,6 @@
             <path>
               <item name="akf-mocrin" type="b2602c69:ProjectViewProjectNode" />
               <item name="akf-mocrin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="akf-mocrin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="akf-mocrin" type="462c0819:PsiDirectoryNode" />
-              <item name="mocrinlib" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -173,7 +206,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Testlib">
+  <component name="RunManager" selected="Python.mocrin">
     <configuration name="Testlib" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -210,19 +243,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="tess_capi_build" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="mocrin" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mocrin" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="akf-mocrin" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tessapi/tess_capi_build.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mocrin/mocrin.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -410,19 +443,19 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.tess_capi_build" />
-      <item index="1" class="java.lang.String" itemvalue="Python.tess_capi_test" />
-      <item index="2" class="java.lang.String" itemvalue="Python.tesserocr_api" />
-      <item index="3" class="java.lang.String" itemvalue="Python.akf_mocrin" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Testlib" />
+      <item index="0" class="java.lang.String" itemvalue="Python.tess_capi_test" />
+      <item index="1" class="java.lang.String" itemvalue="Python.tesserocr_api" />
+      <item index="2" class="java.lang.String" itemvalue="Python.akf_mocrin" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Testlib" />
+      <item index="4" class="java.lang.String" itemvalue="Python.mocrin" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Testlib" />
+        <item index="0" class="java.lang.String" itemvalue="Python.mocrin" />
         <item index="1" class="java.lang.String" itemvalue="Python.akf_mocrin" />
-        <item index="2" class="java.lang.String" itemvalue="Python.tesserocr_api" />
-        <item index="3" class="java.lang.String" itemvalue="Python.tess_capi_test" />
-        <item index="4" class="java.lang.String" itemvalue="Python.tess_capi_build" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Testlib" />
+        <item index="3" class="java.lang.String" itemvalue="Python.tesserocr_api" />
+        <item index="4" class="java.lang.String" itemvalue="Python.tess_capi_test" />
       </list>
     </recent_temporary>
   </component>
@@ -454,16 +487,16 @@
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="950" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09289618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09289618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41269842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24972677" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3797314" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33211234" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33211234" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -499,6 +532,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mocrin/mocrin.py</url>
+          <line>285</line>
+          <option name="timeStamp" value="423" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -509,12 +549,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="423" />
+      <option name="time" value="424" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Ocronator.py" />
     <entry file="file://$PROJECT_DIR$/mocrin/config.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -688,24 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mocrin/mocrin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-          <folding>
-            <element signature="e#256#275#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -718,12 +739,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding>
-            <element signature="e#165#180#0" expanded="true" />
-            <element signature="e#427#721#0" expanded="false" />
-            <element signature="e#755#1224#0" expanded="false" />
-            <element signature="e#1286#3401#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -731,12 +747,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="e#165#174#0" expanded="true" />
-            <element signature="e#264#572#0" expanded="false" />
-            <element signature="e#619#845#0" expanded="false" />
-            <element signature="e#896#1218#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -768,17 +779,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mocrin/mocrin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="321" column="0" lean-forward="false" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
           <folding>
-            <element signature="e#213#268#0" expanded="true" />
-            <element signature="e#585#2817#0" expanded="false" />
-            <element signature="e#2857#3626#0" expanded="false" />
-            <element signature="e#3680#4414#0" expanded="false" />
-            <element signature="e#4512#6890#0" expanded="false" />
-            <element signature="e#6931#7845#0" expanded="false" />
-            <element signature="e#7886#8460#0" expanded="false" />
-            <element signature="e#8523#9032#0" expanded="false" />
-            <element signature="e#9153#9626#0" expanded="false" />
+            <element signature="e#659#3043#0" expanded="false" />
+            <element signature="e#3131#3886#0" expanded="false" />
+            <element signature="e#3968#4407#0" expanded="false" />
+            <element signature="e#4444#5684#0" expanded="false" />
+            <element signature="e#5720#6217#0" expanded="false" />
+            <element signature="e#6292#7037#0" expanded="false" />
+            <element signature="e#7153#8759#0" expanded="false" />
+            <element signature="e#8876#9981#0" expanded="false" />
+            <element signature="e#10036#12296#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
