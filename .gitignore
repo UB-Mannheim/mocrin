@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/AKF_SQL_DBTalk.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+config.ini
+*.iml
+*.xml
+.build/
