@@ -20,18 +20,20 @@ def create_dir(newdir:str)->int:
             print("cannot create %s directoy" % newdir)
     return 0
 
-def get_iopath(args,config):
+def get_iopath(fpathin,fpathout,config):
     PATHINPUT = config['DEFAULT']['PATHINPUT']
-    if args.file != "":
-        PATHINPUT = args.file
+    if fpathin != "":
+        PATHINPUT = fpathin
     PATHOUTPUT = config['DEFAULT']['PATHOUTPUT']
+    if fpathout != "":
+        PATHINPUT = fpathout
     return PATHINPUT, PATHOUTPUT
 
-def get_filenames(args,PATHINPUT:str):
+def get_filenames(fileformat,PATHINPUT:str):
     # Get all filenames and companynames (iglob-iterator)
     files = []
     if os.path.isdir(PATHINPUT):
-        files = glob.iglob(PATHINPUT + "**/*." + args.fileformat, recursive=True)
+        files = glob.iglob(PATHINPUT + "**/*." + fileformat, recursive=True)
     elif os.path.isfile(PATHINPUT):
         files = [PATHINPUT]
     else:

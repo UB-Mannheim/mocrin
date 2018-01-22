@@ -143,6 +143,7 @@ def cutter(file:str, fileout:str, tess_profile:dict):
                     expr_result = re.search(cutter["regex"],symbol)
                 if expr_result:
                     if cutter["min_conf"] < conf < cutter["max_conf"]:
+                        origsymbol = symbol[:]
                         symbol = re.sub('[^0-9a-zA-Z]+', '_', symbol)
                         count += 1
                         bbox = r.BoundingBoxInternal(level)
@@ -152,6 +153,8 @@ def cutter(file:str, fileout:str, tess_profile:dict):
                         create_dir(cutdir)
                         fprefix = '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".", "-")
                         imsave(cutdir +  "_" + fprefix + fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
+                        with open("/".join(fileout.split("/")[:-1])+"/Cutinfo.txt","a") as cutinfo:
+                            cutinfo.write('{:06d}'.format(count)+"\t"+origsymbol)
     except:
         print("Some nasty things while cutting happens.")
     return 0
@@ -228,8 +231,10 @@ def tess_pprocess(file:str,fileout:str,cut:bool, tess_profile:dict=None)->int:
     :return: None
     """
     if cut and tess_profile != None:
+        print("Start cut")
         cutter(file, fileout, tess_profile)
     else:
+        print("Start hocr")
         extend_hocr(file, fileout, tess_profile)
     return 0
 

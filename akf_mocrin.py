@@ -34,9 +34,9 @@ def get_args(argv):
 
     argparser.add_argument("--info", type=str, default="datetime", help="Text that will be tagged to the outputdirectory. Default prints datetime (year-month-day_hour%minutes).")
 
-    argparser.add_argument("--filein", type=str, default="", help="Set Input Filenname/Path without config.ini")
-    argparser.add_argument("--fileout", type=str, default="", help="Set Output Filenname/Path without config.ini")
-    argparser.add_argument("-c", "--cut", action='store_true', help="Cut certain areas of the image (see tess_profile['Cutter'].")
+    argparser.add_argument("--fpathin", type=str, default="", help="Set Input Filenname/Path without config.ini")
+    argparser.add_argument("--fpathout", type=str, default="", help="Set Output Filenname/Path without config.ini")
+    argparser.add_argument("-c", "--cut", action='store_false', help="Cut certain areas of the image (see tess_profile['Cutter'].")
     argparser.add_argument("-f", "--fileformat", default="jpg",help="Fileformat of the images")
     argparser.add_argument("-b", "--binary", action='store_true', help="Binarize the image")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
@@ -90,7 +90,7 @@ def cut_check(args,tess_profile:dict)->int:
     :return:
     """
     try:
-        if tess_profile["cutter"] and tess_profile["parameters"]["--cut"]["value"] == "True":
+        if "--cut" in tess_profile["parameters"] and tess_profile["parameters"]["--cut"]["value"] == "True":
             args.cut = True
         if args.cut:
             args.no_ocropy = True
@@ -279,13 +279,13 @@ def start_mocrin(*argv)->int:
         else:
             args.infofolder = args.info+"/"
             args.infotxt = args.info+"_"
-    PATHINPUTPATH, PATHOUTPUTPATH = get_iopath(args,config)
-    files = get_filenames(args,PATHINPUTPATH)
+    PATHINPUT, PATHOUTPUT = get_iopath(args.fpathin,args.fpathout,config)
+    files = get_filenames(args.fileformat,PATHINPUT)
     tess_profile, ocropy_profile = get_profiles(args, config)
 
     for idx,file in enumerate(files):
         args.idx = idx
-        path_out = PATHOUTPUTPATH+ os.path.dirname(file).replace(PATHINPUTPATH,"")
+        path_out = PATHOUTPUT+os.path.dirname(file).replace(PATHINPUT[:-1],"")
 
         # Safe image read function
         image = safe_imread(file)
