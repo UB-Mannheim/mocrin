@@ -6,4 +6,4 @@
 config.ini
 *.iml
 *.xml
-.build/
+.build/*
