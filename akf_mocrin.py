@@ -41,8 +41,8 @@ def get_args(argv):
     argparser.add_argument("-b", "--binary", action='store_true', help="Binarize the image")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
     argparser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
-    argparser.add_argument("--tess-profile", default='test', choices=["default","test"], help="Don't perfom tessract.")
-    argparser.add_argument("--ocropy-profile", default='test', choices=["default","test"], help="Don't perfom ocropy.")
+    argparser.add_argument("--tess-profile", default='test', choices=["default","test",""], help="Don't perfom tessract. If the value is an empty string take name from config.ini")
+    argparser.add_argument("--ocropy-profile", default='test', choices=["default","test",""], help="Don't perfom ocropy. If the value is an empty string take name from config.ini")
     argparser.add_argument("--filter", type=str, default="sauvola",choices=["sauvola","niblack","otsu","yen","triangle","isodata","minimum","li","mean"],help='Chose your favorite threshold filter: %(choices)s')
     argparser.add_argument("--threshwindow", type=int, default=31, help='Size of the window (binarization): %(default)s')
     argparser.add_argument("--threshweight", type=float, default=0.2, choices=np.arange(0, 1.0),help='Weight the effect of the standard deviation (binarization): %(default)s')
@@ -111,7 +111,7 @@ def get_profiles(args,config):
     tess_profile, ocropy_profile = {}, {}
     if not args.no_tess:
         profilename = config['DEFAULT']['TESSPROFILENAME']
-        if args.tess_profile != "" and args.tess_profile != profilename: profilename = args.tess_profile
+        if args.tess_profile != "": profilename = args.tess_profile
         tess_profile_path = config['DEFAULT']['TESSPROFILEPATH'] + profilename + "_tess_profile.json"
         with open(tess_profile_path,"r") as file:
             tess_profile = json.load(file, cls=DefaultRemover)
@@ -120,7 +120,7 @@ def get_profiles(args,config):
             tess_profile = ""
     if not args.no_ocropy:
         profilename = config['DEFAULT']['OCROPYPROFILENAME']
-        if args.ocropy_profile != "" and args.ocropy_profile != profilename: profilename = args.ocropy_profile
+        if args.ocropy_profile != "": profilename = args.ocropy_profile
         ocropy_profile_path = config['DEFAULT']['OCROPYPROFILEPATH']+profilename+"_ocropy_profile.json"
         with open(ocropy_profile_path,"r") as file:
             ocropy_profile = json.load(file,cls=DefaultRemover)
