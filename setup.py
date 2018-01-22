@@ -5,8 +5,7 @@ setup(
     name='mocrin',
     version='0.1',
     author='JKamlah',
-    packages=['mocrin','mocrinlib'],
-    scripts=scripts,
+    packages=['mocrin'],
     description='Multiple OCR Interface',
     long_description=open('README.txt').read(),
 )

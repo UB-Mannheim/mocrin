@@ -1,2 +1,2 @@
 # akf-mocrin
-A multiple ocr interace
+Multiple OCR Interface
