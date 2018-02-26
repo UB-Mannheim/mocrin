@@ -16,6 +16,7 @@ import shlex
 import datetime
 import os
 import sys
+from mocrinlib.abbyyrunner import start_abbyy
 from mocrinlib.tessapi import tess_pprocess
 from mocrinlib.common import create_dir, get_iopath, get_filenames
 from mocrinlib.imgproc import safe_imread, get_binary
@@ -272,6 +273,7 @@ def start_mocrin(*argv)->int:
     update_args(args,config)
     args.infofolder = ""
     args.infotxt = ""
+    #args.no_abbyy = False
     if args.info != "":
         args.infotxt = ""
         if args.info == "datetime":
@@ -285,7 +287,7 @@ def start_mocrin(*argv)->int:
 
     for idx,file in enumerate(files):
         args.idx = idx
-        path_out = PATHOUTPUT+os.path.dirname(file).replace(PATHINPUT[:-1],"")
+        path_out = PATHOUTPUT+os.path.dirname(file).replace(PATHINPUT[:-1],"")+"/"
 
         # Safe image read function
         image = safe_imread(file)
@@ -296,7 +298,14 @@ def start_mocrin(*argv)->int:
 
         # Start the ocr-processes ("p") asynchronously
         procs = []
+        if not args.no_abbyy:
+            print("Call abbyy! All other ocr engines got deactivated!")
+            if "/1/" in file:
+                stpo = 123
+            start_abbyy(file, path_out + "abbyy/"+args.infofolder)
 
+            args.no_tess = True
+            args.no_ocropy= True
         if not args.no_tess:
             p1 = Process(target=start_tess, args=[file, path_out + "tess/"+args.infofolder, tess_profile,args])
             print("Call tesseract!")
@@ -311,7 +320,7 @@ def start_mocrin(*argv)->int:
         for p in procs:
             p.join()
         print("Next image!")
-    print("All images are procesed!")
+    print("All images were processed!")
     return 0
 
 ########## START ##########

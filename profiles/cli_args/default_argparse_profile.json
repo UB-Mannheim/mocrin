@@ -38,6 +38,12 @@
     },
     "--no-ocropy": {
         "action": "store_true",
+        "value": false,
+        "default":false,
+        "help": "Don't perfom ocropy."
+    },
+    "--no-abbyy": {
+        "action": "store_true",
         "value": true,
         "default":false,
         "help": "Don't perfom ocropy."

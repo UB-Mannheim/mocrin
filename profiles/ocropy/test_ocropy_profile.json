@@ -269,8 +269,8 @@
                 },
                 "--json": {
                     "action": "store_true",
-                    "value": false,
-                    "default": true,
+                    "value": true,
+                    "default": false,
                     "help": "store information about parameters in a *.ocropy.json-file (this option can be used to create an extended hocr output)",
                     "alias": "-j"
                 }

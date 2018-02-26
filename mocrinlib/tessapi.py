@@ -10,6 +10,7 @@ from mocrinlib.common import create_dir
 from mocrinlib.imgproc import safe_imread
 import lxml.etree as ET
 from io import StringIO
+import json
 
 ########## EXTENDED HOCR FUNCTION ##########
 def extend_hocr(file:str, fileout:str, tess_profile:dict=None):
@@ -46,6 +47,7 @@ f'''
         level = RIL.SYMBOL
         bbinfo = tuple()
         conf = ""
+        charinfo = {}
         for r in iterate_level(ri, level):
             if bbinfo != r.BoundingBoxInternal(RIL.WORD):
                 if bbinfo != ():
@@ -58,10 +60,17 @@ f'''
                     conf = ""
                 bbinfo = r.BoundingBoxInternal(RIL.WORD)
             conf += " "+str(r.Confidence(level))
+            #symbol = r.GetUTF8Text(level)
+            #if symbol not in charinfo:
+            #    charinfo[symbol]=[r.Confidence(level)]
+            #else:
+            #    charinfo[symbol].append(r.Confidence(level))
     bbox = "bbox " + " ".join(map(str, bbinfo))
     for wordinfo in allwordinfo:
         if bbox in wordinfo.get("title"):
             wordinfo.set("title", wordinfo.get("title") + ";x_confs" + conf)
+    #with open(fileout+"_charinfo.json", "w") as output:
+    #    json.dump(charinfo, output, indent=4)
     hocrbody = ET.SubElement(hocrroot, "body")
     hocrbody.append(hocrtess)
     hocrparse.write(fileout+".hocr", xml_declaration=True,encoding='UTF-8')
@@ -154,7 +163,14 @@ def cutter(file:str, fileout:str, tess_profile:dict):
                         fprefix = '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".", "-")
                         imsave(cutdir +  "_" + fprefix + fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
                         with open("/".join(fileout.split("/")[:-1])+"/cutinfo.txt","a") as cutinfo:
-                            cutinfo.write('{:06d}'.format(count)+"\t"+origsymbol+"\t"+'{:.3f}'.format(conf))
+                            # Information (Number of cut, Line/Word/Char Text, Confidence, BBOX)
+                            cutinfo.write('{:06d}'.format(count)
+                                          +"\t"+origsymbol
+                                          +"\t"+'{:.3f}'.format(conf)
+                                          +"\t"+str(bbox[1] - pad[0])
+                                          +"\t" +str(bbox[3] + pad[0])
+                                          +"\t" +str(bbox[0] - pad[1])
+                                          +"\t" +str(bbox[2] + pad[1]))
     except:
         print("Some nasty things while cutting happens.")
     return 0

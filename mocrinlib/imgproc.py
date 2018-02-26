@@ -7,7 +7,8 @@ import os
 from mocrinlib.common import create_dir
 from skimage import color, img_as_uint
 import skimage.filters as imgfilter
-from skimage.io import imread
+from skimage.io import imread, find_available_plugins
+from skimage.external.tifffile import imread as timread
 import scipy.misc as misc
 
 
@@ -19,7 +20,7 @@ def safe_imread(file:str):
     :return:
     """
     try:
-        image = imread("%s" % file)
+        image = misc.imread("%s" % file)
     except IOError:
         print("cannot open %s" % file)
         #logging.warning("cannot open %s" % input)
