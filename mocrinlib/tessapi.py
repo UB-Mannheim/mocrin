@@ -158,10 +158,25 @@ def cutter(file:str, fileout:str, tess_profile:dict):
                         bbox = r.BoundingBoxInternal(level)
                         pad = get_pad(bbox, cutter["pad"], cutter["padprc"])
                         cutarea = img[bbox[1] - pad[0]:bbox[3] + pad[0], bbox[0] - pad[1]:bbox[2] + pad[1], :]
-                        cutdir = "/".join(fileout.split("/")[:-1]) + "/cut/" + symbol + "/"
-                        create_dir(cutdir)
-                        fprefix = '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".", "-")
-                        imsave(cutdir +  "_" + fprefix + fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
+                        if tess_profile["cutter"]["gen_traindata"]:
+                            ##if origsymbol == "":continue
+                            cutdir = "/".join(fileout.split("/")[:-1]) + "/cut/" + fileout.split("/")[-1].split(".")[0] + "/"
+                            create_dir(cutdir)
+                            imsave(cutdir + '{:06d}'.format(count)+"." + file.split(".")[-1], cutarea)
+                            with open("/".join(fileout.split("/")[:-1]) + "/cut/" + fileout.split("/")[-1].split(".")[0]+".linenr", "a") as cutinfo:
+                                # Information (Number of cut, Line/Word/Char Text, Confidence, BBOX)
+                                cutinfo.write('{:06d}'.format(count)+"\n"*(len(origsymbol.split("\n"))-1))
+                            with open("/".join(fileout.split("/")[:-1]) + "/cut/" + fileout.split("/")[-1].split(".")[0]+".linetxt", "a") as cutinfo:
+                                # Information (Number of cut, Line/Word/Char Text, Confidence, BBOX)
+                                cutinfo.write(origsymbol)
+                            with open(cutdir + '{:06d}'.format(count)+".gt.txt", "a") as cutinfo:
+                                # Information (Number of cut, Line/Word/Char Text, Confidence, BBOX)
+                                cutinfo.write(origsymbol)
+                        else:
+                            cutdir = "/".join(fileout.split("/")[:-1]) + "/cut/" + symbol + "/"
+                            create_dir(cutdir)
+                            fprefix = '{:06d}'.format(count) + "_" + symbol + "_" + '{:.3f}'.format(conf).replace(".", "-")
+                            imsave(cutdir +  "_" + fprefix + fileout.split("/")[-1] + "." + file.split(".")[-1], cutarea)
                         with open("/".join(fileout.split("/")[:-1])+"/cutinfo.txt","a") as cutinfo:
                             # Information (Number of cut, Line/Word/Char Text, Confidence, BBOX)
                             cutinfo.write('{:06d}'.format(count)

@@ -91,7 +91,7 @@ def cut_check(args,tess_profile:dict)->int:
     :return:
     """
     try:
-        if "--cut" in tess_profile["parameters"] and tess_profile["parameters"]["--cut"]["value"] == "True":
+        if '--cut' in list(tess_profile["parameters"].keys()) and tess_profile["parameters"]["--cut"]["value"]:
             args.cut = True
         if args.cut:
             args.no_ocropy = True
