@@ -1,6 +1,6 @@
 {
     "--info": {
-        "value": "datetime",
+        "value": "akfmodel",
         "default": "datetime",
         "help": "Text that will be tagged to the outputdirectory. Default prints datetime(year-month-day_hour%minutes)."
     },
@@ -38,7 +38,7 @@
     },
     "--no-ocropy": {
         "action": "store_true",
-        "value": false,
+        "value": true,
         "default":false,
         "help": "Don't perfom ocropy."
     },

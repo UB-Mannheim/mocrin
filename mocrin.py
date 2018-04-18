@@ -42,6 +42,7 @@ def get_args(argv):
     argparser.add_argument("-b", "--binary", action='store_true', help="Binarize the image")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
     argparser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
+    argparser.add_argument("--no-abbyy", action='store_true', help="Don't perfom abbyy.")
     argparser.add_argument("--tess-profile", default='test', choices=["default","test",""], help="Don't perfom tessract. If the value is an empty string take name from config.ini")
     argparser.add_argument("--ocropy-profile", default='test', choices=["default","test",""], help="Don't perfom ocropy. If the value is an empty string take name from config.ini")
     argparser.add_argument("--filter", type=str, default="sauvola",choices=["sauvola","niblack","otsu","yen","triangle","isodata","minimum","li","mean"],help='Chose your favorite threshold filter: %(choices)s')
@@ -286,6 +287,7 @@ def start_mocrin(*argv)->int:
     tess_profile, ocropy_profile = get_profiles(args, config)
 
     for idx,file in enumerate(files):
+        #if "1969" not in file: continue
         args.idx = idx
         path_out = PATHOUTPUT+os.path.dirname(file).replace(PATHINPUT[:-1],"")+"/"
 
@@ -300,10 +302,7 @@ def start_mocrin(*argv)->int:
         procs = []
         if not args.no_abbyy:
             print("Call abbyy! All other ocr engines got deactivated!")
-            if "/1/" in file:
-                stpo = 123
             start_abbyy(file, path_out + "abbyy/"+args.infofolder)
-
             args.no_tess = True
             args.no_ocropy= True
         if not args.no_tess:

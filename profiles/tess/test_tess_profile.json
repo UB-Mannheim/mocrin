@@ -1,11 +1,12 @@
 {
     "cutter": {
-            "level": "word",
-            "filter": "ale|jahr||Gesch",
-            "filtergrp": "digits|punctuation",
+            "level": "line",
+            "filter": "",
+            "filtergrp": "digits|punctuation|ascii_letters|ascii_lowercase|ascii_uppercase",
             "filterop": "and",
             "grpop": "and",
             "regex": "",
+            "gen_traindata": true,
             "min_wordlen": 0,
             "max_wordlen": -1,
             "min_conf": 0,
@@ -22,6 +23,12 @@
             }
     },
     "parameters": {
+        "--cut": {
+            "action": "store_true",
+            "value": false,
+            "default": false,
+            "help": "Cuts certain areas out of the image (see cutter)."
+        },
         "--tessdata-dir": {
             "value": "",
             "default": "",
@@ -100,12 +107,6 @@
             "help": "Set value for config variables. Multiple -c arguments are allowed.",
             "choices": "range(0,600)",
             "description": "Number of variables which should be change."
-        },
-        "--cut": {
-            "action": "store_true",
-            "value": false,
-            "default": false,
-            "help": "Cuts certain areas out of the image (see cutter)."
         }
     },
     "variables": {

@@ -598,7 +598,7 @@
         "ocropus-rpred": {
             "--nocheck": {
                 "action": "store_true",
-                "value": false,
+                "value": true,
                 "default": false,
                 "help": "disable error checking on inputs",
                 "alias": "-n"
@@ -619,7 +619,7 @@
             },
             "--model": {
                 "default": "en-default.pyrnn.gz",
-                "value": "en-default.pyrnn.gz",
+                "value": "akf-model.pyrnn.gz",
                 "help": "line recognition model",
                 "alias": "-m"
             },
