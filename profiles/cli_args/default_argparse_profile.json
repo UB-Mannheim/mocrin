@@ -1,6 +1,6 @@
 {
     "--info": {
-        "value": "akfmodel",
+        "value": "akfmodelpad",
         "default": "datetime",
         "help": "Text that will be tagged to the outputdirectory. Default prints datetime(year-month-day_hour%minutes)."
     },
@@ -32,13 +32,13 @@
     },
     "--no-tess": {
         "action": "store_true",
-        "value": false,
+        "value": true,
         "default": false,
         "help": "Don't perfom tessract."
     },
     "--no-ocropy": {
         "action": "store_true",
-        "value": true,
+        "value": false,
         "default":false,
         "help": "Don't perfom ocropy."
     },

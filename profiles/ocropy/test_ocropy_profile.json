@@ -625,7 +625,7 @@
             },
             "--pad": {
                 "default": "16",
-                "value": "16",
+                "value": "8",
                 "type": "int",
                 "help": "extra blank padding to the left and right of text line",
                 "alias": "-p"
