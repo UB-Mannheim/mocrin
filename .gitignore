@@ -3,7 +3,6 @@
 .idea/misc.xml
 .idea/modules.xml
 .idea/workspace.xml
-config.ini
 *.iml
 *.xml
 build/*

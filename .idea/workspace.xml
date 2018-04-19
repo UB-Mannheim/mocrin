@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea120959-5bbe-49c2-ac79-474097b23b4a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profiles/cli_args/default_argparse_profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/cli_args/default_argparse_profile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profiles/ocropy/test_ocropy_profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/ocropy/test_ocropy_profile.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +16,8 @@
       <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="69" selection-start-line="6" selection-start-column="69" selection-end-line="6" selection-end-column="69" />
+            <state relative-caret-position="230">
+              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -28,15 +25,13 @@
       <file leaf-file-name="mocrin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mocrin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2254">
-              <caret line="314" column="33" selection-start-line="314" selection-start-column="33" selection-end-line="314" selection-end-column="33" />
+            <state relative-caret-position="568">
+              <caret line="288" column="3" selection-start-line="288" selection-start-column="3" selection-end-line="288" selection-end-column="3" />
               <folding>
                 <element signature="e#256#275#0" expanded="true" />
-                <element signature="e#705#3179#0" />
                 <element signature="e#3267#4022#0" />
                 <element signature="e#4104#4546#0" />
                 <element signature="e#4583#5823#0" />
-                <element signature="e#5859#6356#0" />
                 <element signature="e#6431#7176#0" />
                 <element signature="e#7292#8898#0" />
                 <element signature="e#9015#10120#0" />
@@ -46,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="abbyyrunner.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mocrinlib/abbyyrunner.py">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+            <state relative-caret-position="92">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -58,7 +53,7 @@
       <file leaf-file-name="test_tess_profile.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/profiles/tess/test_tess_profile.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
+            <state relative-caret-position="1081">
               <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
             </state>
           </provider>
@@ -67,7 +62,7 @@
       <file leaf-file-name="default_argparse_profile.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/profiles/cli_args/default_argparse_profile.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
+            <state relative-caret-position="828">
               <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
             </state>
           </provider>
@@ -76,7 +71,7 @@
       <file leaf-file-name="test_ocropy_profile.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/profiles/ocropy/test_ocropy_profile.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2231">
+            <state relative-caret-position="14375">
               <caret line="625" column="22" selection-start-line="625" selection-start-column="22" selection-end-line="625" selection-end-column="22" />
             </state>
           </provider>
@@ -86,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="207">
+              <first_editor relative-caret-position="2070">
                 <caret line="90" column="5" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
               </first_editor>
               <second_editor />
@@ -94,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="529">
-              <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -106,7 +101,7 @@
       <file leaf-file-name="traindata_txtupdater.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mocrinlib/traindata_txtupdater.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
+            <state relative-caret-position="345">
               <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
               <folding>
                 <element signature="e#87#98#0" expanded="true" />
@@ -118,7 +113,7 @@
       <file leaf-file-name="kill_lines_start_with_ws.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mocrinlib/kill_lines_start_with_ws.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
+            <state relative-caret-position="207">
               <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
               <folding>
                 <element signature="e#87#98#0" expanded="true" />
@@ -202,7 +197,6 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/mocrinlib/common.py" />
         <option value="$PROJECT_DIR$/akf_mocrin.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/mocrinlib/imgproc.py" />
         <option value="$PROJECT_DIR$/profiles/tess/default_tess_profile.json" />
@@ -218,6 +212,7 @@
         <option value="$PROJECT_DIR$/profiles/ocropy/test_ocropy_profile.json" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -233,6 +228,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,7 +245,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -384,7 +379,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
-      <module name="Mocrin" />
+      <module name="Ocronator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -398,7 +393,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Twisted Trial">
-      <module name="Mocrin" />
+      <module name="Ocronator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -411,7 +406,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
-      <module name="Mocrin" />
+      <module name="Ocronator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -424,7 +419,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
-      <module name="Mocrin" />
+      <module name="Ocronator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -455,7 +450,7 @@
       <option name="USE_PATTERN" value="false" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
-      <module name="Ocronator" />
+      <module name="Mocrin" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -469,7 +464,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Twisted Trial">
-      <module name="Ocronator" />
+      <module name="Mocrin" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -482,7 +477,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
-      <module name="Ocronator" />
+      <module name="Mocrin" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -495,7 +490,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
-      <module name="Ocronator" />
+      <module name="Mocrin" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -549,17 +544,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="950" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10846707" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32967034" />
       <window_info anchor="right" auto_hide="true" id="DB Browser" order="4" weight="0.094631985" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.08469945" side_tool="true" weight="0.36996338" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36742425" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36742425" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32967034" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.32967034" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.24972677" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.15530303" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10957388" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.24972677" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.91530055" weight="0.49242425" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -574,22 +571,22 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10054645" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.41269842" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Data View" order="3" />
       <window_info id="Structure" order="1" weight="0.24972677" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32967034" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32967034" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32967034" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41269842" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.91530055" weight="0.36996338" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.15628816" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.08469945" side_tool="true" weight="0.36996338" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32967034" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32967034" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -602,11 +599,6 @@
           <url>file://$PROJECT_DIR$/mocrin/mocrin.py</url>
           <line>285</line>
           <option name="timeStamp" value="423" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mocrin.py</url>
-          <line>320</line>
-          <option name="timeStamp" value="479" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -674,13 +666,6 @@
     <entry file="file://$PROJECT_DIR$/Testlib.py" />
     <entry file="file://$PROJECT_DIR$/mocrin/akf_mocrin.py" />
     <entry file="file://$PROJECT_DIR$/mocrin/config.ini" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -766,14 +751,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/profiles/tess/test_tess_profile.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
+        <state relative-caret-position="1081">
           <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mocrinlib/kill_lines_start_with_ws.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
+        <state relative-caret-position="207">
           <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
           <folding>
             <element signature="e#87#98#0" expanded="true" />
@@ -783,7 +768,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mocrinlib/traindata_txtupdater.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
+        <state relative-caret-position="345">
           <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
           <folding>
             <element signature="e#87#98#0" expanded="true" />
@@ -791,24 +776,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/profiles/cli_args/default_argparse_profile.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profiles/ocropy/test_ocropy_profile.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14375">
+          <caret line="625" column="22" selection-start-line="625" selection-start-column="22" selection-end-line="625" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="2070">
+            <caret line="90" column="5" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="69" selection-start-line="6" selection-start-column="69" selection-end-line="6" selection-end-column="69" />
+        <state relative-caret-position="230">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mocrin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2254">
-          <caret line="314" column="33" selection-start-line="314" selection-start-column="33" selection-end-line="314" selection-end-column="33" />
+        <state relative-caret-position="568">
+          <caret line="288" column="3" selection-start-line="288" selection-start-column="3" selection-end-line="288" selection-end-column="3" />
           <folding>
             <element signature="e#256#275#0" expanded="true" />
-            <element signature="e#705#3179#0" />
             <element signature="e#3267#4022#0" />
             <element signature="e#4104#4546#0" />
             <element signature="e#4583#5823#0" />
-            <element signature="e#5859#6356#0" />
             <element signature="e#6431#7176#0" />
             <element signature="e#7292#8898#0" />
             <element signature="e#9015#10120#0" />
@@ -817,39 +836,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/profiles/cli_args/default_argparse_profile.json">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/profiles/ocropy/test_ocropy_profile.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2231">
-          <caret line="625" column="22" selection-start-line="625" selection-start-column="22" selection-end-line="625" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="207">
-            <caret line="90" column="5" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+        <state relative-caret-position="92">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
         </state>
       </provider>
     </entry>
