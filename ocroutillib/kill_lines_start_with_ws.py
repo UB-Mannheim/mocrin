@@ -2,7 +2,7 @@
 import glob
 import os
 
-def update_traindatatext(filename):
+def clean_emptylines(filename):
     with open(filename) as fltxt:
         for ltxt in fltxt:
             if ltxt[0] != " ":
@@ -12,4 +12,4 @@ def update_traindatatext(filename):
 
 if __name__=="__main__":
     for filename in glob.glob("/media/sf_ShareVB/validate/*test"):
-        update_traindatatext(filename)
+        clean_emptylines(filename)

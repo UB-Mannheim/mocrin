@@ -619,13 +619,13 @@
             },
             "--model": {
                 "default": "en-default.pyrnn.gz",
-                "value": "akf-model.pyrnn.gz",
+                "value": "akf-model-newbin-00120000.pyrnn.gz",
                 "help": "line recognition model",
                 "alias": "-m"
             },
             "--pad": {
                 "default": "16",
-                "value": "8",
+                "value": "16",
                 "type": "int",
                 "help": "extra blank padding to the left and right of text line",
                 "alias": "-p"

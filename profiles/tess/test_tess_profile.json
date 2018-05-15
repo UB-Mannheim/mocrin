@@ -45,7 +45,7 @@
             "help": "Specify the location of user patterns file."
         },
         "-l": {
-            "value": "deu",
+            "value": "eng",
             "default": "eng",
             "help": "Specify language(s) used for OCR."
         },

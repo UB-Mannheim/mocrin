@@ -42,6 +42,8 @@ def get_args(argv):
     argparser.add_argument("-b", "--binary", action='store_true', help="Binarize the image")
     argparser.add_argument("--no-tess", action='store_true', help="Don't perfom tessract.")
     argparser.add_argument("--no-ocropy", action='store_true', help="Don't perfom ocropy.")
+    argparser.add_argument("-r","--rewrite-ocropy", action='store_true', help="Don't bin and seg ocropy.")
+    argparser.add_argument("-n", "--new-ocropy", action='store_true', help="Use the new bin files ocropy.")
     argparser.add_argument("--no-abbyy", action='store_true', help="Don't perfom abbyy.")
     argparser.add_argument("--tess-profile", default='test', choices=["default","test",""], help="Don't perfom tessract. If the value is an empty string take name from config.ini")
     argparser.add_argument("--ocropy-profile", default='test', choices=["default","test",""], help="Don't perfom ocropy. If the value is an empty string take name from config.ini")
@@ -211,9 +213,12 @@ def start_ocropy(file:str,path_out:str, ocropy_profile:dict,args)->int:
         store_settings(path_out,ocropy_profile,args, "Ocropy")
     # gets all user-specific parameters from the ocropy-profile
     parameters = get_ocropy_param(ocropy_profile)
-    subprocess.Popen(args=["ocropus-nlbin",file,"-o"+path_out+args.infotxt+fname+"/"]+parameters["ocropus-nlbin"]).wait()
-    subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.bin.png","-n","--maxlines","2000"]+parameters["ocropus-gpageseg"]).wait()
-    subprocess.Popen(args=["ocropus-rpred",path_out+args.infotxt+fname+"/????/??????.bin.png"]+parameters["ocropus-rpred"]).wait()
+    if not os.path.isdir(path_out+args.infotxt+fname) or args.rewrite_ocropy:
+        subprocess.Popen(args=["ocropus-nlbin",file,"-o"+path_out+args.infotxt+fname+"/"]+parameters["ocropus-nlbin"]).wait()
+        subprocess.Popen(args=["ocropus-gpageseg",path_out+args.infotxt+fname+"/????.nrm.png","-n","--gray","--maxlines","2000"]+parameters["ocropus-gpageseg"]).wait()
+    fext = ""
+    if not args.new_ocropy: fext = ".new"
+    subprocess.Popen(args=["ocropus-rpred",path_out+args.infotxt+fname+"/????/??????"+fext+".bin.png"]+parameters["ocropus-rpred"]).wait()
     subprocess.Popen(args=["ocropus-hocr",path_out+args.infotxt+fname+"/????.bin.png","-o"+path_out+"/"+file.split('/')[-1]+".hocr"]+parameters["ocropus-hocr"]).wait()
     print("Finished ocropy for: " + file.split('/')[-1])
     return 0
@@ -328,3 +333,4 @@ if __name__ == "__main__":
     Entrypoint: Searches for the files and parse them into the mainfunction (can be multiprocessed)
     """
     start_mocrin()
+
