@@ -1,6 +1,6 @@
 {
     "--info": {
-        "value": "akfmodel3",
+        "value": "akfdict",
         "default": "datetime",
         "help": "Text that will be tagged to the outputdirectory. Default prints datetime(year-month-day_hour%minutes)."
     },
