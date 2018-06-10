@@ -45,7 +45,7 @@
             "help": "Specify the location of user patterns file."
         },
         "-l": {
-            "value": "akf3",
+            "value": "akf",
             "default": "eng",
             "help": "Specify language(s) used for OCR."
         },

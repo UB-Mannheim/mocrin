@@ -286,7 +286,7 @@
                 "--parallel": {
                     "type": "int",
                     "default": "0",
-                    "value": "0",
+                    "value": "4",
                     "help": "number of CPUs to use",
                     "alias": "-Q"
                 },
@@ -619,7 +619,7 @@
             },
             "--model": {
                 "default": "en-default.pyrnn.gz",
-                "value": "akf-model-newbin-00120000.pyrnn.gz",
+                "value": "akf-model.pyrnn.gz",
                 "help": "line recognition model",
                 "alias": "-m"
             },
@@ -710,7 +710,7 @@
             "--parallel": {
                 "type": "int",
                 "default": "1",
-                "value": "1",
+                "value": "4",
                 "help": "number of parallel processes to use default: %(defaults)",
                 "alias": "-Q"
             },
@@ -831,7 +831,7 @@
             "--parallel": {
                 "type": "int",
                 "default": "0",
-                "value": "0",
+                "value": "4",
                 "alias": "-Q"
             }
         },

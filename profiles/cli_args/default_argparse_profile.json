@@ -1,6 +1,6 @@
 {
     "--info": {
-        "value": "akfdict",
+        "value": "akf",
         "default": "datetime",
         "help": "Text that will be tagged to the outputdirectory. Default prints datetime(year-month-day_hour%minutes)."
     },
@@ -38,7 +38,7 @@
     },
     "--no-ocropy": {
         "action": "store_true",
-        "value": true,
+        "value": false,
         "default":false,
         "help": "Don't perfom ocropy."
     },
