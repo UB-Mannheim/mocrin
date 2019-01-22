@@ -26,9 +26,9 @@ Note that the automatic processing will sometimes need some manual adjustments.
 #### Current State
 ✓  Talk to tesseract  
 ✓  Talk to ocropus    
-✓  Talk to abbyy 
-✓  Configuration files (for the whole process and every single ocr-engine) 
-✓  Implement cut method 
+✓  Talk to abbyy  
+✓  Configuration files (for the whole process and every single ocr-engine)  
+✓  Implement cut method  
 ✓  Create uniform output structure  
 ✓  Create hocr-output   
 ✓  Create logs with settings information   
