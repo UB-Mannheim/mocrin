@@ -1,4 +1,4 @@
-![ocromore](docs/img/mocrin_logo.png)
+![mocrin](docs/img/mocrin_logo.png)
 ========================
 ![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)
 
@@ -14,7 +14,7 @@ Just now you can store multiple configuration files for the ocr-engines.
 It can also be used to cut out areas from image with user-set characteristics, which
 can be further used as training datasets for NN-models.
 
-First the program parses the different ocr-outputfiles to a sqlite-database.
+AKF-Ocromore further parse the different ocr-outputfiles to a sqlite-database.
 The purpose of this database is to serve as an exchange and store platform using 
 pandas as handler. Combining pandas and the dataframe-objectifier offers a 
 wide-range of performant use-cases like msa. 
@@ -32,9 +32,6 @@ Note that the automatic processing will sometimes need some manual adjustments.
 ✓  Create uniform output structure  
 ✓  Create hocr-output   
 ✓  Create logs with settings information   
-  
-✘  Store results in database/hocr-files  
-✘  Plot results in different ways (with matplotlib)
 
 ##### Output fileformats
 ✓  hocr (with confidences)   
@@ -89,11 +86,6 @@ Installation
 Process steps
 ----------
 #### Overview
-Will follow soon.
-
-Running
--------
-#### Example
 First of all you have to adjust the config-files.
 There are two main config-files in "./profiles/":
    + cli_args 
@@ -111,33 +103,22 @@ The parameter to perform the examples are set as default.
 So you can just run the following commands.
 
 At the current stage it is recommended to use PyCharm to perform the next steps.
-        
-Parse files to db and do preprocessing:
+ 
+Running
+-------
+#### Example
+       
+Parse OCR with multiple Engines and store the result in a unified folder structure:
 
-    # All parameters can set in the to_db_reader config
-    # set HOCR2SQL parse files to db 
-    # set POS parameter, to set the naming of db and tables 
-    # set PREPROCSSING (It is recommended to perform the preprocessing steps directly after parsing  
-    # but it is not necassary)
+    # All parameters can set in the configs
+    # Config files are stored in the profiles folder.
     
-    $ python3 ./plt_charinfo.py
+    $ python3 ./mocrin.py
     
-Combine files and generate a accuracy report:
-
-    # All parameters can set in the voter config
-    # set DO_MSA_BEST to perform msa (not Textdistance) method
-    # set DO_ISRI_VAL to generate a accuracy report
-    
-    $ python3 ./main_msa_ndist_charconf.py
-    
-To perform a visual comparision:
-
-    $ python3 ./result_visualization.py
-
 The result are stored in ./Testfiles/tableparser_output/
 
 Further Information
 -------------------
-Will follow soon.
+See other GitHub Repos for the "AKF"-DFG-Project.
 
 Originally written by Jan Kamlah.
