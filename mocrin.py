@@ -61,6 +61,7 @@ def get_args(argv):
 ########## JSON_DefaultRemover ##########
 class DefaultRemover(json.JSONDecoder):
     """
+    Overloads a class for the json decoder
     Removes all Null/None and all parameters if value == default
     """
     def __init__(self, *args, **kwargs):
@@ -133,6 +134,12 @@ def get_profiles(args,config):
     return (tess_profile,ocropy_profile)
 
 def update_args(args,config):
+    """
+    Updates arguments if given by terminal call
+    :param args:
+    :param config:
+    :return:
+    """
     cli_args_profile_path = config['DEFAULT']['CLI_ARGSPATH']+config['DEFAULT']['CLI_ARGSNAME']+"_argparse_profile.json"
     with open(cli_args_profile_path, "r") as file:
         args_profile = json.load(file, cls=DefaultRemover)
@@ -177,22 +184,6 @@ def start_tess(file:str,path_out:str, tess_profile:dict,args)->int:
     if args.idx == 0:
         store_settings(path_out,tess_profile,args, "Tesseract")
     path_out+= args.infotxt
-    # with tesserocr obsolete ||
-    # use if tesserocr should not be installed -> than cut and extended hocr cant be used
-    # all dependencies have to be removed (tessapi..)
-    # maybe OCR-D can build another useful api, if so please replace
-        #parameters = ""
-        #for param in tess_profile['parameters']:
-        #    if tess_profile['parameters'][param]['value'] != "" and tess_profile['parameters'][param]['value'] != "False":
-        #        parameters += param+""+tess_profile['parameters'][param]['value']+" "
-        #if "variables" in tess_profile:
-        #    for var in tess_profile['variables']:
-        #        parameters += "-c "+var + "=" + tess_profile['variables'][var]['value'] + " "
-        #        parameters += "-c " + var + "=" + tess_profile['variables'][var]['value'] + " "
-        #parameters += "-c tessedit_debug_quality_metrics=1 -c tessedit_write_params_to_file=/home/PARAMS.txt"
-        #parameters.strip()
-        #parameters = shlex.split(parameters)
-        #subprocess.Popen(args=['tesseract',file,file_out]+parameters).wait()
     file_out = path_out + file.split('/')[-1]
     tess_pprocess(file, file_out, args.cut, tess_profile)
     print("Finished tesseract for: "+file.split('/')[-1])
