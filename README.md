@@ -4,7 +4,9 @@
 
 Overview
 --------
-Coordinates multiple ocr-engine to create a uniform workflow and folder structure.
+Mocrin is part of the [akf-work process][akf-link] and
+it coordinates multiple ocr-engine to create a 
+uniform workflow and folder structure.
 
 ![mocrin_process](docs/img/mocrin_process.png)
 
@@ -16,7 +18,7 @@ Just now you can store multiple configuration files for the ocr-engines.
 It can also be used to cut out areas from image with user-set characteristics, which
 can be further used as training datasets for NN-models.
 
-AKF-Ocromore further parse the different ocr-outputfiles to a sqlite-database.
+`Ocromore` further parse the different ocr-outputfiles to a sqlite-database.
 The purpose of this database is to serve as an exchange and store platform using 
 pandas as handler. Combining pandas and the dataframe-objectifier offers a 
 wide-range of performant use-cases like msa. 
@@ -74,9 +76,6 @@ Installation
    [GCC 5.4.0 20160609] on linux  
    Tested on: Ubuntu17.10
     
-   [ubuntu-link]: https://www.ubuntu.com/
-   [python-link]: https://www.anaconda.com/download/
-    
 #### Building instructions
 
     Dependencies can be installed into a Python Virtual Environment:
@@ -124,3 +123,8 @@ Further Information
 See other GitHub Repos for the "AKF"-DFG-Project.
 
 Originally written by Jan Kamlah.
+
+
+[ubuntu-link]: https://www.ubuntu.com/
+[python-link]: https://www.anaconda.com/download/
+[akf-link]: https://www.ubuntu.com/
