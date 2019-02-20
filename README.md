@@ -10,7 +10,7 @@ uniform workflow and folder structure.
 
 ![mocrin_process](docs/img/mocrin_process.png)
 
-`mocrin` is a command line driven processing tool for multiple ocr-engine.  
+`Mocrin` is a command line driven processing tool for multiple ocr-engine.  
 The main purpose is to handle multiple ocr-engine with one interface for 
 a cleaner and uniform workflow. Another purpose is to serve as part of an self-configuration
 process to extract the best settings for different ocr-engines. 
@@ -49,19 +49,20 @@ Installation
    
    - linux distribution:    
      - [Ubuntu][ubuntu-link]
-     - ...
+     - etc.
    - [Python 3.6][python-link]
    
    ##### Alternative docker (for windows recommended):
    
-   Build:  
+   **Build:**  
    
-   - docker build -t mocrin .
+    docker build -t mocrin .
    
-   Run:  
+   **Run:** 
+    
+    docker run -it -v 'PWD':/home/developer/coding/mocrin mocrin 
    
-   - docker run -it -v `PWD`:/home/developer/coding/mocrin mocrin 
-   - then run cli commands (see example)
+   Then run cli commands (see example)
    
    To run the scripts for visual results in your OS:  
    (not available in the docker-image) 
@@ -73,7 +74,7 @@ Installation
    so if you are a developer it's recommended to use it. 
 
    Python 3.6.3 (default, Oct  6 2017, 08:44:35)   
-   [GCC 5.4.0 20160609] on linux  
+   GCC 5.4.0 20160609 on linux  
    Tested on: Ubuntu17.10
     
 #### Building instructions
