@@ -6,6 +6,8 @@ Overview
 --------
 Coordinates multiple ocr-engine to create a uniform workflow and folder structure.
 
+![mocrin_process](docs/img/mocrin_process.png)
+
 `mocrin` is a command line driven processing tool for multiple ocr-engine.  
 The main purpose is to handle multiple ocr-engine with one interface for 
 a cleaner and uniform workflow. Another purpose is to serve as part of an self-configuration
