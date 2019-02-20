@@ -4,7 +4,7 @@
 
 Overview
 --------
-Mocrin is part of the [akf-work process][akf-link] and
+Mocrin is part of the [Aktienführer-Datenarchiv work process][akf-link] and
 it coordinates multiple ocr-engine to create a 
 uniform workflow and folder structure.
 
@@ -120,11 +120,11 @@ The result are stored in ./Testfiles/tableparser_output/
 
 Further Information
 -------------------
-See other GitHub Repos for the "AKF"-DFG-Project.
+See the [Aktienführer-Datenarchiv work process][akf-link] repository.
 
 Originally written by Jan Kamlah.
 
 
 [ubuntu-link]: https://www.ubuntu.com/
 [python-link]: https://www.anaconda.com/download/
-[akf-link]: https://www.ubuntu.com/
+[akf-link]:  https://github.com/JKamlah/Aktienfuehrer-Datenarchiv-Tools
