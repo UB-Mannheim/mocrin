@@ -1,5 +1,4 @@
 Pillow>=4.1.1
-pytesseract>=0.1.7
+tesserocr>=2.4.0
 opencv-python>=3.3.0.10
 numpy>=1.13.3
-

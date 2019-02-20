@@ -34,11 +34,11 @@ def update_traindatatext(filename):
                 valres.err = ltxt.replace("\n","").split(" ")[-2]
             if ltxt[:9] == "errnomiss":
                 valres.errnomiss = ltxt.replace("\n","").split(" ")[-2]
-                sheet = pe.get_sheet(file_name="/media/sf_ShareVB/validate/1965/Validierung_akf_models.xlsx")
+                sheet = pe.get_sheet(file_name="./Validierung_models.xlsx")
                 sheet.row += [valres.name,valres.model,valres.iterationen, valres.errors,valres.missing, valres.total, valres.err,valres.errnomiss]
-                sheet.save_as("/media/sf_ShareVB/validate/1965/Validierung_akf_models.xlsx")
+                sheet.save_as("./Validierung_models.xlsx")
 
 
 if __name__=="__main__":
-    for filename in glob.glob("/media/sf_ShareVB/validate/1965/*ocrval.txt"):
+    for filename in glob.glob(""):
         update_traindatatext(filename)

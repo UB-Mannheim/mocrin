@@ -14,6 +14,6 @@ def update_traindatatext(tddir):
                 #gt.write(ltxt.strip())
 
 if __name__=="__main__":
-    for fdir in glob.glob("/media/sf_ShareVB/traindata_ocropus/*/"):
+    for fdir in glob.glob(""):
         update_traindatatext(fdir)
 

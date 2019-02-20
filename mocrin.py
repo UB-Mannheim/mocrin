@@ -174,7 +174,7 @@ def store_settings(path_out:str,profile:dict,args,ocrname:str)->int:
 ########## TESSERACT FUNCTIONS ##########
 def start_tess(file:str,path_out:str, tess_profile:dict,args)->int:
     """
-    Start tesseract over "pytesseract" a cli-module
+    Start tesseract over "tesserocr" a cli-module
     :param file: fileinputpath
     :param fop: fileoutputpath
     :param profile: contains user-specific parameters/option for tesseract
@@ -250,9 +250,6 @@ def get_ocropy_param(ocropy_profile:dict)->dict:
                             parameters[funcall] += param + " "
                         else:
                             parameters[funcall] += param+" "+ocropy_profile['parameters'][funcall][param]['value']+" "
-            #if len(parameters[funcall]) == 0:
-            #    del parameters[funcall]
-            #    continue
             parameters[funcall].strip()
             parameters[funcall] = shlex.split(parameters[funcall])
 

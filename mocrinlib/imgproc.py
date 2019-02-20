@@ -85,10 +85,6 @@ def get_binary(args, image, file:str,binpath:str)->str:
             binary = image > thresh
         else:
             binary = uintimage
-            #if args.filter == "testall":
-        #    thresh = imgfilter.try_all_threshold(uintimage)
-        #binary = uintimage > thresh
-        #binary = 1 - binary  # inverse binary
         with warnings.catch_warnings():
             # Transform rotate convert the img to float and save convert it back
             warnings.simplefilter("ignore")

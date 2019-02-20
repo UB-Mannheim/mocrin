@@ -111,12 +111,6 @@ def set_vars(api, file:str, tess_profile:dict):
     api.SetVariable("save_blob_choices", "T")
     if 'variables' in tess_profile:
         for var in tess_profile['variables']:
-            # TODO: test it!
-            # if tess_profile['variables'][var]['value'] == "False":
-            #    api.SetVariable(var, "F")
-            # elif tess_profile['variables'][var]['value'] == "True":
-            #    api.SetVariable(var, "T")
-            # else:
             api.SetVariable(var, str(tess_profile['variables'][var]['value']))
     api.Recognize()
     return 0
@@ -271,4 +265,4 @@ def tess_pprocess(file:str,fileout:str,cut:bool, tess_profile:dict=None)->int:
 
 ########## ENTRYPOINT ##########
 if __name__=="__main__":
-    extend_hocr('/home/jkamlah/Coding/tesseract/testing/eurotext.tif','/home/jkamlah/Coding/tesseract/testing/eurotext.hocr')
+    extend_hocr('','')

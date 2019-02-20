@@ -21,6 +21,13 @@ def create_dir(newdir:str)->int:
     return 0
 
 def get_iopath(fpathin,fpathout,config):
+    """
+    Get input and ouput path from config
+    :param fpathin:
+    :param fpathout:
+    :param config:
+    :return:
+    """
     PATHINPUT = config['DEFAULT']['PATHINPUT']
     if fpathin != "":
         PATHINPUT = fpathin
@@ -30,7 +37,9 @@ def get_iopath(fpathin,fpathout,config):
     return PATHINPUT, PATHOUTPUT
 
 def get_filenames(fileformat,PATHINPUT:str):
-    # Get all filenames and companynames (iglob-iterator)
+    """
+    Get all filenames and companynames (iglob-iterator)
+    """
     files = []
     if os.path.isdir(PATHINPUT):
         files = glob.iglob(PATHINPUT + "**/*." + fileformat, recursive=True)
