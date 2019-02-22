@@ -1,4 +1,4 @@
-![mocrin](docs/img/mocrin_logo.png)
+![mocrin](docs/img/mocrin_logo.png "mocrin")
 ========================
 ![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)
 
@@ -9,7 +9,7 @@ uniform workflow and folder structure.
 It is part of the [Aktienführer-Datenarchiv work process][akf-link],
 but can also be used independently.
 
-![mocrin_process](docs/img/mocrin_process.png)
+![mocrin_process](docs/img/mocrin_process.png "Workflow diagram")
 
 `Mocrin` is a command line driven processing tool for multiple ocr-engine.  
 The main purpose is to handle multiple ocr-engine with one interface for 
@@ -127,6 +127,6 @@ See the [Aktienführer-Datenarchiv work process][akf-link] repository.
 Originally written by Jan Kamlah.
 
 
-[ubuntu-link]: https://www.ubuntu.com/
-[python-link]: https://www.anaconda.com/download/
-[akf-link]: https://github.com/JKamlah/Aktienfuehrer-Datenarchiv-Tools
+[ubuntu-link]: https://www.ubuntu.com/ "ubuntu"
+[python-link]: https://www.anaconda.com/download/ "anaconda"
+[akf-link]: https://github.com/UB-Mannheim/Aktienfuehrer-Datenarchiv-Tools "Aktienfuehrer-Datenarchiv-Tools"
