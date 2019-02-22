@@ -4,9 +4,10 @@
 
 Overview
 --------
-Mocrin is part of the [Aktienführer-Datenarchiv work process][akf-link] and
-it coordinates multiple ocr-engine to create a 
+**Mocrin** coordinates multiple ocr-engine to create a 
 uniform workflow and folder structure.
+It is part of the [Aktienführer-Datenarchiv work process][akf-link],
+but can also be used independently.
 
 ![mocrin_process](docs/img/mocrin_process.png)
 
@@ -54,11 +55,11 @@ Installation
    
    ##### Alternative docker (for windows recommended):
    
-   **Build:**  
+   Build:  
    
     docker build -t mocrin .
    
-   **Run:** 
+   Run: 
     
     docker run -it -v 'PWD':/home/developer/coding/mocrin mocrin 
    
@@ -128,4 +129,4 @@ Originally written by Jan Kamlah.
 
 [ubuntu-link]: https://www.ubuntu.com/
 [python-link]: https://www.anaconda.com/download/
-[akf-link]:  https://github.com/JKamlah/Aktienfuehrer-Datenarchiv-Tools
+[akf-link]: https://github.com/JKamlah/Aktienfuehrer-Datenarchiv-Tools
