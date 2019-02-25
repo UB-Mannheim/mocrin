@@ -120,13 +120,25 @@ Parse OCR with multiple Engines and store the result in a unified folder structu
     
 The result are stored in ./Testfiles/tableparser_output/
 
-Further Information
--------------------
-See the [Aktienführer-Datenarchiv work process][akf-link] repository.
+Copyright and License
+--------
 
-Originally written by Jan Kamlah.
+Copyright (c) 2013 – 2018 Universitätsbibliothek Mannheim
+
+Author: [Jan Kamlah](https://github.com/jkamlah) 
+
+**mocrin** is Free Software. You may use it under the terms of the Apache 2.0 License.
+See [LICENSE](./LICENSE) for details.
+
+
+Acknowledgements
+-------
+
+The tools are depending on some third party libraries:
+ *  [tesserocr][tesserocr-link] - Wrapper for Tesseract-API (MIT-License)
 
 
 [ubuntu-link]: https://www.ubuntu.com/ "ubuntu"
 [python-link]: https://www.anaconda.com/download/ "anaconda"
 [akf-link]: https://github.com/UB-Mannheim/Aktienfuehrer-Datenarchiv-Tools "Aktienfuehrer-Datenarchiv-Tools"
+[tesserocr-link]: https://github.com/sirfz/tesserocr "Tesserocr"
