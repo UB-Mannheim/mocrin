@@ -123,7 +123,7 @@ The result are stored in ./Testfiles/tableparser_output/
 Copyright and License
 --------
 
-Copyright (c) 2013 – 2018 Universitätsbibliothek Mannheim
+Copyright (c) 2017 Universitätsbibliothek Mannheim
 
 Author: [Jan Kamlah](https://github.com/jkamlah) 
 
